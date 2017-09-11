@@ -1,0 +1,33 @@
+Partlist
+
+Exported from Arduino-Pro-Mini-v13.sch at 2012-09-16 12:51:45
+
+EAGLE Version 6.2.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value          Device                    Package            Library  Sheet
+
+C1       0.1uF          CAP0402-CAP               0402-CAP           SparkFun 1
+C2       0.1uF          CAP0402-CAP               0402-CAP           SparkFun 1
+C3       0.1uF          CAP0402-CAP               0402-CAP           SparkFun 1
+C10      0.1uF          CAP0402-CAP               0402-CAP           SparkFun 1
+C13      10uF           CAP_POL1206               EIA3216            SparkFun 1
+C19      10uF           CAP_POL1206               EIA3216            SparkFun 1
+D3       Green          LED0603                   LED-0603           SparkFun 1
+JP1      FTDI Basic     ARDUINO_SERIAL_PROGRAMPTH 1X06               SparkFun 1
+JP2                     M02PTH                    1X02               SparkFun 1
+JP3                     M01PTH                    1X01               SparkFun 1
+JP4                     M01PTH                    1X01               SparkFun 1
+JP6                     M12PTH                    1X12               SparkFun 1
+JP7                     M12PTH                    1X12               SparkFun 1
+LED1     Red            LED0603                   LED-0603           SparkFun 1
+Q1       8/16/20MHz     RESONATORSMD              RESONATOR-SMD      SparkFun 1
+R1                      RESISTOR0402-RES          0402-RES           SparkFun 1
+R2       10K            RESISTOR0402-RES          0402-RES           SparkFun 1
+R3                      RESISTOR0402-RES          0402-RES           SparkFun 1
+R6       330            RESISTOR0402-RES          0402-RES           SparkFun 1
+R11      10K            RESISTOR0402-RES          0402-RES           SparkFun 1
+S2       Reset          TAC_SWITCHSMD             TACTILE_SWITCH_SMD SparkFun 1
+U1       ATMEGA328      ATMEGA168                 TQFP32-08          SparkFun 1
+U2       MIC5205        V_REG_LDOSMD              SOT23-5            SparkFun 1

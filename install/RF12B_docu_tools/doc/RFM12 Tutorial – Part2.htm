@@ -1,0 +1,3077 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link rel="shortcut icon" href="http://blog.strobotics.com.au/wp-content/themes/disconnected/img/blogrdfbg.jpg">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>
+      RFM12 Tutorial – Part2  </title>
+	<meta name="generator" content="WordPress 3.4.1"> <!-- leave this for stats please -->
+  <meta name="description" content="Where Photographer and Geek merge......">
+	  
+  <link rel="stylesheet" href="RFM12%20Tutorial%20%E2%80%93%20Part2_files/style.css" type="text/css" media="screen">
+ 	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://blog.strobotics.com.au/feed/">
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://blog.strobotics.com.au/feed/rss/">
+	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://blog.strobotics.com.au/feed/atom/">
+	<link rel="pingback" href="http://blog.strobotics.com.au/xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Strobotics » RFM12 Tutorial – Part2 Comments Feed" href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/feed/">
+<link rel="stylesheet" id="wp_sidebarlogin_css_styles-css" href="RFM12%20Tutorial%20%E2%80%93%20Part2_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="podpress_frontend_styles-css" href="RFM12%20Tutorial%20%E2%80%93%20Part2_files/podpress.css" type="text/css" media="all">
+<script type="text/javascript">
+//<![CDATA[
+var podpressL10 = {
+	openblogagain : 'back to:',
+	theblog : 'the blog',
+	close : 'close',
+	playbutton : 'Play &gt;'
+}
+//]]>
+</script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/1pixelout_audio-player.js"></script>
+<script type="text/javascript">//<![CDATA[
+	var podPressPlayerFile = "1pixelout_player.swf";
+	var podPressPopupPlayerOpt = new Object();
+	podPressPopupPlayerOpt["bg"] = "E5E5E5";
+	podPressPopupPlayerOpt["text"] = "333333";
+	podPressPopupPlayerOpt["leftbg"] = "CCCCCC";
+	podPressPopupPlayerOpt["lefticon"] = "333333";
+	podPressPopupPlayerOpt["volslider"] = "666666";
+	podPressPopupPlayerOpt["voltrack"] = "FFFFFF";
+	podPressPopupPlayerOpt["rightbg"] = "B4B4B4";
+	podPressPopupPlayerOpt["rightbghover"] = "999999";
+	podPressPopupPlayerOpt["righticon"] = "333333";
+	podPressPopupPlayerOpt["righticonhover"] = "FFFFFF";
+	podPressPopupPlayerOpt["loader"] = "009900";
+	podPressPopupPlayerOpt["track"] = "FFFFFF";
+	podPressPopupPlayerOpt["border"] = "CCCCCC";
+	podPressPopupPlayerOpt["tracker"] = "DDDDDD";
+	podPressPopupPlayerOpt["skip"] = "666666";
+	podPressPopupPlayerOpt["slider"] = "666666";
+	podPressPopupPlayerOpt["initialvolume"] = "70";
+	podPressPopupPlayerOpt["buffer"] = "5";
+	podPressPopupPlayerOpt["checkpolicy"] = "no";
+	podpressAudioPlayer.setup("http://blog.strobotics.com.au/wp-content/plugins/podpress/players/1pixelout/" + podPressPlayerFile, {bg:"E5E5E5", text:"333333", leftbg:"CCCCCC", lefticon:"333333", volslider:"666666", voltrack:"FFFFFF", rightbg:"B4B4B4", rightbghover:"999999", righticon:"333333", righticonhover:"FFFFFF", loader:"009900", track:"FFFFFF", border:"CCCCCC", tracker:"DDDDDD", skip:"666666", slider:"666666", initialvolume:"70", buffer:"5", checkpolicy:"no",  pagebg:"FFFFFF", transparentpagebg:"yes", encode: "no"} );
+//]]></script><style media="screen" type="text/css">p.audioplayer_container span {visibility:hidden;height:24px;overflow:hidden;padding:0;border:none;}</style>
+<script type="text/javascript">//<![CDATA[
+var podPressBlogURL = "http://blog.strobotics.com.au/";
+var podPressBackendURL = "http://blog.strobotics.com.au/wp-content/plugins/podpress/";
+var podPressDefaultPreviewImage = "http://blog.strobotics.com.au/wp-content/plugins/podpress/images/vpreview_center.png";
+var podPressMP3PlayerWrapper = false;
+var podPress_cortado_signed = false;
+var podPressOverwriteTitleandArtist = false;
+var podPressHTML5 = true;
+var podPressHTML5_showplayersdirectly = false;
+var podPressText_PlayNow = "Play Now";
+var podPressText_HidePlayer = "Hide Player";
+//]]></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/jquery.js"></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/blockui.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sidebar_login_params = {"ajax_url":"http:\/\/blog.strobotics.com.au\/wp-admin\/admin-ajax.php","login_nonce":"159b7cfb81"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/sidebar-login.js"></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/podpress.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.strobotics.com.au/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.strobotics.com.au/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="StrobIt In the Wild" href="http://blog.strobotics.com.au/2008/05/08/strobit-in-the-wild-2/">
+<link rel="next" title="Intronix LogiPort Logic Analyser" href="http://blog.strobotics.com.au/2008/06/19/intronix-logiport-logic-analyser/">
+<meta name="generator" content="WordPress 3.4.1, fitted with the WordPress Mobile Pack 1.2.5">
+<link rel="canonical" href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/">
+<link rel="shortlink" href="http://blog.strobotics.com.au/?p=135">
+<link rel="stylesheet" type="text/css" href="RFM12%20Tutorial%20%E2%80%93%20Part2_files/wpcf_style.css">
+<style type="text/css">
+#header {
+	background:#fff url(http://blog.strobotics.com.au/wp-content/themes/disconnected/img/vaportop.jpg) no-repeat bottom center;
+}
+#header h1 a, #header h1 a:hover {
+	color: #000000;
+}	
+</style>
+<script src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/printfriendly.js" async="" type="text/javascript"></script></head>
+
+<body pf-init="true">
+
+
+
+<div id="rap">
+<div id="header">
+	
+	<ul id="topnav">
+	
+	<li><a href="http://blog.strobotics.com.au/" id="navHome" title="Posted Recently" accesskey="h">Main</a></li>
+	<li class="page_item page-item-2"><a href="http://blog.strobotics.com.au/about/">About</a></li>
+<li class="page_item page-item-70"><a href="http://blog.strobotics.com.au/archives/">Archives</a></li>
+<li class="page_item page-item-73"><a href="http://blog.strobotics.com.au/contact/">Contact</a></li>
+<li class="page_item page-item-498"><a href="http://blog.strobotics.com.au/projects/">Projects</a></li>
+<li class="page_item page-item-192"><a href="http://blog.strobotics.com.au/tutorials/">Tutorials</a></li>
+<li><a href="http://blog.strobotics.com.au/wp-login.php?action=register">Register</a></li>	
+	<li><a href="http://blog.strobotics.com.au/wp-login.php">Log in</a></li>
+	</ul>
+	<h1><a href="http://blog.strobotics.com.au/" title="Strobotics">Strobotics</a></h1>		
+	<div id="desc">Where Photographer and Geek merge……</div>		
+</div>
+	
+	<div id="main">
+	<div id="content">
+						<div class="post hentry">
+				<div class="post-info"><p class="numerals">135         </p><h2 class="post-title entry-title"><a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/" rel="bookmark" title="Permanent Link: RFM12 Tutorial – Part2">RFM12 Tutorial – Part2</a></h2>
+</div>
+<div class="post-content entry-content">
+	<div style="float:left;margin-right:10px;"><iframe allowtransparency="true" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/tweet_button.htm" style="width:110px; height:20px;" frameborder="0" scrolling="no"></iframe></div><h1><strong>Part 2 – RFM12 Hardware Interface</strong></h1>
+<p><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/rfm12b.jpg"><img class="alignnone size-medium wp-image-137 aligncenter" style="margin: 2px 7px 2px 0px;" title="RFM12 packages" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/rfm12b.jpg" alt="" align="left" height="85" width="83"></a>In
+ this next part of the RFM12 tutorials I’ll be covering the hardware 
+interface, signal descriptions and how you go about hooking it up to the
+ MCU of your choice.</p>
+<p><span id="more-135"></span></p>
+<h2><strong>Packages</strong></h2>
+<p>The RFM12 RF module comes in a couple of different packages, DIP and 
+SMD, I’ll mainly be covering the DIP throughout these series, but will 
+touch on the SMD where necessary. There is also a long range version of 
+the RFM12B, this is the RFM12BP and has a reported range of 3000m. The 
+RFM12BP only comes in an extended SMD package, but I won’t be covering 
+it here in the tutorials, although all of the commands will be the same.
+ The only difference is the RFM12BP has an on board power amp, which 
+requires 12V to power the PA portion and has associated control pins for
+ Tx/RX control.</p>
+<p style="text-align: center;"><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/rfm12b.jpg"><img class="alignnone size-medium wp-image-137 aligncenter" style="margin: 2px 7px 2px 0px;" title="RFM12 packages" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/rfm12b.jpg" alt="" height="205" width="200"></a></p>
+<p style="text-align: center;">
+</p><h4 style="text-align: justify;"><strong>DIP</strong></h4>
+<p>The DIP package uses a 6×2 2mm pitch header to connect the various 
+signals to the MCU, The size of this header is a bit of a problem if you
+ want to do prototyping as it doesn’t breadboard well, initially I 
+didn’t have any 2mmm pitch female headers so I hand soldered on 
+individual wires to the back of each pin, not really good in the long 
+run as the wires kept on breaking off, so I designed a breakout board to
+ bring out all the signals onto a standard 100mil pitch, much easier to 
+breadboard.</p>
+<p style="text-align: center;"><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/2146382426_ce95ba0034_o.jpg"><img class="alignnone size-medium wp-image-136 aligncenter" title="RFM12 Breakout board" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/2146382426_ce95ba0034_o-199x300.jpg" alt="" height="300" width="199"></a></p>
+<h4><strong>SMD</strong></h4>
+<p>There are two version of the SMD module, and from what I can gather 
+the only difference is the crystal, one is the standard HCU form factor,
+ while the other is a ceramic oscillator.</p>
+<p><strong>Antenna</strong>: The only real difference when using the SMD
+ over the DIP package is there is no on-board antenna connection, the 
+antenna comes out via one of the pins, so you need to design in an 
+antenna connection if using the SMD version.</p>
+<p><strong>ARSSI</strong>: The SMD package allows access to another 
+useful signal that is not available to the DIP version, this is the 
+ARSSI – Analogue Relative Signal Strength Indicator, which is basically 
+the strength of the signal being received by the module, however it’s 
+not bought out on any of the pins, beats me why? There a digital version
+ of this signal accessible though the software interface, from what I 
+can gather there is a difference from the Digital and Analogue versions 
+of this signal. Anyway what it boils down to if you want to access this 
+analogue signal then you have to manually solder on a wire to access 
+this pad (shown as red circle).</p>
+<p>UPDATE:&nbsp; the onboard DRSSI is a single bit returned in the 
+status word that indicates if the RSSI is above the set 
+threshold.&nbsp;&nbsp; The ARSSI hack mentioned gives an analogue value 
+that is proportional to the RSSI signal received.</p>
+<p><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/arssi.png"></a></p>
+<p style="text-align: center;"><img class="alignnone size-medium wp-image-138 aligncenter" title="ARSSI Connection" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/arssi.png" alt="ARSSI Connection" height="118" width="120"></p>
+<h2><strong>Antenna</strong></h2>
+<p>The antenna mostly used will probably be a whip antenna, basically a 
+piece of wire cut to the right length, I won’t be covering antenna 
+theory here, as I don’t know it <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_wink.gif" alt=";)" class="wp-smiley"> , but suffice to say the approx lengths involved are as follows (measured from factory supplied antennas):</p>
+<p>433Mhz – 173mm</p>
+<p>915Mhz – 87mm</p>
+<p><strong>UPDATED: 03/07/2009</strong></p>
+<p>These antenna lengths are calculated for the respective bands</p>
+<p>433 1/4 wave = 164.7mm<br>
+433 1/2 wave = 329.4mm<br>
+433 full wave = 692.7mm</p>
+<p>868 1/4 wave = 82.2mm<br>
+868 1/2 wave = 164.3mm<br>
+868 full wave = 345.5mm</p>
+<p>915 1/4 wave = 77.9mm<br>
+915 1/2 wave = 155.9mm<br>
+915 full wave = 327.8mm</p>
+<p>With these lengths I’ve had no problem reaching 30m+ indoors through a
+ number of walls and 120m+ outside, I’ve not yet trie different types of
+ antennas such as SMA connected rubber duck type but they should work as
+ I’ve spoken to tech support at HopeRF and they tell me that the antenna
+ circuit on both modules is balanced to 50 Ohm, this means that most SMA
+ rubber duck antennas in the right frequency range will also work. Make 
+sure that the antenna is matched to the frequency range required to get 
+the best range, i.e. don’t use a wifi antenna for 2.4GHZ on a 433Mhz 
+module, it may work for short distances, but definately won’t be optimal
+ for long distances, also you may damage your RF module (unconfirmed it 
+this is is the case as these are low power devices), but usually 
+antennas need to be SWR matched to stop reflectance back into the 
+transmitter circuit.</p>
+<p>There is also some technical documents on Hopes website for PCB based
+ antennas, but I’ve not used these at all so your milage may vary with 
+them.</p>
+<p>As mentioned earlier the SMD has no direct antenna connection so you 
+need to design in a connection, either a solder pad on your board or an 
+SMA connector.</p>
+<p>The DIP package on the other hand allows you to solder in the antenna
+ right onto the module, usually you will solder in the wire directly, 
+however you need to make sure that you get the right pad, as there are 
+two very small solder pads right next to each other, one is the antenna,
+ one is ground, both are not marked in anyway as to to their function, 
+and the documentation does not show which one is which. You need to 
+solder in the piece of wire to the one <span style="text-decoration: underline;">not</span> connected to ground, best to check with a multimeter or continuity tester first.</p>
+<p>It looks as though you can also uses these two pads on the DIP module
+ to connect an external SMA connector with a pigtail to the module as 
+well (both ground and antenna).</p>
+<h2>PIN Connections</h2>
+<p>The pin connections for the module is described below, I have 
+indicated whether the connection is required or is optional when making 
+connections. The basic connections as described will allow data rates of
+ up to approx 12000bps on an 8Mhz PIC using a bit-bashed SPI, polled 
+approach when handling sending and receiving data, higher data rates 
+will require hardware SPI, higher MCU speed and the use of interrupts, 
+these will be discussed in a later tutorial.</p>
+<p><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/image001.jpg"><img class="aligncenter size-thumbnail wp-image-140" title="Pin-outs" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/image001.jpg" alt="" height="158" width="528"></a></p>
+<p><a href="http://blog.everythingrobotics.com/wp-content/uploads/2008/06/rfm12circuit1.png"><img class="aligncenter size-medium wp-image-139" title="RFM12B Basic Connections" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/rfm12circuit1-300x240.png" alt="" height="240" width="300"></a></p>
+<p>UPDATE:&nbsp; Please see this <a href="http://blog.strobotics.com.au/2008/06/23/rfm12b-bit-rates-and-throughput/">article</a> for more detailed information regarding RFM12B bit rates and the different pin connections.</p>
+<p><strong>VDD</strong> (required) – The nominal working voltage is between 2.2v and 3.8v <strong>(NOT 5V)</strong>, make sure that you have bypass filters in place on the supply rails.</p>
+<p><strong>nINT/VDI</strong> (optional) – This pin can be configured as 
+either input or output, if configured as an input then it’s function is 
+an active low interrupt request from the MCU, The MCU pulls this line 
+low if it want to interrupt the RF module.<br>
+If configured as an output then its the VDI, Valid Data indicator, 
+meaning valid data has been detected by the receiver and outputs a high.
+ Factory Default is VDI</p>
+<p><strong>SDI</strong> (required) – SPI Data input, where the MCUs MOSI signal needs to be connected to.</p>
+<p><strong>SCK</strong>(required) – SPI clock input from MCU</p>
+<p><strong>nSEL</strong> (required) – Chip Select (active low). This signal must be pulled low before any signal is sent via SPI to the RF module,</p>
+<p><strong>SDO</strong> (required) – SPI Data out, where the MCU MISO signal needs to be connected to.</p>
+<p><strong>nIRQ</strong> (optional) – Interrupt Request output (active 
+low), this is when the RF module wans to signal the MCU an event has 
+occurred. This should be tied high with a pullup resistor.</p>
+<p><strong>FSK/DATA/nFFS</strong> (optional but requires 10K pullup when not used):<br>
+<strong>FSK</strong> – Transmit data input<br>
+<strong><span style="color: #000000;">DATA</span></strong> – Received Data output<br>
+<strong>nFFS</strong> – If pulled high then the FIFO is selected then 
+data is transmited / received via the internal FIFO acessed via the SPI 
+interface. If the FIFO is not being used then this is where the data is 
+directly clocked into or out of the Tranceiver. Use this mode for high 
+datarates.</p>
+<p><strong>DCLK/CFIL/FFIT</strong> (optional):<br>
+<strong>DCLK</strong> – is the data clock when no FIFO is used (used in conjunction with FSK/DATA/nFFS pin).<br>
+<strong>CFIL</strong> – is used to connect an external capacitor when 
+using 256K datarates, this is for the analogue filter, normally the 
+internal digital filter is used by default, only lower data rates are 
+achieved with the digital filter.<br>
+<strong>FFIT</strong> – FIFO interrupt, interrupt signal is generated 
+whenever the FIFO interrupt level is achieved (level is configured via 
+SPI and is covered in the software interface tutorial), normally the 
+interrupt level would be set to 8 if using the FIFO so that an interrupt
+ is generated for every byte received. If using the FSK/DATA to clock in
+ the data then the interrupt level should be set to 1, this way an 
+interrupt is set for every bit sent/received.</p>
+<p><strong>CLK</strong> (optional) – Clock output, defaults to 1Mhz, but
+ can be configured in increments up to 10Mhz, or switched off. This 
+signal can be used to provide a clock signal to the MCU if it has no 
+internal oscillator, i.e. cuts down on an additional crystal required 
+for the MCU. This signal is also used in the calibration of the RF 
+modules and will be explained later.</p>
+<p><strong>nRES</strong> (required) – this is reported in the Hope RF 
+documentation as an output but is really an input (active low) and needs
+ to be tied high at all times. If pulled low it will reset the module 
+back to POR default (power on reset) settings.</p>
+<p><strong>GND</strong> (required) – Power Ground.</p>
+<p><strong>ANT</strong> (on SMD, required) – Where the antenna is connected.</p>
+<p style="text-align: center;"><a href="http://blog.strobotics.com.au/2008/01/08/rfm12-tutorial-part1/">Back – Part 1</a> | <a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/">Next – Part 3a</a></p>
+<h3>Similar Posts:</h3>
+<ul class="similar-posts">
+<li><a href="http://blog.strobotics.com.au/2008/06/23/rfm12b-bit-rates-and-throughput/" rel="bookmark" title="June 23, 2008">RFM12B Bit Rates and Throughput</a></li>
+<li><a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/" rel="bookmark" title="July 27, 2009">RFM12 Tutorial – Part 3a</a></li>
+<li><a href="http://blog.strobotics.com.au/2009/07/30/introducing-the-rfm2223-big-brothers-to-the-rfm12b/" rel="bookmark" title="July 30, 2009">Introducing the RFM22/23, Big brothers to the RFM12B</a></li>
+<li><a href="http://blog.strobotics.com.au/2009/05/14/preliminary-rf-tests/" rel="bookmark" title="May 14, 2009">Preliminary RF Tests</a></li>
+<li><a href="http://blog.strobotics.com.au/2008/01/08/rfm12-tutorial-part1/" rel="bookmark" title="January 8, 2008">RFM12 Tutorial – Part1</a></li>
+</ul>
+<p><!-- Similar Posts took 34.381 ms (cached) --></p>
+<div class="printfriendly align"><a href="http://www.printfriendly.com/print/v2?url=http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/" rel="nofollow" onclick="window.print(); return false;"><img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/pf-print-icon.gif" alt="Print Friendly"><span class="printandpdf printfriendly-text"> Print <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/pf-pdf-icon.gif" alt="Get a PDF version of this webpage"> PDF </span></a></div>	<div class="post-info">
+													
+	</div>
+	<div class="post-footer entry-meta"><b>Posted:</b> <abbr class="published" title="
+      2008-06-17T18:01:16+0000        ">17 Jun, 2008</abbr> | <a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/#comments" title="Comment on RFM12 Tutorial – Part2">[128] Comments</a><br>
+    <b>
+      <span class="entry-category">Categories:
+    </span></b> <a href="http://blog.strobotics.com.au/topics/embedded/" title="View all posts in Embedded" rel="category tag">Embedded</a> , <a href="http://blog.strobotics.com.au/topics/embedded/rf/" title="View all posts in RF" rel="category tag">RF</a> , <a href="http://blog.strobotics.com.au/topics/embedded/rfm12-embedded/" title="View all posts in rfm12" rel="category tag">rfm12</a> , <a href="http://blog.strobotics.com.au/topics/embedded/rfm12b/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> , <a href="http://blog.strobotics.com.au/topics/tutorials/" title="View all posts in Tutorials" rel="category tag">Tutorials</a>    | <b>Tags:</b> 
+    	<a href="http://blog.strobotics.com.au/tags/embedded/" rel="tag">Embedded</a>, <a href="http://blog.strobotics.com.au/tags/rfm12b/" rel="tag">RFM12B</a>, <a href="http://blog.strobotics.com.au/tags/rfm12bp/" rel="tag">RFM12BP</a>, <a href="http://blog.strobotics.com.au/tags/tutorial/" rel="tag">Tutorial</a>, <a href="http://blog.strobotics.com.au/tags/wireless/" rel="tag">wireless</a> |
+              <b>By:</b> <span class="author vcard fn"><a class="url fn" href="http://blog.strobotics.com.au/">Stephen Eaton</a></span>.
+          
+&nbsp;</div>
+</div>
+				
+<!-- You can start editing here. -->
+
+	<h3 id="comments">128 Responses to “RFM12 Tutorial – Part2”</h3> 
+
+	<ol class="commentlist">
+
+	
+		<li class="alt" id="comment-329">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ayeshaSafi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-329" title="">June 30th, 2008 at 4:54 pm</a> </small>
+
+			<p>Hi,<br>
+second part is also gr8. It help to clear a lot of concepts. waiting for
+ the next part.Hope the controller u will use is AVR and programming 
+will be in C language. <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-330">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-330" title="">June 30th, 2008 at 5:02 pm</a> </small>
+
+			<p>Yes working on the C for my Arduino, which is AVR based <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>Was actually just wiring up the RFM12B to the prototype board/shield as your comment came in lol</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-333">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ayeshaSafi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-333" title="">July 3rd, 2008 at 1:50 pm</a> </small>
+
+			<p>Hi,<br>
+Stephen. Finally i have transmitted the data sucessfully using  RFM12BP.
+ i am reciving the data on hyperterminal of my pC. but there is still a 
+small problem that is if I send numbers in sequince i.e from 1-9 it 
+recives the odd numbers first and then the even one. i donot know y is 
+this hapening if u can help me out with this problem .I know u will have
+ some gr8 ideas for solving this problem. Thanks a lot dear.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-334">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-334" title="">July 3rd, 2008 at 3:07 pm</a> </small>
+
+			<p>Well done!  Please send me your code if possible, I would love see it.</p>
+<p>The only thing I can think of is the TX levels maybe causing 
+problems.  How are close are the two units?  The RFM12BP is for ranges 
+up to 3000m so you may have to drop the Tx power right down to minimum 
+and the Rx sensitivity down during development.</p>
+<p>Are you doing any error checking with your packets? Such as CRC or a 
+checksum? That way you can be sure that the packet you sent is the 
+packet you received.  </p>
+<p>Also you may have to look at some forward error correction such as a 
+hamming code, but I would not have thought it was needed for such small 
+data streams.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-337">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ayeshaSafi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-337" title="">July 4th, 2008 at 1:36 pm</a> </small>
+
+			<p>Hi,<br>
+Thanks for ur appreciation <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley">
+ and useful tips too. My code is nearly same as the one given in the 
+programming guide. if u still need give me ur mailing adress. the two 
+modules are kept closer so,I think ur right I have to reduce the power. 
+Also on some other website I have studied that these modules have no 
+internal error correction and they say something about the SNAP 
+protocol. Do you have any idea abt it? if any plz do share how to use 
+this protocol with these modules. Thanks.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-340">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-340" title="">July 5th, 2008 at 7:57 am</a> </small>
+
+			<p>None of the RFM12 modules have error correction, so you need to 
+build that into you application.  Just a basic CRC or checksum while 
+testing should be ok, all depends on you application.  </p>
+<p>1) Build your packet<br>
+2) Do a checksum of everything, but not the sync or the preamble.<br>
+3) Add this calculated checksum to the end of the packet.<br>
+4) Transmit the complete</p>
+<p>5) On the receiver you receive the packet containing the data and checksum<br>
+6) recalculate a new checksum on the received data using the same 
+formula you used on the transmision side.  Don’t include the received 
+checksum in this calculation only the data.<br>
+7) if the calculated checksum and the received checksum are the same, 
+then more than likely you have a good packet, if not then you have a 
+corrupt packet and you either ignore the data or get it resent.  </p>
+<p>The snap protocol you are referring to, is S.N.A.P and is found here <a href="http://www.hth.com/snap/" rel="nofollow">http://www.hth.com/snap/</a> this defines a simple network addressable protocol.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-384">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>stereo</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-384" title="">August 4th, 2008 at 7:30 pm</a> </small>
+
+			<p>Just a note to thank you for these tutorials.  After a couple of 
+hours of coding and reading I have managed to get two of these devices 
+communicating effectively.</p>
+<p>Many thanks again.</p>
+<p>Stephen (UK)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-393">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-393" title="">August 6th, 2008 at 9:50 am</a> </small>
+
+			<p>Great to hear, thanks for the feedback</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-429">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>reSpawn</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-429" title="">September 18th, 2008 at 1:22 am</a> </small>
+
+			<p>Can you please tell me the difference between RFM12 and RFM12B ? (I noticed a VCC difference)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-431">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-431" title="">September 24th, 2008 at 12:41 pm</a> </small>
+
+			<p>*reSpawn</p>
+<p>Good question, I’ve only used the RFM12B variety, but from the looks 
+of the data sheets you’re right, it only looks like a VCC difference.  
+Even the chip programming guides looks the same.</p>
+<p>Anyway I’ve asked just sent an email off to HOPE so “Hope”fully I’ll get a reply (lol sorry about that)</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-432">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-432" title="">September 24th, 2008 at 1:42 pm</a> </small>
+
+			<p>*respawn – you are half right <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>Response from Hope:</p>
+<p>The differences between RFM12B and RFM12 are :</p>
+<p>1.Sensitivity: RFM12 is -109dBm, RFM12B is -112dBm</p>
+<p>2.Power supply: RFM12 is 2.2V-5.5V. RFM12B is 2.2V-3.6V</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-435">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>nithin.tp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-435" title="">October 31st, 2008 at 2:31 pm</a> </small>
+
+			<p>Hi<br>
+My name is nithin prakash, i recently started to work on RFM12BP, i have
+ just established communication b/w RFM12BP modules. I have a doubt in 
+the Power amplifier section. To the VCC-PA pin i have an input of 12V 
+from a DC power supply. For the RF module that i am designing i want to 
+give it a 5V supply, so know i am planning to introduce an voltage 
+booster circuit i.e. 5v to 12v(say max1771). But if i connect a ammeter 
+in series with the power supply the current drawn by the VCC-PA pin is 
+at 0mA or 0A. I am doing continuous transmission for 10 seconds. The 
+current consumption of the power amplifier is vital for the selection of
+ voltage booster.<br>
+Thank you in Advance….</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-436">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>nithin.tp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-436" title="">November 2nd, 2008 at 12:37 pm</a> </small>
+
+			<p>Hi<br>
+My name is nithin prakash, i recently started to work on RFM12BP, i have
+ just established communication b/w RFM12BP modules. I have a doubt in 
+the Power amplifier section. To the VCC-PA pin i have an input of 12V 
+from a DC power supply. For the RF module that i am designing i want to 
+give it a 5V supply, so know i am planning to introduce an voltage 
+booster circuit i.e. 5v to 12v(say max1771). But if i connect a ammeter 
+in series with the power supply the current drawn by the VCC-PA pin is 
+at 0mA or 0A. I am doing continuous transmission for 10 seconds. How can
+ the current consumption be at 0A or 0mA?. The current consumption of 
+the power amplifier is vital for the selection of voltage booster.<br>
+Thank you in Advance….</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-442">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>natanael.espinosa</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-442" title="">March 5th, 2009 at 4:36 am</a> </small>
+
+			<p>heyStephen, will you post another tutorial, if that’s the case, I’m waiting for your next tutorial. Thank you so much!!!!!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-443">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-443" title="">March 5th, 2009 at 6:59 am</a> </small>
+
+			<p>yes I Intend to finish the series.  Currently I’m concentrating on the Strobit Triggr so I can have a board to play with.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-445">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>subashini</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-445" title="">March 17th, 2009 at 2:55 pm</a> </small>
+
+			<p>Hi<br>
+  I am looking into the RFM12B whether it is suitable for our project.This article helps me a lot.I have one question….</p>
+<p>If my controller dose not have SPI interface means,How can I use RFM12B?</p>
+<p>Please can any one help me?…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-446">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-446" title="">March 17th, 2009 at 3:27 pm</a> </small>
+
+			<p>Hi subashini,</p>
+<p>Yes you can still use the RFM12B without hardware SPI, you can 
+bitbang your SPI interface, see the example pic code here on the forums <a href="http://forums.everythingrobotics.com/viewtopic.php?f=17&amp;t=102" rel="nofollow">http://forums.everythingrobotics.com/viewtopic.php?f=17&amp;t=102</a></p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-447">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>subashini</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-447" title="">March 18th, 2009 at 8:23 pm</a> </small>
+
+			<p>Hi,<br>
+Thank you for your clarifications…<br>
+I will work forward with this and get back to you…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-703">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>sasansohrab</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-703" title="">April 14th, 2009 at 3:09 pm</a> </small>
+
+			<p>hi.<br>
+can i send an modulated audio via Rfm12b?<br>
+if yes , how?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-717">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-717" title="">April 14th, 2009 at 8:47 pm</a> </small>
+
+			<p>Only if you digitise it first, but I don’t think it would be 
+feasible due to low bitrates, but if you use a codec run at low bit 
+rates you might</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-887">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>anson</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-887" title="">May 1st, 2009 at 6:41 pm</a> </small>
+
+			<p>thank you for your great tutorial. i cannot wait to see the next 
+part. i am now working on this RF as well. and i think i did something 
+wrong. will i burn the RF if i power it up as Vdd=5? and another 
+question is do i need to connect a decouple capasitor to the antenna?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-889">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-889" title="">May 2nd, 2009 at 8:43 am</a> </small>
+
+			<p>I have run the RFM12B at 5v with no apparent problems, however it 
+is out of spec / at the upper limit so I wouldn’t run it permanently.  
+The RFM12 is the 5V version.</p>
+<p>No decoupling capacitor is required.  The antenna is matched for 50 
+Ohms so it can connect directly to SMA or whip antenna (i.e. piece of 
+wire at correct length)</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-890">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>anson</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-890" title="">May 2nd, 2009 at 10:30 am</a> </small>
+
+			<p>oh~~ thank you for your reply. now i have felt much much better from worrying of burning all my buddies.<br>
+if so i think i have made the correct connection for the hardware. then 
+the problem should dues to the software. so,stephen, have you tried the 
+example 2 in the programming guide, since i use PIC16F877A. does this 
+example have the same bug as example 1?(such as changing 0x82D8 to 
+0×8299).<br>
+and aspire for the part 3. they are great.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-891">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-891" title="">May 3rd, 2009 at 8:16 pm</a> </small>
+
+			<p>no I haven’t tried the the second example, I ended up writing my own. I found their examples full of bugs. See <a href="http://svn.everythingrobotics.com/strobist/mk1/trunk/arch/pic16f88-boostc/src/test_rfm/" rel="nofollow">http://svn.everythingrobotics.com/strobist/mk1/trunk/arch/pic16f88-boostc/src/test_rfm/</a> for some RFM12B Pic code</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-892">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>budilm</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-892" title="">May 10th, 2009 at 3:21 am</a> </small>
+
+			<p>Hello everyone. I recently bought the RFM12BP modules. Haven’t 
+tested them yet. I am trying to get as much info as I can first. The BP 
+type is different with these RX/TX Enable pins from the P version. What 
+are these pins for when I can control the RX/TX functionality with 
+software? Do I have to controll these pins (two pins more on micro), or 
+can I just pull them both high? Great tutorial btw. Thx.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-893">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-893" title="">May 10th, 2009 at 9:25 pm</a> </small>
+
+			<p>Hi Budilm,</p>
+<p>Basically the RFM12BP is an RFM12B with a Power Amplifier added, this
+ gives the extra range, and is also why it needs 12V and the control 
+pins.  You must control the pins when ever you Tx or Rx so yes you do 
+need to have additional I/O control them via your driver software.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-894">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>budilm</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-894" title="">May 12th, 2009 at 3:37 am</a> </small>
+
+			<p>Hi Stephen, </p>
+<p>thank you for the reply. I found this info: <a href="http://micropet.me/blog/?p=5" rel="nofollow">http://micropet.me/blog/?p=5</a><br>
+Down there is a schematic of his board for the RFM12BP module. If you 
+take a closer look you will find, that he simply pulled both controll 
+pins for the RXEN and TXEN high. I wrote him a message but he did not 
+reply yet so I dont know if it works. He writes also that the power 
+amplifier section works with supply voltage from 0,5 to 13V but in the 
+datasheet is 11V to 13V. Because I want to power my application from 3s 
+LiPol battery (Voltage ranges from 9V to 12,5V) I am curious if the 
+power section will still work with 9V? What do you think?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-895">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-895" title="">May 12th, 2009 at 9:24 am</a> </small>
+
+			<p>Good question, I would suggest that you try it and see what 
+happens.  The only thing I think may happen is the distance stated in 
+the Specs will be less.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-896">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>metRo_</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-896" title="">May 17th, 2009 at 4:49 am</a> </small>
+
+			<p>Hi, i just receive my RFM12 yesterday. Your blog have some good 
+information. I’ll try to connect it with arduino, do you have some 
+information about it?<br>
+Thanks</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-897">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-897" title="">May 17th, 2009 at 9:45 pm</a> </small>
+
+			<p>Good place for drivers for the arduino is here: <a href="http://code.google.com/p/jeelab/" rel="nofollow">http://code.google.com/p/jeelab/</a> download via SVN works well.  Try the example first.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-899">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>bennyjo</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-899" title="">June 1st, 2009 at 2:17 pm</a> </small>
+
+			<p>Stephen<br>
+for 915MHz, what is the correct antenna length?<br>
+You mentioned above is 87mm, but according to antenna length calculation, it is 77.949mm.<br>
+Tks.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-902">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-902" title="">June 10th, 2009 at 11:53 am</a> </small>
+
+			<p>@bennyjo</p>
+<p>The lengths I quoted I quote are from direct measurements I made of 
+the antennas sent from HopeRF with the DIP version of the module. I 
+would go with the calculated length over the measured one.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-903">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>martin_v</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-903" title="">June 15th, 2009 at 3:36 am</a> </small>
+
+			<p>Stephen<br>
+I am trying to use the ARSSI signal from the RFM12 as a type of 
+rangefinder – your picture is a really good start. My RFM12 is slightly 
+different – in this area (red circle) on my RFM12 I can see only an SMD 
+resistor and a via-both alternate about 0.47V and aboüt 0.54V to ground 
+when receiving an intermittant text string. What did you solder to to 
+get the signal out? (Do you have a hires version image of this area on 
+the module?)<br>
+Thanks</p>
+<p>Martin</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-904">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-904" title="">June 15th, 2009 at 9:19 am</a> </small>
+
+			<p>@Martiv_v</p>
+<p>The picture was sent to me by HopeRF when I asked the question 
+regarding how to access ARSSI (thinking it was as simple as accessing 
+the value via an internal registers) so I’ve not used it as yet. </p>
+<p>Sorry but I don’t have a higher res photo, but looking at mine in 
+front of me, it looks the same as yours, I have a resistor and a via, 
+that is the same area in the photo in the photo.</p>
+<p>I’ll contact Hope and see what their response is.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-909">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>stijnos</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-909" title="">June 22nd, 2009 at 7:34 pm</a> </small>
+
+			<p>I’ve also 4 RFM12BP modules and connected them to an Attiny2313 to
+ send some data received from the serial port. My 2313 controls the data
+ with the RFM12bp through SPI, just like in the example code. I`ve 
+connected NIRQ,SDO,NSEL,SCK,SDI to my microcontroller.<br>
+When I powerup everything exept for the VCC-PA, I can see in an RF 
+monitor that the module sends something at low power. But when I connect
+ the VCC-PA pin to 12V, I expected a much higher RSSI value. (whithout 
++- -52dB with -42dB, transmitter and chipcon receiver both on same desk)
+ but a much higher problem is that my power transistor on the module 
+becomes very hot when the 12V is connected. Is somebody familiar with 
+this problem? Can anybody show how the module should be connected when 
+SPI mode is used?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-911">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>martin_v</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-911" title="">June 25th, 2009 at 3:22 am</a> </small>
+
+			<p>Stephen</p>
+<p>Some feedback to the ARSSI signal: I wired the resistor pad as you 
+suggested to an ADC (Mega32) and I get a pretty stable signal- (but only
+ when I do the ADC sample right in the middle of the receive code loop- 
+otherwise the signal is basically 0). At -21dB transmit power the raw 
+ADC value (ref. 5V) ranges between 450 directly next to the transmitter 
+and maybe 150 at about 20m range- so from  ~2.2V to 0.73V. (reception 
+cuts out at less than this.)Will see how this can be used for 
+rangefinding in practise.</p>
+<p>Thanks for the help</p>
+<p>Martin</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-912">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-912" title="">June 25th, 2009 at 8:31 am</a> </small>
+
+			<p>@Martin</p>
+<p>Ahh makes sense, I had actually wondered about this some time ago 
+about the timing of reading the aRSSI in regard to Reception (as one 
+does while lying in bed at 3am unable to sleep)</p>
+<p>When are you doing the ADC reading, just before/after you process a received byte? or when you receive the INT from the RFM12?</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-915">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>martin_v</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-915" title="">July 1st, 2009 at 4:43 am</a> </small>
+
+			<p>Stephen,</p>
+<p>I have been using a modified version of the original code from 
+Benedikt K and the BASCOM version from Joachim Fossie Bär Reiter (<a href="http://www.mikrocontroller.net/topic/67273-" rel="nofollow">http://www.mikrocontroller.net/topic/67273-</a> a German site). The relevant section looks like this:</p>
+<p>Sub Rf12_rxdata(byval Maxchar As Byte)<br>
+  Temp = Rf12_trans(&amp;H82c8)<br>
+  Temp = Rf12_trans(&amp;Hca81)<br>
+  Temp = Rf12_trans(&amp;Hca83)<br>
+  For Count = 1 To Maxchar<br>
+    Rf12_ready<br>
+    Temp = Rf12_trans(&amp;Hb000)<br>
+   Arssi = Getadc(0) ‘measure received signal strength in the middle of the receive loop</p>
+<p>    Rfdata(count) = Temp<br>
+  Next Count<br>
+  Temp = Rf12_trans(&amp;H8208)<br>
+End Sub</p>
+<p>So basically just after the transfer. This code uses only the 4 SPI lines – no interrupts- but works fine for low rate transfer.</p>
+<p>Martin</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-916">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-916" title="">July 3rd, 2009 at 8:42 am</a> </small>
+
+			<p>Thanks for that Martin.  </p>
+<p>I might have a play around with it in the near future as I’ve allowed for an RSSI pad on my widget boards.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-917">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.everythingrobotics.com/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-917" title="">July 3rd, 2009 at 9:10 am</a> </small>
+
+			<p>Just updated this article with calculated antenna lengths for all bands.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-923">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/" rel="external nofollow" class="url">RFM12 Tutorial – Part 3a » Strobotics</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-923" title="">July 27th, 2009 at 11:07 pm</a> </small>
+
+			<p>[...] were that simple…as mentioned previously that the RFM12 
+needs to be connected as described in the previous article via SPI, the 
+second thing we need to do is access the the internal registers of the 
+RFM12 for it to [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-930">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>aamirsherkhan</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-930" title="">July 29th, 2009 at 1:37 pm</a> </small>
+
+			<p>Hi StephenS<br>
+i m aamir i hve been workin on RFM12B module for the last six months.I 
+first used AT89S52 controller and it worked fine.The RF was configured 
+with some difficulty,Now i m using PIC16F726 but there is some trouble 
+in communication with the RF via SPI.The controller is not communicatin 
+with the RF and configurin it.I hve read urs code.i hve a simplified 
+code written using the sample code given by HOPE RF for PIC.But tht code
+ is not workin.I hve tryed alot but no succeess.The WriteCMD() function 
+as written by u too in which u hve optimzed NOP() delay thts i think 
+creatin problem.Do u hve problems with it too.Can u help me some how<br>
+thnxs</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-933">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-933" title="">July 30th, 2009 at 12:32 pm</a> </small>
+
+			<p>@Aamir</p>
+<p>Have you tested the SPI to see if commands are getting through?  </p>
+<p>I test by hooking up a frequency counter or oscilloscope to the CLK 
+and then I send through a change frequency command for the CLK.  If that
+ works then at least I know the SPI side of things is working.  A point 
+to remember is make sure that the SPI is within the specified frequency,
+ I think is &lt;=2.5MHz. If too low then you also may have problems.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-934">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>aamirsherkhan</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-934" title="">July 30th, 2009 at 3:39 pm</a> </small>
+
+			<p>hi<br>
+ thnxs for reply.<br>
+       I hve solved the problem the PIC pins are mulitipurpose and i 
+thought tht by default these pins will work as I/O but the pins to which
+ i connected nIRQ and FFIT were workin as A/D converter input.so i hve 
+make the correction and its workin well now.<br>
+Can u tell me tht how u calculte the reciever bandwidth and how much 
+deviation is good.Do u use the carson’s rule.There is a table i can see 
+with different data rates and deviations and receiver bandwidth How u 
+hve build it.<br>
+thnxs</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-935">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-935" title="">July 30th, 2009 at 4:13 pm</a> </small>
+
+			<p>@aamir</p>
+<p>Great to hear.  </p>
+<p>In the latest series on the RFM12 Tutorials  – Part 3a (<a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/" rel="nofollow">http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/</a>),
+ I’ve put up a table with values that I’ve gleaned from data sheets, 
+both from HopeRf and Integration, before they were purchased by silicon 
+Labs.  These values seem to work well, but I’m sure could be optimised 
+further.</p>
+<p>I’ve never heard of Carson’s Rule, but am about to research it <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-936">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-936" title="">July 30th, 2009 at 4:18 pm</a> </small>
+
+			<p>@aamir</p>
+<p>Just read up on Carson’s Rule, and would think that should work fine.
+  I’m going to apply that rule to the figures I posted and see how they 
+compare.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-937">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>aamirsherkhan</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-937" title="">July 30th, 2009 at 6:39 pm</a> </small>
+
+			<p>@Stephen</p>
+<p>thnx buddy<br>
+yeah Carson Rule is used to calculate the Bandwidth of FM signal as well
+ as FSK.And i hve learned tht for proper reception the signal bandwidth 
+should be same as tht of channel.So to configure the receiver bandwidth i
+ use Carson rule.Its works but as u gona know the receiver bandwidth in 
+urs table didnt match as they are must less than we get usin this rule.i
+ hvent tested urs table yet but i believe in urs words.i will test then 
+later and i hve read urs articles as well as all the data sheets i duno 
+about the updated datasheet i will check it out and i appreciate urs 
+efforts</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-951">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>budilm</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-951" title="">October 3rd, 2009 at 4:51 am</a> </small>
+
+			<p>Hi, </p>
+<p>I finally managed to connect and programm my module RFM12BP. But I 
+have a problem. I connected the RFM module through 5cm long cables to my
+ microcontroller board. Now when I select output power higher than the 
+lowest setting, I get interference on the microcontroller inputs. The 
+interference is so strong that it prevents the NIRQ signal from proper 
+function. When I set the output power to the lowest setting I get a 
+normal function. Can anyone suggest how to solve this problem? Or does 
+anyone have a sample PCB layout that functions even with the highest 
+output setting?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-952">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-952" title="">October 8th, 2009 at 11:45 am</a> </small>
+
+			<p>@budlim</p>
+<p>I’ve not yet played around with the RFM12BP so am probably not much help.</p>
+<p>I can only suggest that if you are getting interference then look at more filtering and some form of shielding on the RF unit.</p>
+<p>sorry I can’t be more of a help.  Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-968">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>volt</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-968" title="">November 16th, 2009 at 8:09 pm</a> </small>
+
+			<p>hi,</p>
+<p>Now i am working with RFM12b,the problem is,c8051F120 controller can transmitted and c8051F326 can received properly,but<br>
+while c8051F326 transmitting the c8051F120 is not receiving.for TX/RX, i
+ am using RFM12b,,,,,,,,,,,,,,can u plz explain the problem ……………</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-969">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>volt</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-969" title="">November 16th, 2009 at 8:09 pm</a> </small>
+
+			<p>hi,</p>
+<p>Now i am working with RFM12b,the problem is,c8051F120 controller can transmitted and c8051F326 can received properly,but<br>
+while c8051F326 transmitting the c8051F120 is not receiving.for TX/RX, i am using RFM12b,can u plz explain the problem ……………</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-970">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-970" title="">November 17th, 2009 at 11:39 am</a> </small>
+
+			<p>@volt</p>
+<p>How are you testing your Tx and Rx? as you say thet individually they both work?</p>
+<p>Really the problem you are describing can be anything.  </p>
+<p>One of the common problems is incorrect bandwidth settings on the Rx.
+  the Rx bandwidth settings must be greater than the Tx FSK settings?  
+there are recommended settings in the datasheet from hope.</p>
+<p>Also check the frequency and bitrate setting so they are the same on both Tx and Rx.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-971">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>volt</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-971" title="">November 17th, 2009 at 12:58 pm</a> </small>
+
+			<p>hi Stephen,</p>
+<p>Thank you for the response.<br>
+In transmitting part i have c8051F326 controller.It always transmitting 
+via RFM12b(3.3V).but the receiver side i am using c8051F120 controller  
+to receive via RFM12b.<br>
+the thing is i can able to TX/RX in F326.but when i using different 
+controller to TX/RX,it cause the problem.F120 can able transmit but not 
+able to receive.</p>
+<p> F120           F326<br>
+       fine<br>
+ (TX)——-&gt;   (RX)</p>
+<p>      not RX<br>
+ (RX)&lt;——-  (TX)(no problem transmitting)</p>
+<p>i can forward to work with u r ideas and get back to you.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-972">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>volt</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-972" title="">November 17th, 2009 at 3:48 pm</a> </small>
+
+			<p>hi,</p>
+<p> i am checking what u r suggest.The frequency and bit rate settings 
+are the same on both  TX and Rx.and also correct bandwidth settings on 
+the Rx. It is greater than the Tx FSK settings.Is there any problem in 
+nIRQ pin or SPI,HAL int..</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-973">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>sogyu</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-973" title="">November 25th, 2009 at 11:45 pm</a> </small>
+
+			<p>Hi,</p>
+<p>do you have any idea how can I debug rfm12? Now, I have a 
+transmitter, which send the data out in a loop and I have a receiver, 
+which should receive the data, but it is only waiting in infinite loop 
+and it doesn’t receive anything.<br>
+What can i do in this situation? How can i check the rfm12 got my 
+instruction via SPI? There is a status register in rfm, is it useful 
+check the value of it?<br>
+Thank you for your help!</p>
+<p>Regards,<br>
+Gyorgy (from Hungary)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-975">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-975" title="">November 26th, 2009 at 11:45 am</a> </small>
+
+			<p>@sogyu<br>
+debugging the RFM12 can be frustrating, especially on the RFM12 side of things.</p>
+<p>to debug the SPI here is what I did:</p>
+<p>use an oscilliscope to check that the SPI signals looked ok, i.e. the
+ NSEL is pulled low at the start of the SPI command and being returned 
+high at the end of the SPI sequence.  also check that the SCK signals 
+looks ok and you have data going in/out from your MOSI/ MISO pins.  </p>
+<p>If these look ok then try sending a command to change the frequency 
+of the CLK pin.  By default the Poweron value is 1MHZ (from memory) so 
+put an oscilloscope or frequency counter on the output, then send the 
+command to change to 10Mhz.  if the SPI is working then you will see the
+ frequency change to the new value.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-976">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-976" title="">November 26th, 2009 at 11:50 am</a> </small>
+
+			<p>@volt</p>
+<p>I have found that I need to have a pull up on the NIRQ line for it to
+ work, on the AVR I use the internal pullup for that pin.  Also make use
+ that you are reading the status as part of the IRQ handling i.e. cmd 
+0×0000  this resets the NIRQ on the RFM12, else it will stay low.  </p>
+<p>Also don’t have any debug/printf to console in your main RFM12 Tx routines.  The delay in Tx can cause the Rx to loose FSK sync.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-977">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ernieb53</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-977" title="">December 2nd, 2009 at 9:12 am</a> </small>
+
+			<p>@Stephen</p>
+<p>Hi, I am trying to connect two PIC micro controllers using the RFM12B
+ Transceivers and am having an issue with sending consistently.  Each 
+time I start up the transmitter and receiver sometimes I can start 
+sending right away, and sometimes it takes a bit for the receiver to 
+start catching the data that is being sent. </p>
+<p>Once NIRQ goes low the receiver will constantly receive data until I 
+pause sending for a brief period of time.  I have noticed that after I 
+stop sending for a brief period, if I restart sending I begin to get all
+ garbage values.  I have also noticed that once NIRQ goes low it will 
+not go back high even once I have stopped sending data.  The data I am 
+sending is 5 quick packets each consisting of a preamble, two sync 
+bytes, 4 data bytes, then 3 dummy bytes. I have tried using the read 
+status command to bring NIRQ back up after the 5 packets send but am 
+still having an issue.  Is there a way to reset the entire module or 
+another way to pull NIRQ high using software?  Any insight or tips would
+ be greatly appreciated.</p>
+<p>-Thanks<br>
+Matt</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-978">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-978" title="">December 2nd, 2009 at 9:35 am</a> </small>
+
+			<p>@ernieb53   </p>
+<p>I would try adding a some more pre-amble bytes as it sounds like a 
+FSK lock issue, i.e. the receiver is not getting FSK lock then sync.  I 
+think a single pre-amble is not enough, and adding a preamble as the 
+last couple of bytes in your packet, this allows your Tx register to 
+flush out.  I run at least 3-4 preamble bytes and tail my packets with 2
+ pre-amble bytes  e.g. <a href="http://code.google.com/p/strobit/wiki/WidgetMesh#Design" rel="nofollow">http://code.google.com/p/strobit/wiki/WidgetMesh#Design</a></p>
+<p>As for NIRQ, I’ve found you need a pull up for it to work properly, 
+either an external resistor or easier still an internal one on your MCU 
+port to pull the signal high.   Remember when going into low power mode 
+on your MCU you would need to disable the internal pull ups, before 
+entering, and then re-enable when exiting sleep mode.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-979">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-979" title="">December 2nd, 2009 at 11:14 am</a> </small>
+
+			<p>@ernieb53</p>
+<p>I forgot to mention that you need to read the status command to reset
+ your NIRQ as part of your interrupt handling routine, i.e. as each byte
+ is received by the RFM12. </p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-980">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ernieb53</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-980" title="">December 3rd, 2009 at 1:35 am</a> </small>
+
+			<p>@Stephen</p>
+<p>Thanks for the quick response and tips.  As it turns out I am not 
+using an interrupt but am just polling the NIRQ pin.  I have tried the 
+pull up resistor on both the micro and RF side along with the status 
+read after each byte is read in, but I still never see NIRQ go high 
+again.  Could this be fixed if I enable interrupt instead of VDI for the
+ p16 status bit?  My preamble and dummy bytes are just how you suggested
+ and the receiver does pick up more promptly.  I even tried polling the 
+FFIT instead of NIRQ and have found the same results of valid continuous
+ data until I stop for a moment, then all garbage. If you have any other
+ thoughts I would greatly appreciate any additional help.  Thanks so 
+much for the advice you’ve already given</p>
+<p>-Matt</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-981">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-981" title="">December 3rd, 2009 at 2:38 pm</a> </small>
+
+			<p>@ernieb53</p>
+<p>I always have P16 set to the POR values which is VDI, the INT is only
+ for external interrupt for the RFM12, i.e. will stop the RFM12 from 
+what its doing.  </p>
+<p>The RFM12 interrupt system works by latching the interrupt source and
+ then triggering the NIRQ line if any of these IRQ bits are latched 
+(bits 0 – 5 of the status register), these bits are only cleared by 
+doing a status cmd, so If the NIRQ line is permanently low and you are 
+doing a status command as part of how you are handling the NIRQ state 
+then you may need to read out the result of the status command to find 
+the source of the RFM12 NIRQ is, you may find it’s low voltage or 
+something else causing it, not the actual reception process.  </p>
+<p>You might need to post or (email them to me via the contact form ) 
+the commands being sent to the RFM12 as part of your initialisation 
+sequence and then your Rx / Tx routines so I can see what’s happening, </p>
+<p>Also It’s important to remember that when initialising the RFM12 is 
+to set the FIFO level to 8 bits (so when 8 bits get received/transmitted
+ it will cause the FFIT interrupt to trigger) and also before you start 
+any transmission/reception of your packet buffer you need to first 
+disable (this resets the FIFO) and then enable the FIFO, then once 
+everything has been transmitted/received you need to disable the FIFO. </p>
+<p>If you are only polling the NIRQ pin, then an easier way is to run 
+the RFM12 in ‘polled mode’  basically this works during the reception 
+(or Transmission process) by bit-banging a single 0 bit out the SPI and 
+reading the single status bit back (FFIT), if the FFIT is 1 then do what
+ ever, if 0 then do it again until a 1 is read back, (basically the same
+ as doing a status CMD but only a single bit long) you don’t need to 
+read the NIRQ line at all, keep in mind the MCU is tied up polling the 
+RFM12, so not the most efficient.</p>
+<p>Basically sequence is:<br>
+SCK = LOW<br>
+NSEL = LOW<br>
+SDI = LOW<br>
+SCK = HIGH<br>
+read SDO pin<br>
+SCK = LOW<br>
+NSEL = HIGH</p>
+<p>Stephen</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-982">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ernieb53</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-982" title="">December 6th, 2009 at 4:09 am</a> </small>
+
+			<p>@Stephen</p>
+<p>Sorry about the delay, but once again thanks so much for your help.  I
+ did start using the FFIT read idea and it is working much better.  I’m 
+also going to include my code for transmitter, receiving, and 
+initialization (receiver side).</p>
+<p>INIT</p>
+<p>    writeCmd(0x80E7);<br>
+    writeCmd(0×8299);<br>
+    writeCmd(0xA640); //freq select<br>
+    writeCmd(0xC647); //4.8kbps<br>
+    writeCmd(0x94A0);<br>
+    writeCmd(0xC2AC); //AL,!ml,DIG,DQD4<br>
+    writeCmd(0xCA81);<br>
+    writeCmd(0xCED4); //SYNC=2DD4;<br>
+    writeCmd(0xC483);<br>
+    writeCmd(0×9850);<br>
+    writeCmd(0xCC17);<br>
+    writeCmd(0xE000);<br>
+    writeCmd(0xC800);<br>
+    writeCmd(0xC040); //1.66MHz,2.2V</p>
+<p>Transmit<br>
+void rfSend(unsigned char data)<br>
+{<br>
+     while(!NIRQ);<br>
+     writeCmd(0xB800 + data);<br>
+}</p>
+<p>unsigned int writeCmd(unsigned int cmd)<br>
+{<br>
+     unsigned char i;<br>
+     unsigned int recv;<br>
+     recv = 0;<br>
+     SCK = 0;<br>
+     CS = 0;<br>
+     for(i=0; i&lt;16; i++)<br>
+     {<br>
+          if(cmd&amp;0×8000)<br>
+               SDI = 1;<br>
+          else<br>
+               SDI = 0;<br>
+          SCK = 1;<br>
+          recv&lt;&lt;=1;<br>
+          if( SDO == 1 )<br>
+          {<br>
+               recv|=0×0001;<br>
+          }<br>
+          SCK = 0;<br>
+          cmd&lt;&lt;=1;<br>
+     }<br>
+     CS = 1;<br>
+     return recv;<br>
+}</p>
+<p>short FFITcheck(void)<br>
+{<br>
+     SCK = 1;<br>
+     CS = 0;<br>
+     if (SDO == 1)<br>
+     {<br>
+        SCK = 0;<br>
+        CS = 1;<br>
+        return 1;<br>
+     }<br>
+     else<br>
+     {<br>
+        SCK = 0;<br>
+        CS = 1;<br>
+        return 0;<br>
+     }<br>
+}</p>
+<p>Receive<br>
+unsigned char rfRecv()<br>
+{<br>
+     unsigned int data;<br>
+     while(1)<br>
+     {<br>
+          data = writeCmd(0×0000);<br>
+          if ( (data&amp;0×8000) )<br>
+          {<br>
+               data = writeCmd(0xB000);<br>
+               return (data&amp;0x00FF);<br>
+          }<br>
+     }<br>
+}</p>
+<p>void FIFOReset()<br>
+{<br>
+     writeCmd(0xCA81);<br>
+     writeCmd(0xCA83);<br>
+}</p>
+<p>That is most of my code for sending and receiving, and if you see 
+anything that stands out as an obvious issue I would appreciate the 
+help.  Thanks so much for all the info so far!</p>
+<p>-Matt</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-983">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>colinh</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-983" title="">December 14th, 2009 at 2:28 pm</a> </small>
+
+			<p>Hi Steve<br>
+Great tutorial info.  Just wondering if you can clarify some comments 
+regarding nRST and FSK/DATA/nFFS.  You mention that they should be tied 
+high (directly and via 10k respectively) Reading the RF12B datasheet, 
+nRST is a bidirectional pin with an internal pullup, and FSK/DATA/nFFS 
+also has an internal pullup. I’m not worried about the couple of cents, 
+but do they really need the external connections?<br>
+Cheers<br>
+Colin</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-984">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-984" title="">December 16th, 2009 at 4:11 pm</a> </small>
+
+			<p>@colinh</p>
+<p>The RFM12B really doesn’t require a pull up and will work without it, however the RFM12 does else it won’t work.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-985">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-985" title="">December 16th, 2009 at 4:22 pm</a> </small>
+
+			<p>@matt</p>
+<p>Sorry for the delay in getting back to you.  can you email me your 
+complete application so I can see how you’re using the functions in the 
+main loop.</p>
+<p>Regards,</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-986">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>markp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-986" title="">December 17th, 2009 at 6:36 am</a> </small>
+
+			<p>Hi Steve,</p>
+<p>Thanks for this tutorial, it was very handy in getting this radio module working.</p>
+<p>Just to point out that the RFM12B uses the Si4420 chip from Silicon 
+Labs and is basically the Si4420 chip with the antenna circuitry shown 
+in the Si4420 data sheet. This datsheet contains much more information 
+than the Hoperf’s RF12B.pdf datasheet and actually explains for example 
+how the transmission buffering works.</p>
+<p>From this you can see that it is not actually necessary to send 
+preamble bytes. If the ET bit is off, the two stage transmission buffer 
+pre-loads AA’s into this stage automatically. Once the ET bit gets set 
+high these preamble bytes are sent as the first two bytes. If you want 
+you can add more by pre-pending AAs to your data to tranmit. BTW you can
+ override these two bytes if you write to the transmission register 
+while ET is low (the datasheet shows this as a timing diagram). </p>
+<p>Mark.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-987">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>markp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-987" title="">December 18th, 2009 at 8:25 pm</a> </small>
+
+			<p>Proper Use of AFC:</p>
+<p>It seems to me that the AFC function is very useful to minimise the 
+differece between the tranmitter and receiver frequencies, and hence to 
+allow the minimum receiver bandwidth to be used. </p>
+<p>I’m a little unsure of exactly how the AFC function should be used 
+though. Here is my basic understanding, maybe someone could shed some 
+light on this and whether this is correct:</p>
+<p>When a receiver detects an incoming RF signal that is above it’s 
+programmed VDI threshold the VDI signal goes active. This occurs during 
+the preamble phase before any sync word. If the status word is read 
+immediately VDI goes active (i.e. during the preamble stage), then the 
+lower 3 bits show the frequency offset between the two frequencies, and 
+this can then be programmed into the receiver frequency PLL register to 
+match them. The sync word is then decoded with the receiver PLL now 
+matched to the transmitter’s frequency, and subsequent data received 
+(all further bytes received are not qualified with VDI, so the receiver 
+will continue to receive even if the transmitter is turned off until 
+either the receiver is disabled or the FIFO is reset).</p>
+<p>I’m also unsure about turnaround times between transmit to receive 
+and back again. The datasheet gives a maximum time for these, but is 
+this delay handled automatically by the hardware or does the micro have 
+to add these times to allow it to settle? For example could the user 
+immediately go into receive mode and the hardware prevent reception 
+until the turnaround time has elapsed? Also could the user immediately 
+try to transmit by setting ET after a reception and the hardware hold 
+that transmission off until its internal turnaround time has elapsed?</p>
+<p>One last question: Does anyone know the ppm spec of the crystals used
+ on the RFM12B? If AFC is not used this seems to be an important 
+parameter when calculating the receiver bandwidth to be used.</p>
+<p>Thanks!</p>
+<p>Mark.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-993">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>colinh</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-993" title="">January 19th, 2010 at 2:59 pm</a> </small>
+
+			<p>I have seen a couple of comments about the RFM12B being based on 
+the Si4420. It might be a minor point but from what I can see the RFM12B
+ is actually based on the Si4421.  My reason for thinking this is the 
+3.8V max supply, no support for 315MHz and flexible sync pattern (1 or 2
+ bytes) – this is what I have spotted so far.  The fact that there are 
+register differences between the Si4420 and RFM12B mean that it is not a
+ good reference.<br>
+Any comments welcome…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-996">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>faizanbrohi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-996" title="">January 23rd, 2010 at 1:56 am</a> </small>
+
+			<p>i have tested the rfm12bp modules but the problem is with the 
+range , it does not give good range . has anyone field tested it , i 
+have the 915Mhz version . i don’t know if is a noise issue or something 
+else. i have connected the module with a whip antenna . it should have 
+enchanced range , hope rf says they have 800m range.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1001">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>markp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1001" title="">February 5th, 2010 at 8:43 am</a> </small>
+
+			<p>@colinh</p>
+<p>Yes, I think you’re right. The RFM12 is based on the Si4420, the 
+RFM12B is it seems is based on the Si4421 (the corresponding Hoperf 
+documents for the chips are rf12.pdf and rf12b.pdf respectively). Thanks
+ for pointing it out!</p>
+<p>Mark.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1002">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>markp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1002" title="">February 5th, 2010 at 6:10 pm</a> </small>
+
+			<p>@faizanbrohi</p>
+<p>Not sure what data rate you are using. There is a relationship 
+between data rate and distance, basically for each doubling of the<br>
+data rate the receiver sensitivity reduces by 3dB (roughly). Since power
+ received reduces by 6dB for each doubling of distance this means the 
+distance will reduce by 1/sqrt2, i.e. 0.707. Now you need to know what 
+conditions the 800m is quoted for. You can bet this is at the lowest 
+data rate the chip will handle, and at a releatively high Bit Error Rate
+ (maybe 1E-3). </p>
+<p>Quick calculation: Assuming 800m is quoted at 600 bps, and you used 
+57600 bps in your app, this is (very roughly) 6 doublings, so your 
+distance will reduce to 1/(6*sqrt2), i.e. again very roughly 1/10. 
+You’ll get 80m, not 800m. And even that is at high BER rate. </p>
+<p>Here’s a useful link:<br>
+<a href="http://www.ce-mag.com/archive/02/Spring/cutler2.html" rel="nofollow">http://www.ce-mag.com/archive/02/Spring/cutler2.html</a></p>
+<p>Mark.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1003">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>markp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1003" title="">February 5th, 2010 at 6:28 pm</a> </small>
+
+			<p>Edit: I think I made an error in that post. It should have said 6/sqrt2, i.e. 1/4 not 1/10 (which is 200m).</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1004">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>faizanbrohi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1004" title="">February 11th, 2010 at 8:45 pm</a> </small>
+
+			<p>I am transmitting at 4800bps and it has reached 400m with only 
+changing the board from Veroboard and a messy layout to a Well designed 
+PCB one . i also changed the antenna. i am now looking forward to the 
+433Mhz module to increase the range as it low frequency so greater 
+wavelength . will the low frequency module make a difference ?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1016">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1016" title="">March 29th, 2010 at 2:19 am</a> </small>
+
+			<p>Dear All,</p>
+<p>Please help me out with this issue:<br>
+I am reading the status register but getting only 0′s<br>
+This is the init function:<br>
+void RF12_INIT(void) //868MHz!!!<br>
+{<br>
+	RFXX_WRT_CMD(0x80E7);//el,ef,868band,12.0pF</p>
+<p>	//If both et and er bits are set the chip goes to receive mode.<br>
+	RFXX_WRT_CMD(0×8259);//!er,ebb,!et,es,ex,!eb,!ew,DC</p>
+<p>	RFXX_WRT_CMD(0xA640);//868MHz<br>
+	RFXX_WRT_CMD(0xC647);//4.8kbps<br>
+	RFXX_WRT_CMD(0x90C0);//VDI,FAST,67kHz,0dBm,-103dBm<br>
+	RFXX_WRT_CMD(0xC2AF);//AL,!ml,DIG,DQD7<br>
+	RFXX_WRT_CMD(0xCA81);//FIFO8,SYNC,!ff,DR<br>
+	RFXX_WRT_CMD(0xCED4);//SYNC=2DD4<br>
+	RFXX_WRT_CMD(0xC483);//@PWR,NO RSTRIC,!st,!fi,OE,EN ??<br>
+	RFXX_WRT_CMD(0×9830);//!mp,45kHz,MAX OUT<br>
+	RFXX_WRT_CMD(0xCC77);//OB1COB0, LPX,!ddy,DDIT,BW0<br>
+	RFXX_WRT_CMD(0xE000);//NOT USE<br>
+	RFXX_WRT_CMD(0xC800);//NOT USE<br>
+	RFXX_WRT_CMD(0xC000);//1MHz,2.2V</p>
+<p>}//void RF12_INIT(void)<br>
+the write command function:<br>
+unsigned int RFXX_WRT_CMD(unsigned int aCmd)<br>
+{<br>
+unsigned char i;<br>
+unsigned int temp=0;	</p>
+<p>	_delay_us(10);</p>
+<p>	LOW_SCK();<br>
+	LOW_SEL();</p>
+<p>	_delay_us(10);</p>
+<p>	for(i=0;i&lt;16;i++)<br>
+	{<br>
+		if(aCmd&amp;0×8000)<br>
+			HI_SDI();<br>
+		else<br>
+			LOW_SDI();</p>
+<p>		aCmd&lt;&lt;=1;</p>
+<p>		_delay_us(40);<br>
+		HI_SCK();<br>
+		_delay_us(20);		</p>
+<p>		if(SDO_HI())<br>
+			temp|=0×0001;</p>
+<p>		temp&lt;&lt;=1;</p>
+<p>		_delay_us(20);</p>
+<p>		LOW_SCK();<br>
+	}//for(i=0;i&gt;8);<br>
+	USART_TransmitByte(tmp&amp;0xFF);</p>
+<p>	RFXX_WRT_CMD(0xB800+aByte);<br>
+}//void RF12_SEND(unsigned char aByte)</p>
+<p>And a part of main():<br>
+                  ….		RFXX_WRT_CMD(0×8279);//!er,ebb,et,es,ex,!eb,!ew,DC</p>
+<p>//RFXX_WRT_CMD(0xCA81); //init fifo<br>
+//RFXX_WRT_CMD(0xCA83); //enable fifo<br>
+//RFXX_WRT_CMD(0×0000);//read status </p>
+<p>		//_delay_ms(5);</p>
+<p>		ChkSum=0;</p>
+<p>		LEDR_ON();    	</p>
+<p>		RF12_SEND(0xAA);//PREAMBLE<br>
+               …</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1017">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1017" title="">March 29th, 2010 at 2:21 am</a> </small>
+
+			<p>Dear All,</p>
+<p>Please help me out with this issue:<br>
+I am reading the status register but getting only 0′s<br>
+This is the init function:<br>
+void RF12_INIT(void) //868MHz!!!<br>
+{<br>
+	RFXX_WRT_CMD(0x80E7);//el,ef,868band,12.0pF</p>
+<p>	//If both et and er bits are set the chip goes to receive mode.<br>
+	RFXX_WRT_CMD(0×8259);//!er,ebb,!et,es,ex,!eb,!ew,DC</p>
+<p>	RFXX_WRT_CMD(0xA640);//868MHz<br>
+	RFXX_WRT_CMD(0xC647);//4.8kbps<br>
+	RFXX_WRT_CMD(0x90C0);//VDI,FAST,67kHz,0dBm,-103dBm<br>
+	RFXX_WRT_CMD(0xC2AF);//AL,!ml,DIG,DQD7<br>
+	RFXX_WRT_CMD(0xCA81);//FIFO8,SYNC,!ff,DR<br>
+	RFXX_WRT_CMD(0xCED4);//SYNC=2DD4<br>
+	RFXX_WRT_CMD(0xC483);//@PWR,NO RSTRIC,!st,!fi,OE,EN ??<br>
+	RFXX_WRT_CMD(0×9830);//!mp,45kHz,MAX OUT<br>
+	RFXX_WRT_CMD(0xCC77);//OB1COB0, LPX,!ddy,DDIT,BW0<br>
+	RFXX_WRT_CMD(0xE000);//NOT USE<br>
+	RFXX_WRT_CMD(0xC800);//NOT USE<br>
+	RFXX_WRT_CMD(0xC000);//1MHz,2.2V</p>
+<p>}//void RF12_INIT(void)<br>
+the write command function:<br>
+unsigned int RFXX_WRT_CMD(unsigned int aCmd)<br>
+{<br>
+unsigned char i;<br>
+unsigned int temp=0;	</p>
+<p>	_delay_us(10);</p>
+<p>	LOW_SCK();<br>
+	LOW_SEL();</p>
+<p>	_delay_us(10);</p>
+<p>	for(i=0;i&lt;16;i++)<br>
+	{<br>
+		if(aCmd&amp;0×8000)<br>
+			HI_SDI();<br>
+		else<br>
+			LOW_SDI();</p>
+<p>		aCmd&lt;&lt;=1;</p>
+<p>		_delay_us(40);<br>
+		HI_SCK();<br>
+		_delay_us(20);		</p>
+<p>		if(SDO_HI())<br>
+			temp|=0×0001;</p>
+<p>		temp&lt;&lt;=1;</p>
+<p>		_delay_us(20);</p>
+<p>		LOW_SCK();<br>
+	}//for(i=0;i&lt;16;i++)</p>
+<p>		LOW_SCK();<br>
+		HI_SEL();</p>
+<p>	return temp;</p>
+<p>}//unsigned int RFXX_WRT_CMD(.. aCmd)</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1018">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1018" title="">March 29th, 2010 at 2:25 am</a> </small>
+
+			<p>The previous message got scrambled..<br>
+Here is again in two parts<br>
+Write command:<br>
+unsigned int RFXX_WRT_CMD(unsigned int aCmd)<br>
+{<br>
+unsigned char i;<br>
+unsigned int temp=0;	</p>
+<p>	_delay_us(10);</p>
+<p>	LOW_SCK();<br>
+	LOW_SEL();</p>
+<p>	_delay_us(10);</p>
+<p>	for(i=0;i&lt;16;i++)<br>
+	{<br>
+		if(aCmd&amp;0×8000)<br>
+			HI_SDI();<br>
+		else<br>
+			LOW_SDI();</p>
+<p>		aCmd&lt;&lt;=1;</p>
+<p>		_delay_us(40);<br>
+		HI_SCK();<br>
+		_delay_us(20);		</p>
+<p>		if(SDO_HI())<br>
+			temp|=0×0001;</p>
+<p>		temp&lt;&lt;=1;</p>
+<p>		_delay_us(20);</p>
+<p>		LOW_SCK();<br>
+	}//for(i=0;i&gt;8);<br>
+	USART_TransmitByte(tmp&amp;0xFF);</p>
+<p>	RFXX_WRT_CMD(0xB800+aByte);<br>
+}//void RF12_SEND(unsigned char aByte)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1019">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1019" title="">March 29th, 2010 at 9:21 am</a> </small>
+
+			<p>@laci:</p>
+<p>first and for-most is your SPI bus working?  i.e. An easy test is to 
+send a command to turn off the CLK pin or change it’s frequency.</p>
+<p>Regards,</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1020">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1020" title="">April 1st, 2010 at 9:49 pm</a> </small>
+
+			<p>I solved the problem, now my concern is that switching between tx/rx takes to long.<br>
+As trying to implement some anti-collision I need to stop tx for a while and check for any rx. Anybody has some ideas ?</p>
+<p>When finished I will make the code public.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1021">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1021" title="">April 2nd, 2010 at 2:39 pm</a> </small>
+
+			<p>@laci</p>
+<p>Great to hear you have it working.</p>
+<p>If you leave the crystal and synthesiser on then the turnaround time 
+from Tx – Rx and visa-versa is 150usec. Initial crystal turn-on time is a
+ couple of mSec so do that at initialisation toggle the et bit.</p>
+<p>You can also the ATS, DQD and RSSI status bits to determine if there is something else transmitting.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1022">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>faizanbrohi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1022" title="">April 21st, 2010 at 2:18 am</a> </small>
+
+			<p>Hello , again , there is some problem with the module when i am using interrupt mode , i am using the following scenario , </p>
+<p>There is one Gateway ,router, base station or what  ever you want or 
+call it , which polls different nodes which are listening. the base 
+station broadcasts an address  packet to every node and the 
+corresponding node answers if it matches the address . i have three 
+nodes currently connected to the system . </p>
+<p>Now the problem is that after some time the base station (when it is 
+polling) receives zeroes at the end of every packet and it is 
+consistent. when i introduced a watchdog and when it resets the system 
+the zeroes are gone , but this does not solve the problem it can occur 
+everytime , is it a timing issue , i am using my own interrupt based 
+routine and check nirq for it to go in the external interrupt ISR and 
+the ffit bit for receiving the valid data. </p>
+<p>i have 1 second polling time for each node @ 4800kbps ( which is done
+ under timer ISR ) and about 10 ms switch over time for tx-rx switching ,
+ it has enough time.</p>
+<p>I mailed hoperf , they are saying add 10k pullup to the fsk data pin . however it did not solve the problem .</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1023">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1023" title="">April 21st, 2010 at 9:23 am</a> </small>
+
+			<p>@faizanbrohi  </p>
+<p>With your interrupt routing are you checking or handling all status 
+bits? as the interrupt might be generated by something else.  </p>
+<p>It’s not safe to assume that when you receive an interrupt that it is from a Tx or Rx event.</p>
+<p>Regards,</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1024">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>faizanbrohi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1024" title="">April 22nd, 2010 at 1:38 am</a> </small>
+
+			<p>@stephen </p>
+<p>Solved the problem , problem with node synchronization when handling 
+two interrupts (timer and external), a programming bug not the rf issue.
+ Thanks</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1026">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>elimar.87</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1026" title="">April 26th, 2010 at 12:33 pm</a> </small>
+
+			<p>hi stephen, I just started to work with the RFM12b and the pic 
+16F87. is the first time I do program a device, so I would like to know 
+wich compiler could i use.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1027">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>elimar.87</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1027" title="">April 26th, 2010 at 12:33 pm</a> </small>
+
+			<p>hi stephen, I just started to work with the RFM12b and the pic 
+16F873a. is the first time I do program a device, so I would like to 
+know wich compiler could i use.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1028">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1028" title="">April 26th, 2010 at 4:46 pm</a> </small>
+
+			<p>For the PIC I used sourceboost IDE, now I’m using AVR GCC I’m not too s what free compilers are available for the PIC</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1029">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>enriquecarlos88</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1029" title="">April 27th, 2010 at 1:23 pm</a> </small>
+
+			<p>hi stephen,I just started to work with the RFM12b and PIC16F873, i have problem with<br>
+the program of datasheet programming guide hoperf, can me help with a program that is find Good and in C.<br>
+my email is <a href="mailto:enriquecarlos88@gmail.com">enriquecarlos88@gmail.com</a></p>
+<p>thank</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1030">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1030" title="">May 9th, 2010 at 3:42 pm</a> </small>
+
+			<p>@Stephen</p>
+<p>I “reloaded” the rfm project, and still struggling with the rx/tx mode switch.<br>
+Before I issue the actual command<br>
+RFXX_WriteCommand(0×8279);//!er,ebb,et,es,ex,!eb,!ew,DC<br>
+or<br>
+RFXX_WriteCommand(0x82D9);//er,ebb,!et,es,ex,!eb,!ew,DC</p>
+<p>I wait for the Status bit FFIT to be 1.<br>
+The problem is that the device switches to RX mode very slow, do you have any idea why? </p>
+<p>Regards,<br>
+Laci</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1031">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1031" title="">May 10th, 2010 at 5:51 pm</a> </small>
+
+			<p>The other great mystery is that my RF12_GetData function needs specific delays between the calls otherwise won’t work…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1032">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1032" title="">May 10th, 2010 at 7:14 pm</a> </small>
+
+			<p>hi all, i use rfm12b to transmit data from a PC to another one by rs232. most of my code from hope rf.<br>
+PC1–(1)–&gt;MCU1–(2)–&gt;RF1—(3)—&gt;RF2–(2)–&gt;MCU2–(1)–&gt;PC2<br>
+but i’m puzzling with the bitrate among these devices.<br>
+as u see on the simple diagram above.<br>
+(1) : bitrate between PC and MCU<br>
+(2) : bitrate between MCU and RF<br>
+(3) : bitrate between RF and RF</p>
+<p>acorrding hope code,<br>
+writeCmd(0xC647); //4.8kbps<br>
+data rate (3) is 4800bps.</p>
+<p>is it necessary to be the same among them?</p>
+<p>hearing from you soon!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1033">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1033" title="">May 11th, 2010 at 10:54 am</a> </small>
+
+			<p>@laci</p>
+<p>when you say the Tx/Rx turn around takes too long, how long is it taking?</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1034">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1034" title="">May 11th, 2010 at 10:56 am</a> </small>
+
+			<p>@realheaven</p>
+<p>As long as you have some form of buffering between the RS232 and the RFM12 then it shouldn’t matter.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1035">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1035" title="">May 13th, 2010 at 4:33 pm</a> </small>
+
+			<p>@Stephen,</p>
+<p>Well it takes quite long(few 100ms), usually the first attempt gives a timeout, and sometimes can’t even switch between tx/rx.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1036">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1036" title="">May 16th, 2010 at 1:23 am</a> </small>
+
+			<p>@ Stephen 89</p>
+<p>I’ve set up a system using two rfm12 to transfer data from one node 
+to another but it’s still not worked at all.  I also used a 
+electromagnetic energy device to detect the magnetic field but maybe 
+that device was not sensitive enogh!!!<br>
+Would you mind telling me how to check if rf really sent out a frame?</p>
+<p>may a oscilloscope can kick this problem?</p>
+<p>thanks a lot!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1037">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1037" title="">May 16th, 2010 at 1:09 pm</a> </small>
+
+			<p>@laci,</p>
+<p>100mSec would seem long as a turn around time.  </p>
+<p>make sure you’re not tuning off the whole power chain when you change
+ from Tx-Rx and vis-versa.  If you want a fast turn-around then you need
+ to already have the crystal oscillator and synthesiser turned on (part 
+of your wakeup?).  </p>
+<p>Once initialised you should only need to toggle the er bit in the 
+power control register(0x8208h) if both et and er are on then er takes 
+precedence.  </p>
+<p>check out the turnaround timing in the datasheet (bottom page 10 on 
+my sheet), in theory you should be achieving 150uSec turnaround times if
+ you already have the synthesiser and crystal on. </p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1038">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1038" title="">May 16th, 2010 at 1:18 pm</a> </small>
+
+			<p>@realheaven</p>
+<p>AFAIK a spectrum analysers would be the only thing to see if you are 
+transmitting on the wireless side of things.  An oscilloscope would 
+cause too much load on the circuit and then it won’t work, also the 
+frequencies involved would be a high end oscilliscope.</p>
+<p>You need to confirm your SPI is talking to the RFM12 first.  An easy 
+test is to send the comand to change the Cystal output frequency and 
+measure with an oscilloscope or frequency counter.  </p>
+<p>If your having Tx Rx problems make sure you don’t have any debug 
+printf etc in your transmit routines, just queue up your Tx buffer and 
+then start the Tx sequence until your buffer is empty.  </p>
+<p>If there are any delays in this Tx sequence then the receiver will loose sync and will not receive anything.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1039">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1039" title="">May 16th, 2010 at 8:01 pm</a> </small>
+
+			<p>@Stephen,</p>
+<p>I am changing just the et/er bits in the power managment command</p>
+<p>this is my function:<br>
+unsigned char RF12_SetMode(unsigned char SetMode)<br>
+{<br>
+static unsigned char timeout_cnt=0;<br>
+       unsigned char RFXX_Response;</p>
+<p>	RFXX_Response=RFXX_WaitReady();</p>
+<p>	if( (SetMode==TX_MODE)&amp;&amp;(mode==RX_MODE) )<br>
+		{<br>
+		  //Fill the TX with 0xAAAA preamble key<br>
+		  RFXX_WriteCommand(0×8279);//!er,ebb,et,es,ex,!eb,!ew,DC<br>
+		  _delay_ms(1); //RX/TX switch time<br>
+		  mode = TX_MODE; //switch to tx mode<br>
+		  RFXX_WriteCommand(0xCA81); //reset fifo<br>
+		}<br>
+	else<br>
+	  if( (SetMode==RX_MODE)&amp;&amp;(mode==TX_MODE) )<br>
+		{<br>
+		  RFXX_WriteCommand(0x82D9);//er,ebb,!et,es,ex,!eb,!ew,DC<br>
+		  _delay_ms(1); //RX/TX switch time<br>
+		  mode = RX_MODE; //switch to rx mode<br>
+		  RFXX_WriteCommand(0xCA81); //reset fifo<br>
+		}</p>
+<p>	if(timeout_cnt == RFXX_SET_MODE_TIMEOUT) //prevent infinit blocking<br>
+	{<br>
+		RFXX_Response=RFXX_READY;<br>
+		timeout_cnt=0;<br>
+	}</p>
+<p>	if(RFXX_Response != RFXX_READY)<br>
+	{<br>
+		timeout_cnt++;<br>
+		return RFXX_TIMEOUT_ERR;<br>
+	}<br>
+	else<br>
+		return mode;<br>
+}//unsigned char RF12_SetMode(unsigned char SetMode)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1040">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1040" title="">May 17th, 2010 at 12:23 pm</a> </small>
+
+			<p>@ Stephen 93</p>
+<p>thanks so much for your support. I checked my SPI interace and there was no trouble with it.<br>
+I gotta read the status register to comfirm that i can manage the rf completely.<br>
+There is a simple code to read the status register is :<br>
+writeCmd(0×0000) // form hope guide</p>
+<p>but i failed in this section</p>
+<p>is that enogh to read status register by a sigle command like that?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1041">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1041" title="">May 17th, 2010 at 3:23 pm</a> </small>
+
+			<p>i thought i could get something but only 00 bits form reading status register!!!<br>
+why that happens?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1043">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1043" title="">May 18th, 2010 at 6:43 pm</a> </small>
+
+			<p>here’s my complete code</p>
+<p>// rs232 Init<br>
+void Tx(unsigned char data)<br>
+{<br>
+    while(!(UCSRA &amp; (1&lt;&lt;UDRE)));<br>
+    UDR=data;<br>
+}<br>
+// write command function<br>
+unsigned int writeCmd(unsigned int cmd) {<br>
+  unsigned char i;<br>
+  unsigned int recv;<br>
+  recv = 0;<br>
+  LO(SCK);<br>
+  LO(CS);<br>
+  for(i=0; i&lt;16; i++) {<br>
+    if(cmd&amp;0×8000) HI(SDI); else LO(SDI);<br>
+    HI(SCK);<br>
+    recv&lt;&lt;=1;<br>
+    if( PINB&amp;(1&lt;&lt;SDO) ) {<br>
+      recv|=0×0001;<br>
+    }<br>
+    LO(SCK);<br>
+    cmd&lt;&lt;=1;<br>
+  }<br>
+  HI(CS);<br>
+  return recv;<br>
+}</p>
+<p>to be continued…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1044">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1044" title="">May 18th, 2010 at 6:46 pm</a> </small>
+
+			<p>void rfInit() {<br>
+  writeCmd(0x80F8); //EL,EF,915band,12.5pF<br>
+  writeCmd(0×8239); //!er,!ebb,ET,ES,EX,!eb,!ew,DC<br>
+  writeCmd(0xAA6B); //frequency select<br>
+  writeCmd(0xC647); //bit rate = 4.8kbps<br>
+  writeCmd(0x94C2); //VDI,FAST,BW=67kHz,0dBm,-91dBm<br>
+  writeCmd(0xC2AC); //AL,!ml,DIG,DQD4<br>
+  writeCmd(0xCA81); //FIFO8,SYNC,!ff,DR<br>
+  writeCmd(0xCED4); //SYNC=2DD4G<br>
+  writeCmd(0xC483); //@PWR,NO RSTRIC,!st,!fi,OE,EN<br>
+  writeCmd(0×9820); //!mp,deviation=45kHz,MAX OUT<br>
+ // writeCmd(0xCC17); //OB1COB0, LPX,IddyCDDITCBW0<br>
+  writeCmd(0xE000); //NOT USE<br>
+  writeCmd(0xC800); //NOT USE<br>
+  writeCmd(0xC040); //1.66MHz,2.2V<br>
+}</p>
+<p>void main()<br>
+{<br>
+    volatile unsigned int data;<br>
+    #asm(“cli”);<br>
+    delay_ms(1000);<br>
+    rsInt();<br>
+    portInit();<br>
+    rfInit(); </p>
+<p>     data=writeCmd(0×0000);<br>
+     Tx(data);<br>
+ }<br>
+status register value form hyperterminal : 00 00 00 00…<br>
+please help me in this case</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1045">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1045" title="">May 18th, 2010 at 8:57 pm</a> </small>
+
+			<p>oh i forget telling you that i’m using RFM12 not RFM12B, there are some slight changes between these two.<br>
+you can also get it from : <a href="http://news.jeelabs.org/2009/05/06/rfm12-vs-rfm12b-revisited/" rel="nofollow">http://news.jeelabs.org/2009/05/06/rfm12-vs-rfm12b-revisited/</a></p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1046">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1046" title="">May 19th, 2010 at 9:57 am</a> </small>
+
+			<p>i sovled the case!!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1047">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1047" title="">May 19th, 2010 at 10:38 am</a> </small>
+
+			<p>what funny!<br>
+when rf in Tx mode, i got a static valaue form status register is A100. 
+but when i toggled it into Rx mode i got more than one value!?! for ex :
+ 0000, 0120, 0020 and several strange values : 0040, 0044, 0067!?!</p>
+<p>i note that there are two bits in status register having value changing are RSSI and ATGT.</p>
+<p>anybody can explain why in Rx mode there are lots of diffrent values 
+when reading status register? expecially bit RSSI &amp; ATGT</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1048">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1048" title="">May 22nd, 2010 at 11:57 am</a> </small>
+
+			<p>at least my network works! i feel so happy! it’s worth to try hard rite! <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_wink.gif" alt=";)" class="wp-smiley"><br>
+but who can tell me why toggling between TX/RX &amp; RX/TX take so so 
+long time. I must to delay 500ms to guagrante receiving all packets 
+whereas hoperf say that it takes 150us!?!<br>
+thanks a lot!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1049">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1049" title="">May 25th, 2010 at 12:10 pm</a> </small>
+
+			<p>@realheaven  </p>
+<p>Glad you got it all working, what ended up being your problem?</p>
+<p>One of the other members (laci) is also having problems with the 
+turnaround time from Tx/RX as well, you might want to chat with him to 
+see if a solution was found. Unfortunately I not currently in the 
+position to do any testing for some time so I see why there is a delay.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1050">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1050" title="">May 29th, 2010 at 12:20 am</a> </small>
+
+			<p>I hope somebody can help me out, I ran out of ideas, probably will
+ switch to some other module/solution because this rf12b just won’t work
+ …</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1051">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1051" title="">May 29th, 2010 at 10:04 am</a> </small>
+
+			<p>@laci 104</p>
+<p>what’s your trouble, laci?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1052">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1052" title="">May 31st, 2010 at 6:16 pm</a> </small>
+
+			<p>@realheaven </p>
+<p>The TX/RX switching won’t work, at start up I can switch to TX(no 
+received data yet), it sends out the data, after I start to receive the 
+RX mode won’t gather any data, and I can’t switch back to TX mode.</p>
+<p>See my previous posts, I even posted the mode select function.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1053">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1053" title="">June 1st, 2010 at 9:48 pm</a> </small>
+
+			<p>@ laci 106</p>
+<p>at first, if you want one node at TX mode then you should init it @ 
+TX mode  by writeCmd(0×8239). Next, if you want it at RX mode you should
+ switch it to RX mode by writeCmd(0×8299).<br>
+You can also test the TX  RX mode with one simple test. For example, you have 2 node A &amp; B.<br>
+1. A (TX) —&gt; B(RX)<br>
+2. A(TX–&gt;RX) &amp; B(RX–&gt;TX)<br>
+3. B(TX)–&gt;A(RX)</p>
+<p>A sends out a byte to B, A immediately switches to RX mode; if B (@ 
+RX)receives a byte and check if it’s from A then B switches to TX mode 
+and sends out a byte; @ A you can easily check the data from B by send 
+it to PC using RS232.</p>
+<p>ps : you should test both two nodes that can transmit and receive 
+data first to be sure that there’s no fault at any stage of the process.</p>
+<p>good luck!</p>
+<p>(feel free asking, rite!) <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1054">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1054" title="">June 3rd, 2010 at 2:38 am</a> </small>
+
+			<p>I will make a more thorough debug, maybe I made some stupid mistake somewhere… until then I remain skeptic <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley">  just won’t switch between tx/rx remains blocked somewhere <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1055">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1055" title="">June 3rd, 2010 at 7:41 pm</a> </small>
+
+			<p>@ laci 108</p>
+<p>hi laci, you should read this :<br>
+<a href="http://zenburn.net/%7Egoroux/rfm12b/rfm12b_and_avr-%20quick_start.pdf" rel="nofollow">http://zenburn.net/~goroux/rfm12b/rfm12b_and_avr-%20quick_start.pdf</a></p>
+<p>i think it’ll help you to solve your problem.</p>
+<p>hope you success! <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1056">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>laci</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1056" title="">June 4th, 2010 at 2:11 am</a> </small>
+
+			<p>As soon as I have some spare time, i will get to the bottom of this issue <img src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/icon_smile.gif" alt=":)" class="wp-smiley"> , and write my own tutorial and post my entire software on a blog.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1057">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Nart_schinakow</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1057" title="">June 17th, 2010 at 9:15 pm</a> </small>
+
+			<p>Hello Stephen,<br>
+Really thanks for these nice tutorials!!!<br>
+i thought i gave up on that rfm12!!! i used the hm-tr from hope rf wich 
+uses standrd rs232 protocol but they are very expensive !!! my question 
+is if i want to use the hardware spi will the code be the same as the 
+programming guide??</p>
+<p>Note: I am Using Mikroc And has an spi library (hardware)(Pic16f876a)</p>
+<p>Thanks Alot Stephen .</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1065">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1065" title="">June 30th, 2010 at 10:28 am</a> </small>
+
+			<p>@Nart_schinakow </p>
+<p>I would suggest you look at other examples of code other than the 
+ones supplied from HopeRF. I had no end of problems with them.  However 
+in saying that I did have some problems getting the hardware SPI working
+ with the PIC and the RFM12B, this was a couple of years ago though.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1067">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>geo</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1067" title="">July 17th, 2010 at 2:44 pm</a> </small>
+
+			<p>Hi,<br>
+   I am trying to interface a at89c52(5V) with the RFM12B(~3.6V) module.
+ Whether I need to take care about including any delimiting resistors or
+ other kind of level shifters between the SPI bus pins.<br>
+ thanks in advance<br>
+Geo</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1068">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1068" title="">July 22nd, 2010 at 11:25 am</a> </small>
+
+			<p>@geo</p>
+<p>The RFM12B has 5V tolerant I/O, however in saying that I wouldn’t 
+leave it running at 5V for an application as it may shorten it’s life.  
+When I first started development I didn’t use shifters etc and all ran 
+ok.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1069">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/2008/01/08/rfm12-tutorial-part1/" rel="external nofollow" class="url">RFM12 Tutorial – Part1</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1069" title="">July 26th, 2010 at 10:00 pm</a> </small>
+
+			<p>[...] Next – Part 2 [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1081">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1081" title="">October 5th, 2010 at 12:14 am</a> </small>
+
+			<p>@ geo 116</p>
+<p>you may choose RFM12 instead of RFM12B because RFM12 can run well at 
+5V so there’s only one power supply for the two devices and to 
+manipulate those RF is the same.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1104">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>chippchipp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1104" title="">December 7th, 2010 at 10:49 pm</a> </small>
+
+			<p>Hi Stephen<br>
+I have been researching and developting an application using the RFM12B.The data on this module is not good,<br>
+What i have noticed is a Digital signal analyzer or scope  is required 
+becasue of the lacking data sheets as to correct program flow.<br>
+What would be a good start is if an experience rfm developer(yourself)  
+could provide  timing diagrams showing the state of lines<br>
+NSEL,SCK,SDI,SDO,nIRQ, and VDI in relationship to el,et,synthersizer/pa etc,etc when running a sample program.<br>
+Now i am using a scope things are becoming much easier to grasp<br>
+Chippchipp</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1105">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1105" title="">December 10th, 2010 at 9:55 am</a> </small>
+
+			<p>@chippchipp</p>
+<p>Yes I can certainly appreciate what rfm12 newbies go through.  the 
+biggest problems is what comes first the chicken or the egg, e.g. is the
+ problem in the Tx, or is it in the Rx side of things.  </p>
+<p>I certainly agree with you.  I could not have got my original design 
+working without an oscilloscope watching the CLK and the MOSI/MISO  
+however this was a pain as I only have a two channel CRO, I’ve since 
+treated myself to a logic analyser that can decode SPI and find this 
+invaluable when I troubleshoot.</p>
+<p>When I get around to finishing off the tutorials I’ll look at putting some timing diagrams on.</p>
+<p>stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1144">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>ulf_l</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1144" title="">December 30th, 2010 at 6:42 pm</a> </small>
+
+			<p>Hello</p>
+<p>You wrote “nFFS – If pulled high then the FIFO is selected”. As I 
+understood the datasheet the pin must be pulled low to select the FIFO.</p>
+<p>Ulf</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1154">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.scurvyrat.com/2011/06/14/reading-the-arssi-pin-on-the-si4221hoperf-12b/" rel="external nofollow" class="url">Scurvyrat — Reading the ARSSI pin on the Si4221/HopeRF 12B</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1154" title="">June 15th, 2011 at 5:52 am</a> </small>
+
+			<p>[...] has been a bunch written about this signal. You can read 
+about it here (German, with photo), here and here. There is work to 
+translate this signal to an OOK [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1166">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Amir</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1166" title="">September 27th, 2011 at 10:20 pm</a> </small>
+
+			<p>hi<br>
+how can I used Rfm12 In No fifo mode?<br>
+Iwant read data direct. no in fifo register</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1167">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1167" title="">September 28th, 2011 at 9:43 am</a> </small>
+
+			<p>@Amir  I’ve not used the non-fifo mode but it appears in the 
+documentation that you need to set ef=0 and use pin 7 to get access to 
+the incoming data for Rx and for Tx you need to use pin 6 to send your 
+data.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1175">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>chippchipp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1175" title="">December 18th, 2011 at 7:07 pm</a> </small>
+
+			<p>hi,<br>
+The last time I contacted you was Dec 2010.<br>
+Now have my project working fully and I think I understand about 55% of the workings of the RFM12b.<br>
+The two modules communicate 100% no problems.<br>
+One thing I have notice.<br>
+I replaced my original Rfm 12b modules with two new rfm12b which I purchased in july 2011.<br>
+After power up i found problems with the first second and maybe third 
+communication data packet occurs now and then but after say the fourth 
+data packet the two modules  will communicate continuously, not missing 
+any data thereafter until I power off and power up or I move one of the 
+modules out and then back in range.<br>
+I reverse fitted the new  modules (swapped them round on my embedded application) and guess what.<br>
+I modules communicated perfectly from power up??<br>
+Have you seen this or have any ideas to what to change to debug or tune this out.<br>
+The two modules are embedded on exactly the same pcbs..<br>
+Just one module acts as the master and the other the slave.<br>
+I have increased the preambles.No change<br>
+Are there any parameters which you could point me to look at</p>
+<p>Thanks<br>
+Chippchipp</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1181">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://pujakesuma.org/?option=com_content&amp;view=article&amp;id=28%3Awagubsu-tanah-deli-identik-dengan-suku-jawa-pengurus-paguyuban-mbanyumas-gell-dikukuhkan-&amp;catid=2%3Aeksternal&amp;Itemid=7&amp;am" rel="external nofollow" class="url">Informasi Online Organisasi Masyarakat Jawa Kelahiran di Sumatera</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1181" title="">February 6th, 2012 at 5:00 am</a> </small>
+
+			<p><strong>Informasi Online Organisasi Masyarakat Jawa Kelahiran di Sumatera…</strong></p>
+<p>[...]RFM12 Tutorial – Part2[...]…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1185">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>amir_hosein_torabi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1185" title="">March 27th, 2012 at 12:31 am</a> </small>
+
+			<p>hello friends<br>
+plz help me<br>
+i worked on rfm12b for 1 month i have a problem that make me crazy<br>
+when i turn it on everything is good and a read status with 4000 hex<br>
+but when i initialize the module and switch to tx mode from ideal<br>
+the status run to a100 hex<br>
+i cannot solve the issue<br>
+plz help me i beg u friends</p>
+
+		</li>
+
+	
+	
+	</ol>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+<p>You must be <a href="http://blog.strobotics.com.au/wp-login.php?redirect_to=http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/">logged in</a> to post a comment.</p>
+
+			</div>
+					<p align="center"></p>		
+	</div>
+	<div id="sidebar">
+		<h2>Archived Entry</h2>
+	<ul>
+	<li><strong>Post Date:</strong></li>
+	<li>Tuesday, Jun 17th, 2008 at 6:01 pm</li>
+	<li><strong>Category:</strong></li>
+	<li><a href="http://blog.strobotics.com.au/topics/embedded/" title="View all posts in Embedded" rel="category tag">Embedded</a> and <a href="http://blog.strobotics.com.au/topics/embedded/rf/" title="View all posts in RF" rel="category tag">RF</a> and <a href="http://blog.strobotics.com.au/topics/embedded/rfm12-embedded/" title="View all posts in rfm12" rel="category tag">rfm12</a> and <a href="http://blog.strobotics.com.au/topics/embedded/rfm12b/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> and <a href="http://blog.strobotics.com.au/topics/tutorials/" title="View all posts in Tutorials" rel="category tag">Tutorials</a></li>
+	<li><strong>Do More:</strong></li>
+	<li>							You can <a href="#respond">leave a response</a>, or <a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/trackback/">trackback</a> from your own site.
+						
+						</li>
+	</ul>
+
+		
+<h2>Elsewhere</h2>
+<ul>
+
+	<li><strong>Latest</strong></li>
+		
+		
+				<li><a href="http://blog.strobotics.com.au/2012/08/17/im-back/" title="I’m Back !!!!">I’m Back !!!!</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/11/05/putting-the-project-into-an-enclosurepart-2-machining-the-case/" title="Putting the Project into an Enclosure–Part 2 Machining the Case">Putting the Project into an Enclosure–Part 2 Machining the Case</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/11/05/putting-the-project-into-an-enclosure-part-1/" title="Putting the Project into an Enclosure – Part 1">Putting the Project into an Enclosure – Part 1</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/08/04/rallylog-fusebits/" title="#Rallylog Fusebits">#Rallylog Fusebits</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/23/site-housekeeping/" title="Site Housekeeping">Site Housekeeping</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/21/rallylog-testing-progress/" title="RallyLog Testing Progress">RallyLog Testing Progress</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/21/rallylog-assembly-progress/" title="Rallylog Assembly Progress">Rallylog Assembly Progress</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/16/new-toy-for-pcb-inspections/" title="New Tool for PCB inspections">New Tool for PCB inspections</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/13/rallylog-pcb-boards-reva/" title="Rallylog PCB Boards REVA">Rallylog PCB Boards REVA</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/06/25/my-move-to-kicad/" title="My Move to Kicad">My Move to Kicad</a></li>
+	
+</ul>
+	</div>
+<p id="footer"><small>Powered by <a href="http://www.wordpress.org/" title="Wordpress is a state-of-the-art semantic personal publishing platform">WordPress 3.4.1</a>.   using the <a href="http://disconnected.sf.net/" title="Disconnected Theme">Disconnected</a> theme by <a href="http://archgfx.net/" title="theme designer">Adam Freetly</a>.<br> 
+
+	
+<!-- 28 queries. 2.205 seconds. -->
+</small></p>
+
+
+
+
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="RFM12%20Tutorial%20%E2%80%93%20Part2_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-2409861-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<p><a onclick='document.cookie="wpmp_switcher=mobile;path=/;expires=Tue, 01-01-2030 00:00:00 GMT";' href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/?wpmp_switcher=mobile">Switch to our mobile site</a></p><span id="wpmp_analytics"></span><div id="podPress_footer">Podcast powered by <a href="http://wordpress.org/extend/plugins/podpress/" title="podPress, a plugin for podcasting with WordPress">podPress v8.8.10.13</a></div>	<script type="text/javascript">
+		// PrintFriendly
+		var e = document.createElement('script'); e.type="text/javascript"; e.async = true; 
+		e.src = '//cdn.printfriendly.com/printfriendly.js';
+		document.getElementsByTagName('head')[0].appendChild(e);
+	</script>
+				</div>
+</div>
+
+
+
+</body></html>
+<!-- Dynamic Page Served (once) in 2.190 seconds -->

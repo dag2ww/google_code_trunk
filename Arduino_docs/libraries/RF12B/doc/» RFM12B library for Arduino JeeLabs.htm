@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title> » RFM12B library for Arduino JeeLabs</title>
+
+<link rel="stylesheet" href="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/style.css" type="text/css" media="screen">
+<!--[if gte IE 6]><link rel="stylesheet" href="http://jeelabs.org/wp-content/themes/depo-masthead/ie.css" type="text/css" media="screen" /><![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="JeeLabs RSS Feed" href="http://jeelabs.org/feed/">
+<link rel="pingback" href="http://jeelabs.org/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="JeeLabs » RFM12B library for Arduino Comments Feed" href="http://jeelabs.org/2009/02/10/rfm12b-library-for-arduino/feed/">
+<script type="text/javascript" src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/jquery_002.js"></script>
+<script type="text/javascript" src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/comment-reply.js"></script>
+<script type="text/javascript" src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/jquery.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://jeelabs.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://jeelabs.org/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Ignoring imprecise data" href="http://jeelabs.org/2009/02/09/ignoring-imprecise-data/">
+<link rel="next" title="The same 10 µF" href="http://jeelabs.org/2009/02/11/the-same-10-%c2%b5f/">
+<meta name="generator" content="WordPress 3.4.2">
+<link rel="canonical" href="http://jeelabs.org/2009/02/10/rfm12b-library-for-arduino/">
+<link rel="shortlink" href="http://jeelabs.org/?p=440">
+
+<!-- Bad Behavior 2.2.10 run time: 28.727 ms -->
+<script type="text/javascript">
+<!--
+function bb2_addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+bb2_addLoadEvent(function() {
+	for ( i=0; i < document.forms.length; i++ ) {
+		if (document.forms[i].method == 'post') {
+			var myElement = document.createElement('input');
+			myElement.setAttribute('type', 'hidden');
+			myElement.name = 'bb2_screener_';
+			myElement.value = '1347101892 78.27.0.45 78.27.0.45';
+			document.forms[i].appendChild(myElement);
+		}
+	}
+});
+// --></script>
+			<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><style type="text/css">.removed_link, a.removed_link {
+	text-decoration: line-through;
+}</style>
+<script type="text/javascript" charset="utf-8">
+/*<![CDATA[ */
+//set title font size
+jQuery(document).ready(function() {
+	
+	function resize(selector, max) {
+		jQuery(selector).each(function() {
+
+			var width = jQuery(this).width();
+			var height = jQuery(this).height();
+			if(width > max) {
+			var r = ( height / width );
+			var w = max;
+			var h = ( w * r );
+			jQuery(this).height(h).width(w);
+		}});
+	}
+	
+	resize('#home .gallery img', 90);
+	resize('#home .entry img', 300);
+	resize('#home .wp-caption img', 290);
+	resize('#home .wp-caption', 300);
+	jQuery('#home .wp-caption').css('height', 'auto');
+});
+/* ]]> */
+</script>
+</head>
+<body><div style="display: none;" id="cboxOverlay"></div><div style="padding-bottom: 0px; padding-right: 0px; display: none;" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear:left"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div class="" id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden;"></div><div class="" id="cboxLoadingOverlay"></div><div class="" id="cboxLoadingGraphic"></div><div class="" id="cboxTitle"></div><div class="" id="cboxCurrent"></div><div class="" id="cboxNext"></div><div class="" id="cboxPrevious"></div><div class="" id="cboxSlideshow"></div><div class="" id="cboxClose"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear:left"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div><div style="position:absolute; width:9999px; visibility:hidden; display:none"></div></div>
+<div id="page">
+
+<h1 class="name"><a href="http://jeelabs.org/" title="Computing stuff tied to the physical world"><span>
+		Computing stuff tied to the physical world</span></a></h1>
+
+<div id="container">
+	<div class="sleeve">
+		
+		<div id="header">
+						<h1 style="font-size: 120px;">
+			<a href="http://jeelabs.org/" title="Computing stuff tied to the physical world">			<!-- JeeLabs -->
+			<img src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/jl-400x110.png" alt="JeeLabs">
+			</a>			</h1>
+
+			<ul id="menu">
+				<li><a href="http://jeelabs.org/intro/">Intro</a><span>|</span></li><li><a href="http://jeelabs.org/cafe/">Café • Docs</a><span>|</span></li><li><a href="http://jeelabs.org/talk/">Talk • Forum</a><span>|</span></li><li><a href="http://jeelabs.org/shop/">Shop</a><span>|</span></li><li><a href="http://jeelabs.org/about/">About</a><span>|</span></li>			<li>
+				<a href="http://jeelabs.org/2012/">Archives</a><span>|</span>
+			</li>
+			<li>
+				<a href="http://jeelabs.org/feed/">RSS Feed</a>
+			</li>
+			
+			</ul>
+
+		</div>
+
+		<div id="content" class="group">
+	
+					<div class="post-440 post type-post status-publish format-standard hentry category-avr category-software tag-arduino tag-jeenode" id="post-440">
+						<p class="postmetadata"><a href="http://jeelabs.org/tag/arduino/" rel="tag">Arduino</a>, <a href="http://jeelabs.org/tag/jeenode/" rel="tag">JeeNode</a><br></p>
+						<h2>RFM12B library for Arduino</h2>
+						<small>In <a href="http://jeelabs.org/category/avr/" title="View all posts in AVR" rel="category tag">AVR</a>, <a href="http://jeelabs.org/category/software/" title="View all posts in Software" rel="category tag">Software</a> on <strong>Feb 10, 2009</strong> at <strong>00:03</strong></small>
+
+						<div class="entry">
+							<p>Here’s a driver for the RFM12B radio with Arduino’s and similar AVR boards. The radio is connected as follows:</p>
+
+<p><span class="removed_link" title="http://www.flickr.com/photos/32880127@N07/3296687815"><img src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/3296687815_007f613b6b_o.png" alt="RFM12B" border="0" height="383" width="604"></span></p>
+
+<p>The code is available as <a href="http://jeelabs.org/pub/snapshots/RF12.zip">RF12.zip</a> or via <a href="http://jeelabs.net/projects/cafe/wiki/RF12">subversion</a>. It’s packaged as an Arduino <a href="http://www.arduino.cc/en/Hacking/Libraries">library</a>. To try out the included example, you’ll obviously need two Arduino’s + radio modules, connected as above. Then:</p>
+
+<ul>
+    <li>unpack the above zip as new directory in your Arduino IDE’s “libraries/” folder</li>
+    <li>build and upload the included example sketch to both systems</li>
+    <li>check proper operation by opening the serial port at 57600 baud</li>
+    <li>you should see a “[RF12DEMO]” greeting on both</li>
+    <li>on one unit, type “0i 0i 1i” to set its node ID to 1</li>
+    <li>on the other, type “0i 0i 2i” to set its node ID to 2</li>
+    <li>send a test packet of 7x &lt;N&gt; bytes by typing “&lt;N&gt;s” (&lt;N&gt; = 0..9)</li>
+    <li>you should see the test packet on the other node</li>
+    <li>use “&lt;N&gt;a” to send a test packet and request an ack</li>
+</ul>
+
+<p>The node ID is stored in EEPROM (the demo uses byte 0), so you only need to initialize ID’s once in each node.</p>
+
+<p>This code uses interrupts to do most of the work in the background 
+for transmission as well as reception. The packet buffer is limited to 
+66 bytes of data. All packets are verified with a 16-bit CRC.</p>
+
+<p>Packets can be sent to a specific node (ID 1..30) or broadcast to all
+ (ID 0). The demo code sends its test packets as broadcasts, but replies
+ with acknowledgements to just the originator. Note that requesting an 
+acknowledgement for broadcast packets only makes sense with two nodes.</p>
+
+<p><strong>Update</strong> – instructions for the demo are now&nbsp;slightly different (see the <span class="removed_link" title="http://jeelabs.net/projects/cafe/repository/entry/RF12/examples/RF12demo/">README</span>).</p>
+														 
+						</div>
+					</div>
+
+					<div id="showcomments"><a href="#comments">▶ View 9 Comments</a></div>
+
+<div style="display: none;" id="comments">
+
+<script type="text/javascript" charset="utf-8">
+/*<![CDATA[ */
+// comment hide/show mechanism
+	jQuery(document).ready(function() {
+		check_location();			
+		function check_location(trick) {
+			if(trick != 'hide' && window.location.href.indexOf('#comment') > 0) {
+				jQuery('#comments').show('', change_location());
+				jQuery('#showcomments a .closed').css('display', 'none');
+				jQuery('#showcomments a .open').css('display', 'inline');
+				return true;
+			} else {
+				jQuery('#comments').hide('');
+				jQuery('#showcomments a .closed').css('display', 'inline');
+				jQuery('#showcomments a .open').css('display', 'none');
+				return false;
+			}
+		}
+		jQuery('#showcomments a').click(function(){
+			if(jQuery('#comments').css('display') == 'none') {
+				self.location.href = '#comments';
+				check_location();
+			} else {
+				check_location('hide');
+			}
+		});
+		function change_location() {
+			self.location.href = '#comments';
+		}
+	});
+/* ]]> */
+</script>
+
+
+	<ol class="commentlist">
+
+		<li class="comment even thread-even depth-1" id="comment-14">
+	<div id="div-comment-14">
+		<div class="comments_text">
+		<p>This does not work on my hardware. I have two Arduino’s with 
+RFM12B’s that work with your code published with your article ‘Good RF 
+with RFM12B’ so I guess the hardware should be ok. Although I must say 
+that with this last code some bits seem to get lost in the transmission 
+and only about 50% of the characters are received correctly. Puzzles me…</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">Rene H</cite>
+			<small><a href="#comment-14" title=""><strong>16 February 2009</strong> at <strong>10pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15">
+	<div id="div-comment-15">
+		<div class="comments_text">
+		<p>Maybe I should clearify the ‘does not work’. I can load the sketch 
+and set the node id’s. But send packets do not show up at the receiver 
+end. Also the test package with ack gets no ack.</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">Rene H</cite>
+			<small><a href="#comment-15" title=""><strong>16 February 2009</strong> at <strong>10pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment even thread-even depth-1" id="comment-16">
+	<div id="div-comment-16">
+		<div class="comments_text">
+		<p>Weird. Note that this driver runs at 57600 baud vs. 4800 for the 
+previous code. Do you have ≈ 85 mm antenna’s? Are you doing the 3.3V / 
+5V level conversion with the Arduino? See the “Arduino + RFM12B + µSD” 
+post for an example. I can’t think of much more, I’m using the latest 
+code in subversion (now at Google Code) with a handful of setups. Works 
+with Arduino IDE’s 12 and 13.</p>
+
+<p>This stuff can be very tricky to debug, given that problems can be on either end…</p>
+
+<p>(Thanks for trying it out, btw!)</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">jcw</cite>
+			<small><a href="#comment-16" title=""><strong>16 February 2009</strong> at <strong>10pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17">
+	<div id="div-comment-17">
+		<div class="comments_text">
+		<p>One more thing: once you put stuff in hardware/libraries/, that 
+won’t be re-compiled after a change. You have to switch board type and 
+back to force the compile. Tedious.</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">jcw</cite>
+			<small><a href="#comment-17" title=""><strong>16 February 2009</strong> at <strong>10pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment even thread-even depth-1" id="comment-18">
+	<div id="div-comment-18">
+		<div class="comments_text">
+		<p>I’ll might give it another try later. I got your previous code 
+running 100% now. There was an issue in the 3,3 volt from the RFM12B to 5
+ volt Arduino. I found out that slowing down the SPI speed fixes the 
+problem.</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">Rene H</cite>
+			<small><a href="#comment-18" title=""><strong>18 February 2009</strong> at <strong>1pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-19">
+	<div id="div-comment-19">
+		<div class="comments_text">
+		<p>I have been looking around for suppliers of the RFM12B after first 
+hearing about the device in an Elektor article a couple of months ago.</p>
+
+<p>HopeRF do them for $3 each samples or £2 each large quantity. But with a $22 carriage charge and customs charges to pay.</p>
+
+<p>lynx-dev.com in Germany sell them for 4.49 euro.</p>
+
+<p>Does jcw or others know of alternative suppliers in the EU who are cheaper than lynx-dev.com for this device?</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">wavetrain</cite>
+			<small><a href="#comment-19" title=""><strong>21 February 2009</strong> at <strong>9am</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment even thread-even depth-1" id="comment-20">
+	<div id="div-comment-20">
+		<div class="comments_text">
+		<p>When I wrote above £2 each… I of course meant $2 each…</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">wavetrain</cite>
+			<small><a href="#comment-20" title=""><strong>21 February 2009</strong> at <strong>9am</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-22">
+	<div id="div-comment-22">
+		<div class="comments_text">
+		<p>Thanks for that feedback jcw, I was not suggesting you should 
+retail them BTW. If I find other suppliers in due course, I will let 
+this blog know.</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">wavetrain</cite>
+			<small><a href="#comment-22" title=""><strong>21 February 2009</strong> at <strong>12pm</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	<li class="comment even thread-even depth-1" id="comment-21">
+	<div id="div-comment-21">
+		<div class="comments_text">
+		<p>Afraid not. Say I were to purchase a larger quantity and then sell 
+them per 2..3 units, there would still be shipping and handling costs. 
+So I’m not sure whether much could be saved on all this, if at all.</p>
+				
+		<div class="reply">
+					</div>
+		</div>
+			
+		<div class="comment-meta commentmetadata">
+			<div class="gravatar"></div>
+			<div class="cite comment-author vcard">
+			<cite class="fn">jcw</cite>
+			<small><a href="#comment-21" title=""><strong>21 February 2009</strong> at <strong>11am</strong></a> </small>
+			</div>
+		</div>
+	</div>
+</li>
+	</ol>
+	
+	<div class="commentnavigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>	
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+</div>
+					
+					<div class="navigation">
+						<div class="previous">
+								<a href="http://jeelabs.org/2009/02/09/ignoring-imprecise-data/" rel="prev"><span class="arrow">«</span> <span class="link"> <span class="before">Before</span> <span class="title">Ignoring imprecise data</span> <span class="date">Feb 9, 2009</span> </span></a>						</div>
+						
+						<div class="next">
+								<a href="http://jeelabs.org/2009/02/11/the-same-10-%c2%b5f/" rel="next"><span class="link"> <span class="after">After</span><span class="title">The same 10 µF</span> <span class="date">Feb 11, 2009</span></span> <span class="arrow">»</span></a>						</div>
+						<div class="clear"></div>
+					</div>
+			</div>
+	</div>
+	<div id="sidebar">
+		<div class="sleeve">
+		<ul class="group">
+			<li id="left_sidebar">
+			<ul>
+					<li id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widgettitle">Recent Posts</h3>		<ul>
+				<li><a href="http://jeelabs.org/2012/09/08/switching-with-a-p-mosfet/" title="Switching with a P-MOSFET">Switching with a P-MOSFET</a></li>
+				<li><a href="http://jeelabs.org/2012/09/07/switching-with-a-pnp-transistor/" title="Switching with a PNP transistor">Switching with a PNP transistor</a></li>
+				<li><a href="http://jeelabs.org/2012/09/06/shop-trick/" title="Shop trick">Shop trick</a></li>
+				<li><a href="http://jeelabs.org/2012/09/05/current-clamp/" title="Current clamp">Current clamp</a></li>
+				<li><a href="http://jeelabs.org/2012/09/04/tizio-led-transplant/" title="Tizio LED transplant">Tizio LED transplant</a></li>
+				<li><a href="http://jeelabs.org/2012/09/03/shoppety-shop/" title="Shoppety shop">Shoppety shop</a></li>
+				<li><a href="http://jeelabs.org/2012/09/02/jeelabs-logo/" title="JeeLabs logo">JeeLabs logo</a></li>
+				<li><a href="http://jeelabs.org/2012/09/01/fully-recharged/" title="Fully recharged">Fully recharged</a></li>
+				<li><a href="http://jeelabs.org/2012/07/01/summer-break/" title="Summer break">Summer break</a></li>
+				<li><a href="http://jeelabs.org/2012/06/30/new-hyt131-sensor/" title="New HYT131 sensor">New HYT131 sensor</a></li>
+				<li><a href="http://jeelabs.org/2012/06/29/assembling-the-emontx/" title="Assembling the EmonTX">Assembling the EmonTX</a></li>
+				<li><a href="http://jeelabs.org/2012/06/28/tk-measuring-milli-ohms/" title="TK – Measuring milli-ohms">TK – Measuring milli-ohms</a></li>
+				<li><a href="http://jeelabs.org/2012/06/27/edge-interrupts/" title="Edge interrupts">Edge interrupts</a></li>
+				<li><a href="http://jeelabs.org/2012/06/26/level-interrupts/" title="Level interrupts">Level interrupts</a></li>
+				<li><a href="http://jeelabs.org/2012/06/25/and-pies/" title="… and pies">… and pies</a></li>
+				</ul>
+		</li><li id="recent-comments-3" class="widget widget_recent_comments"><h3 class="widgettitle">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">jcw on <a href="http://jeelabs.org/2012/09/08/switching-with-a-p-mosfet/#comment-5807">Switching with a P-MOSFET</a></li><li class="recentcomments">Ian Tester on <a href="http://jeelabs.org/2012/09/08/switching-with-a-p-mosfet/#comment-5806">Switching with a P-MOSFET</a></li><li class="recentcomments">paolo on <a href="http://jeelabs.org/2012/09/01/fully-recharged/#comment-5804">Fully recharged</a></li><li class="recentcomments">kasbah on <a href="http://jeelabs.org/2012/09/08/switching-with-a-p-mosfet/#comment-5803">Switching with a P-MOSFET</a></li><li class="recentcomments">martynj on <a href="http://jeelabs.org/2012/09/07/switching-with-a-pnp-transistor/#comment-5802">Switching with a PNP transistor</a></li><li class="recentcomments"><a href="http://www.ptarmiganlabs.com/" rel="external nofollow" class="url">Göran</a> on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5801">Current clamp</a></li><li class="recentcomments">martynj on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5800">Current clamp</a></li><li class="recentcomments">Martin Brechtl on <a href="http://jeelabs.org/2012/09/06/shop-trick/#comment-5799">Shop trick</a></li><li class="recentcomments"><a href="http://www.ptarmiganlabs.com/" rel="external nofollow" class="url">Göran</a> on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5798">Current clamp</a></li><li class="recentcomments">JBecker32 on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5792">Current clamp</a></li><li class="recentcomments">martynj on <a href="http://jeelabs.org/2012/09/06/shop-trick/#comment-5791">Shop trick</a></li><li class="recentcomments">martynj on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5790">Current clamp</a></li><li class="recentcomments">Mars on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5788">Current clamp</a></li><li class="recentcomments">JBeale on <a href="http://jeelabs.org/2012/09/05/current-clamp/#comment-5787">Current clamp</a></li><li class="recentcomments">Ronald on <a href="http://jeelabs.org/2012/09/06/shop-trick/#comment-5786">Shop trick</a></li></ul></li>				
+						</ul>
+			</li>
+			
+			<li id="middle_sidebar">
+			<ul>
+						
+			<li id="depo_archives">
+	<h2>Archives</h2>
+	<ul>
+		<li><a href="http://jeelabs.org/2012/09/" title="September 2012">September 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/07/" title="July 2012">July 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/06/" title="June 2012">June 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/05/" title="May 2012">May 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/04/" title="April 2012">April 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/03/" title="March 2012">March 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/02/" title="February 2012">February 2012</a></li>
+	<li><a href="http://jeelabs.org/2012/01/" title="January 2012">January 2012</a></li>
+	<li><a href="http://jeelabs.org/2011/12/" title="December 2011">December 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/11/" title="November 2011">November 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/10/" title="October 2011">October 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/09/" title="September 2011">September 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/06/" title="June 2011">June 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/05/" title="May 2011">May 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://jeelabs.org/2011/01/" title="January 2011">January 2011</a></li>
+	<li><a href="http://jeelabs.org/2010/12/" title="December 2010">December 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/11/" title="November 2010">November 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/10/" title="October 2010">October 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/09/" title="September 2010">September 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/08/" title="August 2010">August 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/07/" title="July 2010">July 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/06/" title="June 2010">June 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/05/" title="May 2010">May 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/04/" title="April 2010">April 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/03/" title="March 2010">March 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/02/" title="February 2010">February 2010</a></li>
+	<li><a href="http://jeelabs.org/2010/01/" title="January 2010">January 2010</a></li>
+	<li><a href="http://jeelabs.org/2009/12/" title="December 2009">December 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/11/" title="November 2009">November 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/10/" title="October 2009">October 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/09/" title="September 2009">September 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/08/" title="August 2009">August 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/07/" title="July 2009">July 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/06/" title="June 2009">June 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/05/" title="May 2009">May 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/04/" title="April 2009">April 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/03/" title="March 2009">March 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/02/" title="February 2009">February 2009</a></li>
+	<li><a href="http://jeelabs.org/2009/01/" title="January 2009">January 2009</a></li>
+	<li><a href="http://jeelabs.org/2008/12/" title="December 2008">December 2008</a></li>
+	<li><a href="http://jeelabs.org/2008/11/" title="November 2008">November 2008</a></li>
+	<li><a href="http://jeelabs.org/2008/10/" title="October 2008">October 2008</a></li>
+	</ul>
+	
+	<ul>
+			<li class="cat-item cat-item-3"><a href="http://jeelabs.org/category/avr/" title="AVR">AVR</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://jeelabs.org/category/hardware/" title="Hardware">Hardware</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="http://jeelabs.org/category/musings/" title="Musings">Musings</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://jeelabs.org/category/news/" title="News">News</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://jeelabs.org/category/software/" title="Software">Software</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://jeelabs.org/category/uncategorized/" title="Uncategorized">Uncategorized</a>
+</li>
+	</ul>
+	<br class="clear">
+</li>
+			
+						</ul>
+			</li>
+			
+			<li id="right_sidebar">
+			<ul>
+			<li id="text-3" class="widget widget_text"><h3 class="widgettitle">About</h3>			<div class="textwidget">"Jee" is an acronym for JC's environmental electronics. This blog is maintained by Jean-Claude Wippler.</div>
+		</li>	<li id="search_widget" class="widget widget_search">
+<form method="get" id="searchform" action="http://jeelabs.org/">
+<label class="hidden" for="s">Search for:</label>
+<div><input name="s" id="s" type="text">
+<input id="searchsubmit" value="Search" type="submit">
+</div>
+</form></li><li id="text-4" class="widget widget_text">			<div class="textwidget"><a href="http://jeelabs.org/pub/index-a.html"><b>Alphabetical</b></a> and <a href="http://jeelabs.org/pub/index-c.html"><b>Chronological</b></a> index of weblog posts.</div>
+		</li>	<li id="rss_link" class="widget widget_rss"><a href="http://jeelabs.org/feed/">RSS Feed</a></li>
+<li id="ctc-3" class="widget ctc"><h3 class="widgettitle">Tags</h3><div class="ctc"><a href="http://jeelabs.org/tag/ac-mains/" class="ctc-tag tag-link-43" title="27 topics" rel="tag" style="font-size: 10.7956989247pt;">AC Mains</a> (27)
+<a href="http://jeelabs.org/tag/analog/" class="ctc-tag tag-link-47" title="8 topics" rel="tag" style="font-size: 8.75268817204pt;">Analog</a> (8)
+<a href="http://jeelabs.org/tag/arduino/" class="ctc-tag tag-link-9" title="26 topics" rel="tag" style="font-size: 10.688172043pt;">Arduino</a> (26)
+<a href="http://jeelabs.org/tag/cnc/" class="ctc-tag tag-link-20" title="17 topics" rel="tag" style="font-size: 9.72043010753pt;">CNC</a> (17)
+<a href="http://jeelabs.org/tag/displays/" class="ctc-tag tag-link-21" title="19 topics" rel="tag" style="font-size: 9.93548387097pt;">Displays</a> (19)
+<a href="http://jeelabs.org/tag/electronics/" class="ctc-tag tag-link-37" title="24 topics" rel="tag" style="font-size: 10.4731182796pt;">Electronics</a> (24)
+<a href="http://jeelabs.org/tag/graphics/" class="ctc-tag tag-link-41" title="4 topics" rel="tag" style="font-size: 8.32258064516pt;">Graphics</a> (4)
+<a href="http://jeelabs.org/tag/home-automation/" class="ctc-tag tag-link-19" title="60 topics" rel="tag" style="font-size: 14.3440860215pt;">Home automation</a> (60)
+<a href="http://jeelabs.org/tag/isp/" class="ctc-tag tag-link-32" title="30 topics" rel="tag" style="font-size: 11.1182795699pt;">ISP</a> (30)
+<a href="http://jeelabs.org/tag/jeebot/" class="ctc-tag tag-link-10" title="18 topics" rel="tag" style="font-size: 9.82795698925pt;">JeeBot</a> (18)
+<a href="http://jeelabs.org/tag/jeehub/" class="ctc-tag tag-link-11" title="21 topics" rel="tag" style="font-size: 10.1505376344pt;">JeeHub</a> (21)
+<a href="http://jeelabs.org/tag/jeelink/" class="ctc-tag tag-link-12" title="39 topics" rel="tag" style="font-size: 12.0860215054pt;">JeeLink</a> (39)
+<a href="http://jeelabs.org/tag/jeemon/" class="ctc-tag tag-link-13" title="64 topics" rel="tag" style="font-size: 14.7741935484pt;">JeeMon</a> (64)
+<a href="http://jeelabs.org/tag/jeerev/" class="ctc-tag tag-link-39" title="4 topics" rel="tag" style="font-size: 8.32258064516pt;">JeeRev</a> (4)
+<a href="http://jeelabs.org/tag/jeesmd/" class="ctc-tag tag-link-30" title="5 topics" rel="tag" style="font-size: 8.43010752688pt;">JeeSMD</a> (5)
+<a href="http://jeelabs.org/tag/lowpower/" class="ctc-tag tag-link-27" title="76 topics" rel="tag" style="font-size: 16.064516129pt;">LowPower</a> (76)
+<a href="http://jeelabs.org/tag/metering/" class="ctc-tag tag-link-33" title="2 topics" rel="tag" style="font-size: 8.10752688172pt;">Metering</a> (2)
+<a href="http://jeelabs.org/tag/musings/" class="ctc-tag tag-link-25" title="20 topics" rel="tag" style="font-size: 10.0430107527pt;">Musings</a> (20)
+<a href="http://jeelabs.org/tag/muxshield/" class="ctc-tag tag-link-16" title="5 topics" rel="tag" style="font-size: 8.43010752688pt;">MuxShield</a> (5)
+<a href="http://jeelabs.org/tag/network/" class="ctc-tag tag-link-34" title="36 topics" rel="tag" style="font-size: 11.7634408602pt;">Network</a> (36)
+<a href="http://jeelabs.org/tag/pof/" class="ctc-tag tag-link-23" title="5 topics" rel="tag" style="font-size: 8.43010752688pt;">POF</a> (5)
+<a href="http://jeelabs.org/tag/power/" class="ctc-tag tag-link-40" title="13 topics" rel="tag" style="font-size: 9.29032258065pt;">Power</a> (13)
+<a href="http://jeelabs.org/tag/rbbb/" class="ctc-tag tag-link-42" title="1 topics" rel="tag" style="font-size: 8pt;">RBBB</a> (1)
+<a href="http://jeelabs.org/tag/reflow/" class="ctc-tag tag-link-28" title="27 topics" rel="tag" style="font-size: 10.7956989247pt;">Reflow</a> (27)
+<a href="http://jeelabs.org/tag/sensors/" class="ctc-tag tag-link-18" title="94 topics" rel="tag" style="font-size: 18pt;">Sensors</a> (94)
+<a href="http://jeelabs.org/tag/solar/" class="ctc-tag tag-link-46" title="9 topics" rel="tag" style="font-size: 8.86021505376pt;">Solar</a> (9)
+<a href="http://jeelabs.org/tag/teardown/" class="ctc-tag tag-link-44" title="9 topics" rel="tag" style="font-size: 8.86021505376pt;">Teardown</a> (9)
+<a href="http://jeelabs.org/tag/techniques/" class="ctc-tag tag-link-24" title="75 topics" rel="tag" style="font-size: 15.9569892473pt;">Techniques</a> (75)
+<a href="http://jeelabs.org/tag/toolkit/" class="ctc-tag tag-link-45" title="13 topics" rel="tag" style="font-size: 9.29032258065pt;">Toolkit</a> (13)
+<a href="http://jeelabs.org/tag/x10/" class="ctc-tag tag-link-35" title="5 topics" rel="tag" style="font-size: 8.43010752688pt;">X10</a> (5)</div></li>
+									</ul>
+			</li>
+
+		</ul>
+		<div class="closer"></div>
+		</div>
+	</div>
+</div>
+	<div id="footer">
+		<p>
+			Theme: <strong>DePo Masthead</strong> by <a href="http://powazek.com/" rel="designer">Derek Powazek</a>
+			
+		</p>
+	</div>
+</div>
+<script type="text/javascript" src="%C2%BB%20RFM12B%20library%20for%20Arduino%20JeeLabs_files/frontend.js"></script>
+
+
+
+
+
+
+</body></html>
+<!-- Dynamic page generated in 0.413 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-09-08 12:58:12 -->
+<!-- Compression = gzip -->

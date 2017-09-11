@@ -1,0 +1,6 @@
+gdy dzia³a poprawnie
+800 - signal strong, data quality ok
+768 - valid data
+832 - valid data, signal ok
+896 - valida data, fifo empty
+8960 - power on reset

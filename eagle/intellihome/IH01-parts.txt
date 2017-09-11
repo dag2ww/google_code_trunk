@@ -1,0 +1,46 @@
+Partlist
+
+Exported from sensorstation_ok.sch at 2012-09-14 23:30:53
+
+EAGLE Version 6.2.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part             Value            Device                Package              Library  Sheet
+
+10K-THREMISTOR   J2               M02PTH                1X02                 SparkFun 1
+ATMEGA328P       AVR-MEGA8-PPTH   AVR-MEGA8-PPTH        DIL28-3              SparkFun 1
+C2               22pf             CAPPTH                CAP-PTH-SMALL        SparkFun 1
+C3               22pf             CAPPTH                CAP-PTH-SMALL        SparkFun 1
+C4               0,47uF           CAPKIT                CAP-PTH-SMALL-KIT    SparkFun 1
+C5               33uF             CAP_POLPTH2           CPOL-RADIAL-10UF-25V SparkFun 1
+C6               33uF             CAP_POLPTH2           CPOL-RADIAL-10UF-25V SparkFun 1
+C7               0,1uF            CAPKIT                CAP-PTH-SMALL-KIT    SparkFun 1
+C8               33uF             CAP_POLPTH2           CPOL-RADIAL-10UF-25V SparkFun 1
+IC1              LM7805           V_REG_78XX-TO-220     TO-220-ALT           SparkFun 1
+IC2              LM2931_FIXED     LM2931_FIXED          DPAK                 SparkFun 1
+J1               AVR_SPI_PRG_6PTH AVR_SPI_PRG_6PTH      2X3                  SparkFun 1
+J2               POWER_JACKSMD    POWER_JACKSMD         POWER_JACK_SMD       SparkFun 1
+JP1              J6               M03PTH                1X03                 SparkFun 1
+LCD-CONN         J5               M081X08               1X08                 SparkFun 1
+LED1             MainsI           LED3MM                LED3MM               SparkFun 1
+LED2             Led1             LED3MM                LED3MM               SparkFun 1
+LED3             Led2             LED3MM                LED3MM               SparkFun 1
+LED4             ToneLed          LED3MM                LED3MM               SparkFun 1
+MAINS-DETECTOR   J3               M03PTH                1X03                 SparkFun 1
+R1               10k              R-EU_0207/2V          0207/2V              resistor 1
+R2               10k              R-EU_0207/2V          0207/2V              resistor 1
+R3               330              R-EU_0207/2V          0207/2V              resistor 1
+R4               330              R-EU_0207/2V          0207/2V              resistor 1
+R5               330              R-EU_0207/2V          0207/2V              resistor 1
+R6               330              R-EU_0207/2V          0207/2V              resistor 1
+R7               10k              R-EU_0207/2V          0207/2V              resistor 1
+R8               4,7k             R-EU_0207/2V          0207/2V              resistor 1
+R9               10k              R-EU_0207/2V          0207/2V              resistor 1
+R10              4,7k             R-EU_0207/2V          0207/2V              resistor 1
+R11              10k              R-EU_0207/2V          0207/2V              resistor 1
+R12              4,7k             R-EU_0207/2V          0207/2V              resistor 1
+RF12B--CONNECTOR J4               M08LONGPADS           1X08_LONGPADS        SparkFun 1
+S1                                SWITCH-MOMENTARY-2PTH TACTILE-PTH          SparkFun 1
+SG1              BUZZERPTH        BUZZERPTH             BUZZER-12MM          SparkFun 1
+Y1               16Mhz            CRYSTALHC49US         HC49US               SparkFun 1

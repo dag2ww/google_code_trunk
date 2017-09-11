@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map For LiquidCrystal
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+RF12		KEYWORD1
+RFPacket	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin			KEYWORD2
+sendPacket		KEYWORD2
+recvPacket		KEYWORD2
+setFrequency	KEYWORD2
+setDatarate		KEYWORD2
+setOutputPower	KEYWORD2
+packetAvailable	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

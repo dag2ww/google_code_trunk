@@ -1,0 +1,9 @@
+WiFly 
+IP: 192.168.1.104
+Port: 2000
+MAC: 00:06:66:80:14:4b
+
+FTP=208.109.78.34:21
+File=wifly-EZX.img
+User=roving
+Pass=Pass123

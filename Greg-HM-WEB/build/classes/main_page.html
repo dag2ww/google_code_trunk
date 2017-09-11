@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<!--  meta http-equiv="refresh" content="10" /-->
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		
+		<!--Load the AJAX API-->
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    
+	    <!--script type="text/javascript" src="jquery-1.6.2.min.js"></script-->
+		
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		
+		<script type="text/javascript">
+	    
+		    //google.load('visualization', '1', {'packages':['corechart']});
+		    
+		    //docu: https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
+		    google.load('visualization', '1', {'packages':['annotatedtimeline']});
+   
+		    google.setOnLoadCallback(drawChart);
+		      
+		    function drawChart() {
+		      var jsonDataPomps = $.ajax({
+		          url: "/greg-hm/rest/status/pomps_chart_data",
+		          dataType:"json",
+		          async: false
+		          }).responseText;
+
+		      var jsonDataTemps = $.ajax({
+		          url: "/greg-hm/rest/status/temps_chart_data",
+		          dataType:"json",
+		          async: false
+		          }).responseText;
+		          
+		       var dataPomps = new google.visualization.DataTable(jsonDataPomps);
+		       var dataTemps = new google.visualization.DataTable(jsonDataTemps);
+
+		       //var data = google.visualization.arrayToDataTable([
+		      //                                                  ['Year', 'Sales', 'Expenses'],
+		      //                                                  ['2004',  1000,      400],
+		      //                                                  ['2005',  1170,      460],
+		      //                                                  ['2006',  660,       1120],
+		      //                                                  ['2007',  1030,      540]
+		      //                                                ]);
+
+		      //var options = {title: "tytul", curveType: "function",
+              //    width: 500, height: 400,
+              //    vAxis: {maxValue: 500}};
+
+		            //var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		            //chart.draw(data, options);
+		            
+            var annotatedtimelinePomps = new google.visualization.AnnotatedTimeLine(
+                document.getElementById('pomps_chart_div'));
+            annotatedtimelinePomps.draw(dataPomps, {'displayAnnotations': true,'thickness': 2});
+
+            var annotatedtimelineTemps = new google.visualization.AnnotatedTimeLine(
+	                document.getElementById('temps_chart_div'));
+	            annotatedtimelineTemps.draw(dataTemps, {'displayAnnotations': true, 'thickness': 2});
+
+		            
+		    }
+	
+	    </script>
+
+		<title>Nasz Domek - Monitoring</title>
+	</head>
+	<body>
+		<h1 style="text-align: center;">
+			<span style="color:#ff0000;">Nasz <img alt="heart" src="http://www.quackit.com/html/online-html-editor/ckeditor/plugins/smiley/images/heart.gif" title="heart" />&nbsp;Domek</span></h1>
+		<p>
+			&nbsp;</p>
+		<hr />
+		<p>
+			&nbsp;</p>
+		<form name="ControllForm" border=1 action="html_form_action.asp" method="post">
+			<input type="checkbox" name="vehicle" value="Bike">Włącz ogrzwanie C.O. 
+			<input type="submit" value="Wyślij">
+		</form> 
+					
+		<p>
+		<span style="color:#0000ff;"><strong><span style="font-family: arial, helvetica, sans-serif;">Parametry monitorowane - watości akutalne</span></strong></span></p>
+		<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 100%;">
+			<caption>
+				&nbsp;</caption>
+			<thead>
+				<tr bgcolor="lightblue">
+					<th scope="col">
+						<span style="color:#ff8c00;">Parametr</span></th>
+					<th scope="col">
+						<span style="color:#ff8c00;">Wrtość</span></th>
+					<th scope="col">
+						<span style="color:#ff8c00;">Operacje</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Temperatura na dworze</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${outdoor.temperature}&deg;C</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Temperatuera w domku</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${indoor.temperature}&deg;C</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Temperatuera Ciepłej Wody Użytkowej</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${temp.warm.water}&deg;C</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Pompa przepompowni - oczyszczalnia</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${pomp.waste.water}</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Pompa przepompowni - deszcz&oacute;wka</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${pomp.rain.water}</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Pompa ciepłej wody - cyrkulacja</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${pomp.warm.water}</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr bgcolor="lavender">
+					<td>
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">Czas od ostatniego restartu (stacja główna)</span></strong></span></td>
+					<td style="text-align: center;">
+						<span style="color:#008080;"><strong><span style="font-family: 'lucida sans unicode', 'lucida grande', sans-serif;">${up.time.main.station}</span></strong></span></td>
+					<td>
+						&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+			<p>
+			&nbsp;</p>
+		<hr />
+		
+		<p>
+			&nbsp;</p>
+		<p>
+			<strong style="color: rgb(0, 0, 255);"><span style="font-family: arial, helvetica, sans-serif;">Parametry monitorowane - watości historyczne</span></strong>
+		</p>
+			<h3>Praca Pomp:</h3>
+			 <!--Div that will hold the pie chart-->
+    	 <div id="pomps_chart_div" style="width:1200; height:480"></div>
+    	 <p><br/><hr></<hr></p>
+    	 <p><h3>Pomiary temperatury:</h3></p>
+    	 <div id="temps_chart_div" style="width:1200; height:480"></div>
+
+			<p></p>
+	</body>
+</html>

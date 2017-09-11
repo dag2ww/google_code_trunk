@@ -1,0 +1,2262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link rel="shortcut icon" href="http://blog.strobotics.com.au/wp-content/themes/disconnected/img/blogrdfbg.jpg">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>
+      RFM12 Tutorial – Part 3a  </title>
+	<meta name="generator" content="WordPress 3.4.1"> <!-- leave this for stats please -->
+  <meta name="description" content="Where Photographer and Geek merge......">
+	  
+  <link rel="stylesheet" href="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/style.css" type="text/css" media="screen">
+ 	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://blog.strobotics.com.au/feed/">
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://blog.strobotics.com.au/feed/rss/">
+	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://blog.strobotics.com.au/feed/atom/">
+	<link rel="pingback" href="http://blog.strobotics.com.au/xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Strobotics » RFM12 Tutorial – Part 3a Comments Feed" href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/feed/">
+<link rel="stylesheet" id="wp_sidebarlogin_css_styles-css" href="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="podpress_frontend_styles-css" href="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/podpress.css" type="text/css" media="all">
+<script type="text/javascript">
+//<![CDATA[
+var podpressL10 = {
+	openblogagain : 'back to:',
+	theblog : 'the blog',
+	close : 'close',
+	playbutton : 'Play &gt;'
+}
+//]]>
+</script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/1pixelout_audio-player.js"></script>
+<script type="text/javascript">//<![CDATA[
+	var podPressPlayerFile = "1pixelout_player.swf";
+	var podPressPopupPlayerOpt = new Object();
+	podPressPopupPlayerOpt["bg"] = "E5E5E5";
+	podPressPopupPlayerOpt["text"] = "333333";
+	podPressPopupPlayerOpt["leftbg"] = "CCCCCC";
+	podPressPopupPlayerOpt["lefticon"] = "333333";
+	podPressPopupPlayerOpt["volslider"] = "666666";
+	podPressPopupPlayerOpt["voltrack"] = "FFFFFF";
+	podPressPopupPlayerOpt["rightbg"] = "B4B4B4";
+	podPressPopupPlayerOpt["rightbghover"] = "999999";
+	podPressPopupPlayerOpt["righticon"] = "333333";
+	podPressPopupPlayerOpt["righticonhover"] = "FFFFFF";
+	podPressPopupPlayerOpt["loader"] = "009900";
+	podPressPopupPlayerOpt["track"] = "FFFFFF";
+	podPressPopupPlayerOpt["border"] = "CCCCCC";
+	podPressPopupPlayerOpt["tracker"] = "DDDDDD";
+	podPressPopupPlayerOpt["skip"] = "666666";
+	podPressPopupPlayerOpt["slider"] = "666666";
+	podPressPopupPlayerOpt["initialvolume"] = "70";
+	podPressPopupPlayerOpt["buffer"] = "5";
+	podPressPopupPlayerOpt["checkpolicy"] = "no";
+	podpressAudioPlayer.setup("http://blog.strobotics.com.au/wp-content/plugins/podpress/players/1pixelout/" + podPressPlayerFile, {bg:"E5E5E5", text:"333333", leftbg:"CCCCCC", lefticon:"333333", volslider:"666666", voltrack:"FFFFFF", rightbg:"B4B4B4", rightbghover:"999999", righticon:"333333", righticonhover:"FFFFFF", loader:"009900", track:"FFFFFF", border:"CCCCCC", tracker:"DDDDDD", skip:"666666", slider:"666666", initialvolume:"70", buffer:"5", checkpolicy:"no",  pagebg:"FFFFFF", transparentpagebg:"yes", encode: "no"} );
+//]]></script><style media="screen" type="text/css">p.audioplayer_container span {visibility:hidden;height:24px;overflow:hidden;padding:0;border:none;}</style>
+<script type="text/javascript">//<![CDATA[
+var podPressBlogURL = "http://blog.strobotics.com.au/";
+var podPressBackendURL = "http://blog.strobotics.com.au/wp-content/plugins/podpress/";
+var podPressDefaultPreviewImage = "http://blog.strobotics.com.au/wp-content/plugins/podpress/images/vpreview_center.png";
+var podPressMP3PlayerWrapper = false;
+var podPress_cortado_signed = false;
+var podPressOverwriteTitleandArtist = false;
+var podPressHTML5 = true;
+var podPressHTML5_showplayersdirectly = false;
+var podPressText_PlayNow = "Play Now";
+var podPressText_HidePlayer = "Hide Player";
+//]]></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/jquery.js"></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/blockui.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sidebar_login_params = {"ajax_url":"http:\/\/blog.strobotics.com.au\/wp-admin\/admin-ajax.php","login_nonce":"159b7cfb81"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/sidebar-login.js"></script>
+<script type="text/javascript" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/podpress.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.strobotics.com.au/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.strobotics.com.au/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Building Widgets – My SMD Build Process" href="http://blog.strobotics.com.au/2009/07/10/my-smd-process/">
+<link rel="next" title="Introducing the RFM22/23, Big brothers to the RFM12B" href="http://blog.strobotics.com.au/2009/07/30/introducing-the-rfm2223-big-brothers-to-the-rfm12b/">
+<meta name="generator" content="WordPress 3.4.1, fitted with the WordPress Mobile Pack 1.2.5">
+<link rel="canonical" href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/">
+<link rel="shortlink" href="http://blog.strobotics.com.au/?p=434">
+<link rel="stylesheet" type="text/css" href="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/wpcf_style.css">
+<style type="text/css">
+#header {
+	background:#fff url(http://blog.strobotics.com.au/wp-content/themes/disconnected/img/vaportop.jpg) no-repeat bottom center;
+}
+#header h1 a, #header h1 a:hover {
+	color: #000000;
+}	
+</style>
+<script src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/printfriendly.js" async="" type="text/javascript"></script></head>
+
+<body pf-init="true">
+
+
+
+<div id="rap">
+<div id="header">
+	
+	<ul id="topnav">
+	
+	<li><a href="http://blog.strobotics.com.au/" id="navHome" title="Posted Recently" accesskey="h">Main</a></li>
+	<li class="page_item page-item-2"><a href="http://blog.strobotics.com.au/about/">About</a></li>
+<li class="page_item page-item-70"><a href="http://blog.strobotics.com.au/archives/">Archives</a></li>
+<li class="page_item page-item-73"><a href="http://blog.strobotics.com.au/contact/">Contact</a></li>
+<li class="page_item page-item-498"><a href="http://blog.strobotics.com.au/projects/">Projects</a></li>
+<li class="page_item page-item-192"><a href="http://blog.strobotics.com.au/tutorials/">Tutorials</a></li>
+<li><a href="http://blog.strobotics.com.au/wp-login.php?action=register">Register</a></li>	
+	<li><a href="http://blog.strobotics.com.au/wp-login.php">Log in</a></li>
+	</ul>
+	<h1><a href="http://blog.strobotics.com.au/" title="Strobotics">Strobotics</a></h1>		
+	<div id="desc">Where Photographer and Geek merge……</div>		
+</div>
+	
+	<div id="main">
+	<div id="content">
+						<div class="post hentry">
+				<div class="post-info"><p class="numerals">434         </p><h2 class="post-title entry-title"><a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/" rel="bookmark" title="Permanent Link: RFM12 Tutorial – Part 3a">RFM12 Tutorial – Part 3a</a></h2>
+</div>
+<div class="post-content entry-content">
+	<div style="float:left;margin-right:10px;"><iframe allowtransparency="true" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/tweet_button.htm" style="width:110px; height:20px;" frameborder="0" scrolling="no"></iframe></div><p>Hmm
+ Its been a while since I revisited the RFM12 tutorials, so I thought 
+I’d better write the next one.&nbsp; Unfortunately it’s going to be too 
+long to fit in one post so I’ll be splitting it across a couple of 
+posts.</p>
+<p>The last two tutorials covered a brief introduction and the physical 
+connection to the MCU.&nbsp; In this article I’m going to cover the 
+internal commands and how we go about controlling to the RFM12 module.</p>
+<h2>It’s all done with Smoke and Mirrors!</h2>
+<p>Well not really, I wish it were that simple…as mentioned previously that the RFM12 needs to be connected as described in the <a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/" target="_blank">previous article</a> via <a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus" target="_blank">SPI</a>, the second thing we need to do is access the the internal registers of the RFM12 for it to be useful.</p>
+<p>The SPI transfers 16-bit commands to the RFM12, as part of the SPI 
+transfer process it will receive results (if any) back to the MCU.&nbsp;
+ These commands do specific things, such as set the band, turn on the 
+Transmitter and so on, therefore to get an understanding of what we need
+ to do, we need to understand what the various commands do.</p>
+<p>It also helps if you to have the <a href="http://www.hoperf.com/pdf/RF12.pdf" target="_blank">RFM12 data sheet</a>
+ open as go through this as I’ll be explaining&nbsp; things in roughly 
+the same order as found on the current data sheet, most of this 
+information is direct out of the datasheet.</p>
+<h2>SPI Interface</h2>
+<p>Just before we go through the commands, we need to be able to talk to
+ the RFM12, and seeing that we have the SPI and NSEL correctly setup as 
+described in <a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/" target="_blank">Part 2</a> we need some routines to talk to the RFM12 and it’s registers.</p>
+<p>There are basically two ways to do this, 1) Bit banging the SPI 
+or&nbsp; 2) using on-board hardware SPI peripheral.&nbsp; The Hope RF <a href="http://www.hoperf.com/pdf/RF12B_code.pdf" target="_blank">programming guide</a> offers a solution to bit banging the SPI interface so I won’t cover it here.</p>
+<p>The following function for the AVR will provide hardware SPI 
+support.&nbsp; The important thing to note is the RFM12 SPI speed needs 
+to be kept within the RFM12 Specs &lt;=2.5MHz</p>
+<div style="border: 1px solid gray; padding: 4px; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 97.5%; font-family: consolas,'Courier New',courier,monospace; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text;">
+<div style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #008000;">// pins used for the RFM12B interface</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RFM_IRQ  2</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> SPI_SS   10</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> SPI_MOSI 11</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> SPI_MISO 12</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> SPI_SCK  13</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> spi_initialize () {</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    DDRB &amp;= ((1&lt;&lt;DDB2)|(1&lt;&lt;DDB1)|(1&lt;&lt;DDB0)); <span style="color: #008000;">//spi pins on port b MOSI SCK,SS outputs     </span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#if</span> F_CPU &lt;= 10000000</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #008000;">// clk/4 is ok for the RF12's SPI</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    SPCR = _BV(SPE) | _BV(MSTR);</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#else</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #008000;">// use clk/8 (2x 1/16th) to avoid exceeding RF12's SPI specs of 2.5 MHz</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    SPCR = _BV(SPE) | _BV(MSTR) | _BV(SPR0);</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    SPSR |= _BV(SPI2X);</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#endif</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    digitalWrite(SPI_SS, 1);   <span style="color: #008000;">// Pull SPI_SS High</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">}</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #0000ff;">static</span> uint16_t rf12_xfer (uint16_t cmd) {</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #008000;">// the 2 loops below each spin 4 usec with a 2 MHz SPI clock</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    uint16_t reply;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    digitalWrite(SPI_SS, 0);      <span style="color: #008000;">// SPI_SS Low</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    SPDR = cmd &gt;&gt; 8;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #0000ff;">while</span> (!(SPSR &amp; _BV(SPIF)))</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">        ;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    reply = SPDR &lt;&lt; 8;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    SPDR = cmd;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #0000ff;">while</span> (!(SPSR &amp; _BV(SPIF)))</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">        ;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    reply |= SPDR;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    digitalWrite(SPI_SS, 1);     <span style="color: #008000;">// SPI_SS High</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">    <span style="color: #0000ff;">return</span> reply;</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">}</pre>
+</div>
+</div>
+<h2>Communicating with the RFM12</h2>
+<p>Before sending any commands the the RFM12 the NSEL Pin needs to be pulled low, then pulled high when the command has been sent.</p>
+<p>The MPU communicates with the RFM12 over the SPI by clocking 16-bit 
+commands serially in via the SDI (MOSI) pin on the rising edge of the 
+SCK.</p>
+<p>The data sent to the RFM12 consist of a command code then followed by
+ a number of parameter or data bits, this command code and 
+parameter/data bits total 16-bits in length.</p>
+<p>The command/data structure is then send MSB first so bit 15 is the 
+first bit to be sent followed by bit14 and so on.&nbsp; At the same time
+ data is being clocked into the RFM12 on the SDI Pin, results (if any) 
+are also being clocked out via the SDO (MISO) pin into the MCU MSB 
+first, e.g. bit15 is clocked out first, then bit14 and so on.</p>
+<p><a href="http://blog.strobotics.com.au/wp-content/uploads/2009/07/clip_image002.jpg"><img style="display: inline; border-width: 0px;" title="clip_image002" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/clip_image002_thumb.jpg" alt="clip_image002" border="0" height="206" width="558"></a></p>
+<h2>RFM12 communicates back -NIRQ</h2>
+<p>While the NIRQ is not a required connection, it is handy for the 
+RFM12 module to let the MPU know than an event of significance has 
+occurred, and should be handled, instead of tying the MPU up with 
+polling the RFM12 module to see if things have happened.</p>
+<p>But suffice to say, the NIRQ is an interrupt generated by the RFM12 
+module which pulls the NIRQ pin low whenever the following occur:</p>
+<ul>
+<li>The TX register is ready to receive the next byte (RGIT)</li>
+<li>The FIFO has received the pre-programmed amount of bits (FFIT)</li>
+<li>Power-on reset (POR)</li>
+<li>FIFO overflow (FFOV) / TX register under run (RGUR)</li>
+<li>Wake-up timer timeout (WKUP)</li>
+<li>Negative pulse on the interrupt input pin nINT (EXT)</li>
+<li>Supply voltage below the pre-0programmed value is detected (LBD)</li>
+</ul>
+<p>Handling the NIRQ will be covered in a future Transmitting and Receiving article.</p>
+<h2>Onto the Commands</h2>
+<p>There are 15 commands that deal with configuration, control and status of the RFM12 module.&nbsp; these are listed below:</p>
+<p>UPDATE:&nbsp; Try this handy utility as you play with registers, it’s a <a href="http://blog.strobotics.com.au/tutorials/rfm12-stuff/" target="_blank">RFM12b</a> command&nbsp; calculator&nbsp; (thanks Frans, aka fotoopa, for the link!)&nbsp; <a title="http://www.technofun.org/blog/2009/01/24/rfm12-rfm12b-calculator/" href="http://www.technofun.org/blog/2009/01/24/rfm12-rfm12b-calculator/">http://www.technofun.org/blog/2009/01/24/rfm12-rfm12b-calculator/</a></p>
+<table border="1" cellpadding="2" cellspacing="0" width="509">
+<tbody>
+<tr>
+<td valign="top" width="22"></td>
+<td valign="top" width="205"><strong>Command</strong></td>
+<td valign="top" width="280"><strong>Description</strong></td>
+</tr>
+<tr>
+<td valign="top" width="27">1</td>
+<td valign="top" width="203">Configuration Setting</td>
+<td valign="top" width="278">Frequency band, crystal oscillator load capacitance, baseband filter bandwidth, etc</td>
+</tr>
+<tr>
+<td valign="top" width="31">2</td>
+<td valign="top" width="202">Power Management</td>
+<td valign="top" width="276">Receiver/Transmitter mode change, synthesizer, xtal osc, PA, wake-up timer, clock output can be enabled here</td>
+</tr>
+<tr>
+<td valign="top" width="35">3</td>
+<td valign="top" width="200">Frequency Setting</td>
+<td valign="top" width="274">Data frequency of the local oscillator/carrier signal</td>
+</tr>
+<tr>
+<td valign="top" width="38">4</td>
+<td valign="top" width="199">Data Rate</td>
+<td valign="top" width="273">Bit rate</td>
+</tr>
+<tr>
+<td valign="top" width="40">5</td>
+<td valign="top" width="199">Receiver Control</td>
+<td valign="top" width="272">Function of pin 20, Valid Data Indicator, baseband bw, LNA gain, digital RSSI threshold</td>
+</tr>
+<tr>
+<td valign="top" width="42">6</td>
+<td valign="top" width="198">Data Filter</td>
+<td valign="top" width="271">Data filter type, clock recovery parameters</td>
+</tr>
+<tr>
+<td valign="top" width="43">7</td>
+<td valign="top" width="198">FIFO and Reset Mode</td>
+<td valign="top" width="270">Data FIFO IT level, FIFO start control, FIFO enable and FIFO fill enable</td>
+</tr>
+<tr>
+<td valign="top" width="44">8</td>
+<td valign="top" width="197">Receiver FIFO Read</td>
+<td valign="top" width="270">RX FIFO can be read with this command</td>
+</tr>
+<tr>
+<td valign="top" width="45">9</td>
+<td valign="top" width="197">AFC</td>
+<td valign="top" width="270">AFC parameters</td>
+</tr>
+<tr>
+<td valign="top" width="45">10</td>
+<td valign="top" width="197">TX Configuration Control</td>
+<td valign="top" width="270">Modulation parameters, output power, ea</td>
+</tr>
+<tr>
+<td valign="top" width="45">11</td>
+<td valign="top" width="197">Transmitter Register Write</td>
+<td valign="top" width="270">TX data register can be written with this command</td>
+</tr>
+<tr>
+<td valign="top" width="45">12</td>
+<td valign="top" width="197">Wake-Up Timer Command</td>
+<td valign="top" width="270">Wake-up time period</td>
+</tr>
+<tr>
+<td valign="top" width="45">13</td>
+<td valign="top" width="197">Low Duty-Cycle Command</td>
+<td valign="top" width="270">Enable low duty-cycle mode. Set duty-cycle</td>
+</tr>
+<tr>
+<td valign="top" width="45">14</td>
+<td valign="top" width="197">Low Battery Detector and Microcontroller Clock Divider</td>
+<td valign="top" width="270">LBD voltage and microcontroller clock division ratio</td>
+</tr>
+<tr>
+<td valign="top" width="45">15</td>
+<td valign="top" width="197">Status Read Command</td>
+<td valign="top" width="274">Status bits can be read out</td>
+</tr>
+</tbody>
+</table>
+<h3>1) Configuration Settings Command</h3>
+<p>The configuration command as the name suggests is used to configure the RFM12&nbsp; (POR denotes the Power on Reset Values)</p>
+<table border="1" cellpadding="2" cellspacing="0" width="515">
+<tbody>
+<tr>
+<td valign="top" width="37"><strong>bit</strong></td>
+<td valign="top" width="28"><strong>15</strong></td>
+<td valign="top" width="28"><strong>14</strong></td>
+<td valign="top" width="28"><strong>13</strong></td>
+<td valign="top" width="28"><strong>12</strong></td>
+<td valign="top" width="27"><strong>11</strong></td>
+<td valign="top" width="29"><strong>10</strong></td>
+<td valign="top" width="25"><strong>9</strong></td>
+<td valign="top" width="26"><strong>8</strong></td>
+<td valign="top" width="26"><strong>7</strong></td>
+<td valign="top" width="28"><strong>6</strong></td>
+<td valign="top" width="29"><strong>5</strong></td>
+<td valign="top" width="29"><strong>4</strong></td>
+<td valign="top" width="29"><strong>3</strong></td>
+<td valign="top" width="28"><strong>2</strong></td>
+<td valign="top" width="34"><strong>1</strong></td>
+<td valign="top" width="54"><strong>POR</strong></td>
+</tr>
+<tr>
+<td valign="top" width="36"></td>
+<td valign="top" width="28">1</td>
+<td valign="top" width="28">0</td>
+<td valign="top" width="28">0</td>
+<td valign="top" width="28">1</td>
+<td valign="top" width="27">0</td>
+<td valign="top" width="29">0</td>
+<td valign="top" width="25">0</td>
+<td valign="top" width="26">el</td>
+<td valign="top" width="27">ef</td>
+<td valign="top" width="28">b1</td>
+<td valign="top" width="29">b0</td>
+<td valign="top" width="29">x3</td>
+<td valign="top" width="29">x2</td>
+<td valign="top" width="28">x1</td>
+<td valign="top" width="35">x0</td>
+<td valign="top" width="57">0×8008</td>
+</tr>
+</tbody>
+</table>
+<p>el (bit 8): Enable internal data register.</p>
+<p>ef (bit 7): Enable fifo mode.</p>
+<p>The el and ef bits are used to determine how the data is moved out of
+ the RFM module.&nbsp; Most of the time you will be using FIFO mode as 
+this simplifies things.</p>
+<p>bits 6 – 1 (b1 – b0): This determines the band of the RFM12 module 
+being used and needs to match the physical RFM12 module you are 
+physically using&nbsp; e.g. you don’t set the band for 433 if you are 
+using 915Mhz module.</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="216">
+<tbody>
+<tr>
+<td valign="top" width="36"><strong>b1</strong></td>
+<td valign="top" width="36"><strong>b0</strong></td>
+<td valign="top" width="142"><strong>Frequency Band (MHz)</strong></td>
+</tr>
+<tr>
+<td valign="top" width="37">0</td>
+<td valign="top" width="37">0</td>
+<td valign="top" width="140">315</td>
+</tr>
+<tr>
+<td valign="top" width="37">0</td>
+<td valign="top" width="37">1</td>
+<td valign="top" width="140">433</td>
+</tr>
+<tr>
+<td valign="top" width="37">1</td>
+<td valign="top" width="37">0</td>
+<td valign="top" width="140">868</td>
+</tr>
+<tr>
+<td valign="top" width="37">1</td>
+<td valign="top" width="37">1</td>
+<td valign="top" width="140">915</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>bits 4 – 1 (x3 – x0): Determines the load capacitance of the onboard 
+crystal.&nbsp; This allows fine tuning of the crystal frequency.&nbsp; 
+Defaults of 12.5pf should be used.</p>
+<p>The calibration procedure uses these settings to adjust the CLK 
+output to 10Mhz. This procedure is in the data sheet, but is pretty 
+vague, basically hook up a frequency counter or Oscilloscope up to the 
+CLK pin of the RFM12B module, change the Frequency of CLK to 10mhz and 
+measure it, it it’s not at 10MHz then use the load capacitance (x3-x0) 
+to adjust it so it reads 10MHz.&nbsp; From the couple of modules I’ve 
+tested they have all been ok at the default of 12.5pF</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="0" width="297">
+<tbody>
+<tr>
+<td valign="top" width="35"><strong>x3</strong></td>
+<td valign="top" width="39"><strong>x2</strong></td>
+<td valign="top" width="41"><strong>x1</strong></td>
+<td valign="top" width="45"><strong>x0</strong></td>
+<td valign="top" width="135"><strong>Load Capacitance (pF)</strong></td>
+</tr>
+<tr>
+<td valign="top" width="37">0</td>
+<td valign="top" width="40">0</td>
+<td valign="top" width="41">0</td>
+<td valign="top" width="45">0</td>
+<td valign="top" width="134">8.5</td>
+</tr>
+<tr>
+<td valign="top" width="38">0</td>
+<td valign="top" width="40">0</td>
+<td valign="top" width="41">0</td>
+<td valign="top" width="44">1</td>
+<td valign="top" width="134">8.0</td>
+</tr>
+<tr>
+<td valign="top" width="39">0</td>
+<td valign="top" width="40">0</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="44">0</td>
+<td valign="top" width="133">9.5</td>
+</tr>
+<tr>
+<td valign="top" width="39">0</td>
+<td valign="top" width="40">0</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="44">1</td>
+<td valign="top" width="133">10.0</td>
+</tr>
+<tr>
+<td valign="top" width="39"></td>
+<td valign="top" width="40"></td>
+<td valign="top" width="40"></td>
+<td valign="top" width="44"></td>
+<td valign="top" width="133">…</td>
+</tr>
+<tr>
+<td valign="top" width="39">1</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="44">0</td>
+<td valign="top" width="133">15.6</td>
+</tr>
+<tr>
+<td valign="top" width="39">1</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="40">1</td>
+<td valign="top" width="44">1</td>
+<td valign="top" width="133">16.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>2) Power Management Command</h3>
+<p>The power management command controls the power to the RFM12 
+sub-modules, it allows you to select what circuit within the RFM12 is 
+turned on/off.&nbsp; So by disabling these circuits when not required 
+you can control the amount power savings of the device.</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="511">
+<tbody>
+<tr>
+<td valign="top" width="30"><strong>bit </strong></td>
+<td valign="top" width="25"><strong>15</strong></td>
+<td valign="top" width="26"><strong>14</strong></td>
+<td valign="top" width="26"><strong>13</strong></td>
+<td valign="top" width="28"><strong>12 </strong></td>
+<td valign="top" width="25"><strong>11</strong></td>
+<td valign="top" width="26"><strong>10</strong></td>
+<td valign="top" width="19"><strong>9</strong></td>
+<td valign="top" width="25"><strong>8</strong></td>
+<td valign="top" width="25"><strong>7</strong></td>
+<td valign="top" width="32"><strong>6</strong></td>
+<td valign="top" width="23"><strong>5</strong></td>
+<td valign="top" width="26"><strong>4</strong></td>
+<td valign="top" width="27"><strong>3</strong></td>
+<td valign="top" width="25"><strong>2</strong></td>
+<td valign="top" width="28"><strong>1</strong></td>
+<td valign="top" width="28"><strong>0 </strong></td>
+<td valign="top" width="65"><strong>POR</strong></td>
+</tr>
+<tr>
+<td valign="top" width="30"></td>
+<td valign="top" width="25">1</td>
+<td valign="top" width="26">0</td>
+<td valign="top" width="26">0</td>
+<td valign="top" width="28">0</td>
+<td valign="top" width="25">0</td>
+<td valign="top" width="27">0</td>
+<td valign="top" width="20">1</td>
+<td valign="top" width="26">0</td>
+<td valign="top" width="26">er</td>
+<td valign="top" width="33">ebb</td>
+<td valign="top" width="24">et</td>
+<td valign="top" width="27">es</td>
+<td valign="top" width="28">ex</td>
+<td valign="top" width="26">eb</td>
+<td valign="top" width="29">ew</td>
+<td valign="top" width="29">dc</td>
+<td valign="top" width="67">0×8208</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="514">
+<tbody>
+<tr>
+<td valign="top" width="43"><strong>Bit</strong></td>
+<td valign="top" width="284"><strong>Function of the control bit</strong></td>
+<td valign="top" width="185"><strong>Related blocks</strong></td>
+</tr>
+<tr>
+<td valign="top" width="43">er</td>
+<td valign="top" width="284">Enables the whole receiver chain</td>
+<td valign="top" width="184">RF front end, baseband, synthesizer, oscillator</td>
+</tr>
+<tr>
+<td valign="top" width="43">ebb</td>
+<td valign="top" width="284">The receiver baseband circuit can be separately switched on</td>
+<td valign="top" width="184">Baseband</td>
+</tr>
+<tr>
+<td valign="top" width="43">et</td>
+<td valign="top" width="284">Switches on the PLL, the power amplifier, and starts the transmission (If TX register is enabled)</td>
+<td valign="top" width="184">Power amplifier, synthesizer, oscillator</td>
+</tr>
+<tr>
+<td valign="top" width="43">es</td>
+<td valign="top" width="284">Turns on the synthesizer</td>
+<td valign="top" width="183">Synthesizer</td>
+</tr>
+<tr>
+<td valign="top" width="43">ex</td>
+<td valign="top" width="284">Turns on the crystal oscillator</td>
+<td valign="top" width="183">Crystal oscillator</td>
+</tr>
+<tr>
+<td valign="top" width="43">eb</td>
+<td valign="top" width="284">Enables the low battery detector</td>
+<td valign="top" width="183">Low battery detector</td>
+</tr>
+<tr>
+<td valign="top" width="43">ew</td>
+<td valign="top" width="284">Enables the wake-up timer</td>
+<td valign="top" width="183">Wake-up timer</td>
+</tr>
+<tr>
+<td valign="top" width="43">dc</td>
+<td valign="top" width="284">Disables the clock output (CLK)</td>
+<td valign="top" width="183">Clock output buffer</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The ebb, es, and ex bits are provided to optimize the TX to RX or RX to TX turnaround time as shown in the table below</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="0" width="514">
+<tbody>
+<tr>
+<td valign="top" width="136"><strong>Symbol</strong></td>
+<td valign="top" width="120"><strong>Parameter</strong></td>
+<td valign="top" width="172"><strong>Notes</strong></td>
+<td valign="top" width="24"><strong>Min</strong></td>
+<td valign="top" width="26"><strong>Typ</strong></td>
+<td valign="top" width="11"><strong>Max</strong></td>
+<td valign="top" width="22"><strong>Units</strong></td>
+</tr>
+<tr>
+<td valign="top" width="136">tsx</td>
+<td valign="top" width="120">Crystal oscillator startup time</td>
+<td valign="top" width="172">Crystal ESR &lt; 100</td>
+<td valign="top" width="24"></td>
+<td valign="top" width="26"></td>
+<td valign="top" width="11">5</td>
+<td valign="top" width="22">ms</td>
+</tr>
+<tr>
+<td valign="top" width="136">T tx_rx_XTAL_ON</td>
+<td valign="top" width="120">Transmitter -Receiver turnover time</td>
+<td valign="top" width="172">Synthesizer off, crystal oscillator on during TX/RX change with 10 MHz step</td>
+<td valign="top" width="24"></td>
+<td valign="top" width="26">450</td>
+<td valign="top" width="11"></td>
+<td valign="top" width="22">us</td>
+</tr>
+<tr>
+<td valign="top" width="136">T rx_tx_XTAL_ON</td>
+<td valign="top" width="120">Receiver -Transmitter turnover time</td>
+<td valign="top" width="172">Synthesizer off, crystal oscillator on during RX/TX change with 10 MHz step</td>
+<td valign="top" width="24"></td>
+<td valign="top" width="26">350</td>
+<td valign="top" width="11"></td>
+<td valign="top" width="22">us</td>
+</tr>
+<tr>
+<td valign="top" width="136">tx_rx_SYNT_ON</td>
+<td valign="top" width="120">Transmitter -Receiver turnover time</td>
+<td valign="top" width="172">Synthesizer and crystal oscillator on during TX/RX change with 10 MHz step</td>
+<td valign="top" width="24"></td>
+<td valign="top" width="26">425</td>
+<td valign="top" width="11"></td>
+<td valign="top" width="22">us</td>
+</tr>
+<tr>
+<td valign="top" width="136">T rx_tx_SYNT_ON</td>
+<td valign="top" width="120">Receiver -Transmitter turnover time</td>
+<td valign="top" width="172">Synthesizer and crystal oscillator on during RX/TX change with 10 MHz step</td>
+<td valign="top" width="24"></td>
+<td valign="top" width="26">300</td>
+<td valign="top" width="11"></td>
+<td valign="top" width="22">us</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This gives you an idea how the control bits are logically connected:</p>
+<p><span style="font-family: arial; font-size: 12pt; mso-fareast-font-family: &amp;amp;#39; mso-bidi-font-family: &amp;amp;#39; mso-ansi-language: en-us; mso-fareast-language: en-us; mso-bidi-language: ar-sa;"><a href="http://blog.strobotics.com.au/wp-content/uploads/2009/07/clip_image0021.jpg"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="clip_image002" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/clip_image002_thumb1.jpg" alt="clip_image002" border="0" height="631" width="284"></a></span></p>
+<h3>3) Frequency Control Command</h3>
+<p>Within each band (433, 868 or 915Mhz) we have control over what 
+frequency the RFM12 module communicates on.&nbsp; So we can have various
+ communication links occurring at the same time on the same band, but 
+using different frequencies, or if we are getting interference on one 
+frequency we can switch to another clear one.</p>
+<p>Depending on what the band is determines the resolution of the frequency steps.</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="515">
+<tbody>
+<tr>
+<td valign="top" width="27"><strong>bit</strong></td>
+<td valign="top" width="23"><strong>15</strong></td>
+<td valign="top" width="23"><strong>14</strong></td>
+<td valign="top" width="24"><strong>13</strong></td>
+<td valign="top" width="25"><strong>12</strong></td>
+<td valign="top" width="28"><strong>11</strong></td>
+<td valign="top" width="30"><strong>10</strong></td>
+<td valign="top" width="23"><strong>9</strong></td>
+<td valign="top" width="31"><strong>8</strong></td>
+<td valign="top" width="24"><strong>7</strong></td>
+<td valign="top" width="25"><strong>6</strong></td>
+<td valign="top" width="24"><strong>5</strong></td>
+<td valign="top" width="33"><strong>4</strong></td>
+<td valign="top" width="24"><strong>3</strong></td>
+<td valign="top" width="27"><strong>2</strong></td>
+<td valign="top" width="27"><strong>1</strong></td>
+<td valign="top" width="30"><strong>0</strong></td>
+<td valign="top" width="65"><strong>POR</strong></td>
+</tr>
+<tr>
+<td valign="top" width="27"></td>
+<td valign="top" width="23">1</td>
+<td valign="top" width="23">0</td>
+<td valign="top" width="24">1</td>
+<td valign="top" width="25">0</td>
+<td valign="top" width="28">f11</td>
+<td valign="top" width="30">f10</td>
+<td valign="top" width="24">f9</td>
+<td valign="top" width="32">f8</td>
+<td valign="top" width="25">f7</td>
+<td valign="top" width="25">f6</td>
+<td valign="top" width="25">f5</td>
+<td valign="top" width="35">f4</td>
+<td valign="top" width="25">f3</td>
+<td valign="top" width="29">f2</td>
+<td valign="top" width="30">f1</td>
+<td valign="top" width="33">f0</td>
+<td valign="top" width="68">0xA680</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The frequencies available to each band are described below in this table</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="0" width="453">
+<tbody>
+<tr>
+<td valign="top" width="122"><strong>Band (MHz)</strong></td>
+<td valign="top" width="129"><strong>Resolution (KHz)</strong></td>
+<td valign="top" width="102"><strong>Min (MHz)</strong></td>
+<td valign="top" width="98"><strong>Max (MHz)</strong></td>
+</tr>
+<tr>
+<td valign="top" width="127">433</td>
+<td valign="top" width="133">2.5</td>
+<td valign="top" width="105">430.24</td>
+<td valign="top" width="100">439.75</td>
+</tr>
+<tr>
+<td valign="top" width="128">868</td>
+<td valign="top" width="135">5.0</td>
+<td valign="top" width="106">860.48</td>
+<td valign="top" width="101">879.51</td>
+</tr>
+<tr>
+<td valign="top" width="127">915</td>
+<td valign="top" width="136">7.5</td>
+<td valign="top" width="106">900.72</td>
+<td valign="top" width="101">929.37</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The 12-bit number representing the frequency can be calculated by:</p>
+<div style="border: 1px solid gray; padding: 4px; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 96.26%; font-family: consolas,'Courier New',courier,monospace; height: 80px; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text;">
+<div style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RF12_FREQUENCY_CALC_433(f) (((f)-430000000UL)/2500UL)  <span style="color: #008000;">// Calculate the RFM12 register value for a given Frequency at 433MHz in 2.5khz increments</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RF12_FREQUENCY_CALC_868(f) (((f)-860000000UL)/5000UL)    <span style="color: #008000;">// Calculate the RFM12 register value for a given Frequency at 868MHz in 5.0Khz increments</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RF12_FREQUENCY_CALC_915(f) (((f)-900000000UL)/7500UL)    <span style="color: #008000;">// Calculate the RFM12 register value for a given Frequency at 915MHz in 7.5Khz increments</span></pre>
+</div>
+</div>
+<p>The 12-bit frequency value must be between 96 and 3903, if not then they will be set to these values automatically.</p>
+<p><strong>IMPORTANT:</strong> It is also important that you keep within
+ your countries ISM spectrum management guidelines i.e. allowable 
+frequencies and their use when selecting your operating frequencies.</p>
+<h3>4) Data Rate Command</h3>
+<p>This command sets the bitrate of the transmitted data or the expected
+ bitrate of the received data.&nbsp; This is the RAW physical bitrate of
+ the module.</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="514">
+<tbody>
+<tr>
+<td valign="top" width="27"><strong>bit </strong></td>
+<td valign="top" width="23"><strong>15</strong></td>
+<td valign="top" width="24"><strong>14</strong></td>
+<td valign="top" width="25"><strong>13</strong></td>
+<td valign="top" width="26"><strong>12 </strong></td>
+<td valign="top" width="24"><strong>11</strong></td>
+<td valign="top" width="25"><strong>10</strong></td>
+<td valign="top" width="19"><strong>9</strong></td>
+<td valign="top" width="26"><strong>8</strong></td>
+<td valign="top" width="26"><strong>7 </strong></td>
+<td valign="top" width="27"><strong>6</strong></td>
+<td valign="top" width="32"><strong>5</strong></td>
+<td valign="top" width="31"><strong>4 </strong></td>
+<td valign="top" width="36"><strong>3</strong></td>
+<td valign="top" width="24"><strong>2</strong></td>
+<td valign="top" width="34"><strong>1</strong></td>
+<td valign="top" width="30"><strong>0</strong></td>
+<td valign="top" width="53"><strong>POR</strong></td>
+</tr>
+<tr>
+<td valign="top" width="27"></td>
+<td valign="top" width="23">1</td>
+<td valign="top" width="24">1</td>
+<td valign="top" width="25">0</td>
+<td valign="top" width="26">0</td>
+<td valign="top" width="24">0</td>
+<td valign="top" width="25">1</td>
+<td valign="top" width="19">1</td>
+<td valign="top" width="26">0</td>
+<td valign="top" width="26">cs</td>
+<td valign="top" width="27">r6</td>
+<td valign="top" width="32">r5</td>
+<td valign="top" width="31">r4</td>
+<td valign="top" width="36">r3</td>
+<td valign="top" width="25">r2</td>
+<td valign="top" width="37">r1</td>
+<td valign="top" width="31">r0</td>
+<td valign="top" width="54">0xC623</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>cs: is set if the bitrate is &lt; 2700 bps</p>
+<p>Here is a table I’ve prepared for common values.</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="1" width="200">
+<tbody>
+<tr>
+<td valign="top" width="98"><strong>Bit Rate</strong></td>
+<td valign="top" width="97"><strong>r6 – r0 Value</strong></td>
+</tr>
+<tr>
+<td valign="top" width="98">115200</td>
+<td valign="top" width="97">0×02</td>
+</tr>
+<tr>
+<td valign="top" width="98">57600</td>
+<td valign="top" width="97">0×05</td>
+</tr>
+<tr>
+<td valign="top" width="98">38400</td>
+<td valign="top" width="97">0×08</td>
+</tr>
+<tr>
+<td valign="top" width="98">28800</td>
+<td valign="top" width="97">0x0B</td>
+</tr>
+<tr>
+<td valign="top" width="98">19200</td>
+<td valign="top" width="97">0×11</td>
+</tr>
+<tr>
+<td valign="top" width="98">9600</td>
+<td valign="top" width="97">0×23</td>
+</tr>
+<tr>
+<td valign="top" width="98">4800</td>
+<td valign="top" width="97">0×47</td>
+</tr>
+<tr>
+<td valign="top" width="98">2400</td>
+<td valign="top" width="97">cs =1&nbsp; 0×11</td>
+</tr>
+<tr>
+<td valign="top" width="98">1200</td>
+<td valign="top" width="98">cs = 1&nbsp; 0x1E</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you want to calculate your own bitrates use the formula:</p>
+<div style="border: 1px solid gray; padding: 4px; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 130.92%; font-family: consolas,'Courier New',courier,monospace; height: 107px; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text;">
+<div style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;">
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #008000;">//calculate setting for datarates &gt;= 2700 Baud</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RF12_DATARATE_CALC_HIGH(baud) ((uint8_t)(344828UL/baud)-1)</pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #008000;">//calculate setting for datarates &lt; 2700 Baud</span></pre>
+<pre style="border-style: none; padding: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: consolas,'Courier New',courier,monospace; color: black; font-size: 8pt; overflow: visible;"><span style="color: #cc6633;">#define</span> RF12_DATARATE_CALC_LOW(baud) ((uint8_t)(43104/baud)-1)</pre>
+</div>
+</div>
+<p>When setting bitrates you also need to take into account the receiver
+ bandwidth settings (See&nbsp; Receiver control command below)</p>
+<h3>5) Receiver Control Command</h3>
+<table border="1" cellpadding="0" cellspacing="0" width="511">
+<tbody>
+<tr>
+<td valign="top" width="29"><strong>bit </strong></td>
+<td valign="top" width="22"><strong>15</strong></td>
+<td valign="top" width="22"><strong>14</strong></td>
+<td valign="top" width="22"><strong>13</strong></td>
+<td valign="top" width="24"><strong>12 </strong></td>
+<td valign="top" width="23"><strong>11</strong></td>
+<td valign="top" width="30"><strong>10</strong></td>
+<td valign="top" width="21"><strong>9</strong></td>
+<td valign="top" width="28"><strong>8 </strong></td>
+<td valign="top" width="25"><strong>7 </strong></td>
+<td valign="top" width="24"><strong>6</strong></td>
+<td valign="top" width="29"><strong>5 </strong></td>
+<td valign="top" width="33"><strong>4</strong></td>
+<td valign="top" width="32"><strong>3</strong></td>
+<td valign="top" width="28"><strong>2</strong></td>
+<td valign="top" width="22"><strong>1</strong></td>
+<td valign="top" width="28"><strong>0 </strong></td>
+<td valign="top" width="67"><strong>POR</strong></td>
+</tr>
+<tr>
+<td valign="top" width="28"></td>
+<td valign="top" width="23">1</td>
+<td valign="top" width="23">0</td>
+<td valign="top" width="23">0</td>
+<td valign="top" width="24">1</td>
+<td valign="top" width="23">0</td>
+<td valign="top" width="31">p20</td>
+<td valign="top" width="22">d1</td>
+<td valign="top" width="27">d0</td>
+<td valign="top" width="24">i2</td>
+<td valign="top" width="23">i1</td>
+<td valign="top" width="29">i0</td>
+<td valign="top" width="33">g1</td>
+<td valign="top" width="32">g0</td>
+<td valign="top" width="28">r2</td>
+<td valign="top" width="22">r1</td>
+<td valign="top" width="28">r0</td>
+<td valign="top" width="67">0×9080</td>
+</tr>
+</tbody>
+</table>
+<p>Bit 10 (P20): sets the function of INT/VDI pin on the RFM12 module, 
+it configures it as input (Interrupt from MPU) or output (VDI Valid Data
+ Indicator).&nbsp; The VDI is the default setting.&nbsp; This goes high 
+when valid data has been detected by the RFM12 module, valid data is 
+data that has made it past the Sync pattern.&nbsp; If set as Interrupt 
+input, we can use this to send an interrupt the RFM12.&nbsp; The RFM12 
+will then stop what it’s doing and wait for the next command.</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="1" width="200">
+<tbody>
+<tr>
+<td valign="top"><strong>p20</strong></td>
+<td valign="top" width="163"><strong>Function of pin 20</strong></td>
+</tr>
+<tr>
+<td valign="top">0</td>
+<td valign="top" width="163">Interrupt input</td>
+</tr>
+<tr>
+<td valign="top">1</td>
+<td valign="top" width="163">VDI output</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bits 9-8 (d1 to d0): VDI (valid data indicator) signal response time setting:</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="249">
+<tbody>
+<tr>
+<td valign="top" width="51"><strong>d1</strong></td>
+<td valign="top" width="53"><strong>d0</strong></td>
+<td valign="top" width="143"><strong>Response</strong></td>
+</tr>
+<tr>
+<td valign="top" width="51">0</td>
+<td valign="top" width="53">0</td>
+<td valign="top" width="143">Fast</td>
+</tr>
+<tr>
+<td valign="top" width="51">0</td>
+<td valign="top" width="53">1</td>
+<td valign="top" width="143">Medium</td>
+</tr>
+<tr>
+<td valign="top" width="51">1</td>
+<td valign="top" width="53">0</td>
+<td valign="top" width="143">Slow</td>
+</tr>
+<tr>
+<td valign="top" width="51">1</td>
+<td valign="top" width="53">1</td>
+<td valign="top" width="143">Always on</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: #29303b;"> </span></p>
+<p><a href="http://blog.strobotics.com.au/wp-content/uploads/2009/07/clip_image00211.jpg"><span style="color: #29303b;"> </span><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="clip_image002[1]" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/clip_image0021_thumb.jpg" alt="clip_image002[1]" border="0" height="266" width="448"></a></p>
+<p>Bits 7-5 (i2 to i0): Receiver baseband bandwidth (BW) select:</p>
+<p>The receiver bandwidth is the amount of frequency above and below 
+centre frequency we are receiving on (See the Frequency command for more
+ information on changing the frequency)&nbsp; that the receiver is 
+sensitive to.&nbsp; So if 400Khz is select as the Receiver bandwidth and
+ 915Mhz is the centre frequency, then the receiver will looking for a 
+signal anywhere +200Khz above 915 and 200Khz below, i.e. 914.800 – 
+915.200.</p>
+<p>The bandwidth settings is linked to both the data rate, and Tx 
+Modulation (Deviation)commands.&nbsp; When data rate is fastest a higher
+ bandwidth is required.&nbsp;&nbsp; There are optimal settings for the 
+Bandwidth and Modulation for different data rates as shown below.&nbsp; 
+Having too much bandwidth can cause a higher SNR and can cause packet 
+corruption.&nbsp; Not enough bandwidth and the incorrect signal is not 
+received.</p>
+<p>Incorrectly setting Bandwidth and Deviation (Modulation) is usually one of the common problems.</p>
+<p>Table of optimal bandwidth and transmitter deviation settings for 
+given data rates (the data sheet was a bit vague in this area and did 
+not specify frequencies etc so I don’t know how valid they are at 
+different frequency bands but they could be used as a starting point)</p>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="0" width="300">
+<tbody>
+<tr>
+<td valign="top" width="108"><strong>Data Rate [bps]</strong></td>
+<td valign="top" width="98"><strong>Bandwidth [KHz]</strong></td>
+<td valign="top" width="92"><strong>Modulation (Deviation) [KHz]</strong></td>
+</tr>
+<tr>
+<td valign="top" width="106">1200</td>
+<td valign="top" width="98">67</td>
+<td valign="top" width="94">45</td>
+</tr>
+<tr>
+<td valign="top" width="105">2400</td>
+<td valign="top" width="98">67</td>
+<td valign="top" width="95">45</td>
+</tr>
+<tr>
+<td valign="top" width="105">4800</td>
+<td valign="top" width="97">67</td>
+<td valign="top" width="96">45</td>
+</tr>
+<tr>
+<td valign="top" width="104">9600</td>
+<td valign="top" width="97">67</td>
+<td valign="top" width="96">45</td>
+</tr>
+<tr>
+<td valign="top" width="104">19200</td>
+<td valign="top" width="97">67</td>
+<td valign="top" width="96">45</td>
+</tr>
+<tr>
+<td valign="top" width="104">38400</td>
+<td valign="top" width="97">134</td>
+<td valign="top" width="96">90</td>
+</tr>
+<tr>
+<td valign="top" width="104">57600</td>
+<td valign="top" width="97">145</td>
+<td valign="top" width="96">90</td>
+</tr>
+<tr>
+<td valign="top" width="104">115200</td>
+<td valign="top" width="98">200</td>
+<td valign="top" width="97">120</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="249">
+<tbody>
+<tr>
+<td valign="top" width="45"><strong>i2</strong></td>
+<td valign="top" width="50"><strong>i1</strong></td>
+<td valign="top" width="51"><strong>i0</strong></td>
+<td valign="top" width="101"><strong>BW [kHz]</strong></td>
+</tr>
+<tr>
+<td valign="top" width="45">0</td>
+<td valign="top" width="50">0</td>
+<td valign="top" width="51">0</td>
+<td valign="top" width="101">reserved</td>
+</tr>
+<tr>
+<td valign="top" width="45">0</td>
+<td valign="top" width="50">0</td>
+<td valign="top" width="51">1</td>
+<td valign="top" width="101">400</td>
+</tr>
+<tr>
+<td valign="top" width="45">0</td>
+<td valign="top" width="50">1</td>
+<td valign="top" width="51">0</td>
+<td valign="top" width="101">340</td>
+</tr>
+<tr>
+<td valign="top" width="45">0</td>
+<td valign="top" width="50">1</td>
+<td valign="top" width="51">1</td>
+<td valign="top" width="101">270</td>
+</tr>
+<tr>
+<td valign="top" width="45">1</td>
+<td valign="top" width="50">0</td>
+<td valign="top" width="51">0</td>
+<td valign="top" width="101">200</td>
+</tr>
+<tr>
+<td valign="top" width="45">1</td>
+<td valign="top" width="50">0</td>
+<td valign="top" width="51">1</td>
+<td valign="top" width="101">134</td>
+</tr>
+<tr>
+<td valign="top" width="45">1</td>
+<td valign="top" width="50">1</td>
+<td valign="top" width="51">0</td>
+<td valign="top" width="101">67</td>
+</tr>
+<tr>
+<td valign="top" width="45">1</td>
+<td valign="top" width="50">1</td>
+<td valign="top" width="51">1</td>
+<td valign="top" width="101">reserved</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bits 4-3 (g1 to g0): LNA gain select:</p>
+<p>The LNA gain (Low Noise Amplifier) can be selected according to RF 
+signal strength. It can be useful in an environment with strong 
+interferers.&nbsp; Or alternately if you have two RFM12 modules in close
+ proximity then you can drop the sensitivity of the Low Noise Amplifier.</p>
+<div>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="249">
+<tbody>
+<tr>
+<td valign="top" width="52">g1</td>
+<td valign="top" width="54">g0</td>
+<td valign="top" width="141">relative to maximum [dB]</td>
+</tr>
+<tr>
+<td valign="top" width="52">0</td>
+<td valign="top" width="54">0</td>
+<td valign="top" width="141">0</td>
+</tr>
+<tr>
+<td valign="top" width="52">0</td>
+<td valign="top" width="54">1</td>
+<td valign="top" width="141">-6</td>
+</tr>
+<tr>
+<td valign="top" width="52">1</td>
+<td valign="top" width="54">0</td>
+<td valign="top" width="141">-14</td>
+</tr>
+<tr>
+<td valign="top" width="52">1</td>
+<td valign="top" width="54">1</td>
+<td valign="top" width="141">-20</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>Bits 2-0 (r2 to r0): RSSI detector threshold:</div>
+<div>
+<table align="center" border="1" cellpadding="2" cellspacing="0" width="400">
+<tbody>
+<tr>
+<td valign="top" width="97"><strong>r2 </strong></td>
+<td valign="top" width="99"><strong>r1 </strong></td>
+<td valign="top" width="99"><strong>r0</strong></td>
+<td valign="top" width="103"><strong>RSSIsetth [dBm]</strong></td>
+</tr>
+<tr>
+<td valign="top" width="96">0</td>
+<td valign="top" width="98">0</td>
+<td valign="top" width="98">0</td>
+<td valign="top" width="105">-103</td>
+</tr>
+<tr>
+<td valign="top" width="96">0</td>
+<td valign="top" width="98">0</td>
+<td valign="top" width="98">1</td>
+<td valign="top" width="107">-97</td>
+</tr>
+<tr>
+<td valign="top" width="95">0</td>
+<td valign="top" width="97">1</td>
+<td valign="top" width="97">0</td>
+<td valign="top" width="109">-91</td>
+</tr>
+<tr>
+<td valign="top" width="95">0</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="110">-85</td>
+</tr>
+<tr>
+<td valign="top" width="95">1</td>
+<td valign="top" width="96">0</td>
+<td valign="top" width="96">0</td>
+<td valign="top" width="111">-79</td>
+</tr>
+<tr>
+<td valign="top" width="94">1</td>
+<td valign="top" width="96">0</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="112">-73</td>
+</tr>
+<tr>
+<td valign="top" width="94">1</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="96">0</td>
+<td valign="top" width="112">-67</td>
+</tr>
+<tr>
+<td valign="top" width="94">1</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="96">1</td>
+<td valign="top" width="113">-61</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Similar Posts:</h3>
+<ul class="similar-posts">
+<li><a href="http://blog.strobotics.com.au/2009/07/30/introducing-the-rfm2223-big-brothers-to-the-rfm12b/" rel="bookmark" title="July 30, 2009">Introducing the RFM22/23, Big brothers to the RFM12B</a></li>
+<li><a href="http://blog.strobotics.com.au/2007/11/26/pic-spi-and-the-rfm12/" rel="bookmark" title="November 26, 2007">PIC, SPI and the RFM12</a></li>
+<li><a href="http://blog.strobotics.com.au/2008/06/17/rfm12-tutorial-part2/" rel="bookmark" title="June 17, 2008">RFM12 Tutorial – Part2</a></li>
+<li><a href="http://blog.strobotics.com.au/2007/12/05/rfm12-fsk-library-alpha-release/" rel="bookmark" title="December 5, 2007">RFM12 FSK Library – Alpha Release</a></li>
+<li><a href="http://blog.strobotics.com.au/2007/11/19/frequency-hopping/" rel="bookmark" title="November 19, 2007">Frequency Hopping</a></li>
+</ul>
+<p><!-- Similar Posts took 12.893 ms (cached) --></p>
+<div class="printfriendly align"><a href="http://www.printfriendly.com/print/v2?url=http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/" rel="nofollow" onclick="window.print(); return false;"><img src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/pf-print-icon.gif" alt="Print Friendly"><span class="printandpdf printfriendly-text"> Print <img src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/pf-pdf-icon.gif" alt="Get a PDF version of this webpage"> PDF </span></a></div>	<div class="post-info">
+													
+	</div>
+	<div class="post-footer entry-meta"><b>Posted:</b> <abbr class="published" title="
+      2009-07-27T23:06:43+0000        ">27 Jul, 2009</abbr> | <a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/#comments" title="Comment on RFM12 Tutorial – Part 3a">[37] Comments</a><br>
+    <b>
+      <span class="entry-category">Categories:
+    </span></b> <a href="http://blog.strobotics.com.au/topics/embedded/rfm12b/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> , <a href="http://blog.strobotics.com.au/topics/tutorials/rfm12b-tutorials/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> , <a href="http://blog.strobotics.com.au/topics/tutorials/" title="View all posts in Tutorials" rel="category tag">Tutorials</a>    | <b>Tags:</b> 
+    	<a href="http://blog.strobotics.com.au/tags/rfm12b/" rel="tag">RFM12B</a> |
+              <b>By:</b> <span class="author vcard fn"><a class="url fn" href="http://blog.strobotics.com.au/">Stephen Eaton</a></span>.
+          
+&nbsp;</div>
+</div>
+				
+<!-- You can start editing here. -->
+
+	<h3 id="comments">37 Responses to “RFM12 Tutorial – Part 3a”</h3> 
+
+	<ol class="commentlist">
+
+	
+		<li class="alt" id="comment-924">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-924" title="">July 28th, 2009 at 3:56 am</a> </small>
+
+			<p>Nice description Stephen!<br>
+I’ve done also more tests now. As hardware I use the DE1 FPGA controller
+ board just because this go faster for me and my basis system is also 
+FPGA. But my receiver come also into the AVR controller.</p>
+<p>Just now 2 modules works here. Only tested at short distance but into
+ the near future I will test it at normal distance too. I just put the 
+picture results of the logicanalyser onto my Flickr site:<br>
+<a href="http://www.flickr.com/photos/fotoopa_hs/3762346539/" rel="nofollow">http://www.flickr.com/photos/fotoopa_hs/3762346539/</a><br>
+As you can see the speed is very high, tested at the max baudrate. Speed is very important by my application.</p>
+<p>Did you see the simple calculator for all the parameters of the RFM12B module? see this link:<br>
+<a href="http://www.technofun.org/blog/" rel="nofollow">http://www.technofun.org/blog/</a></p>
+<p>I use this calculator and it works nice! With a simple screenshot you can save all the settings as documentation for later use.</p>
+<p>Now I continue the tests and i let you know when new results are available.</p>
+<p>Frans (fotoopa).</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-925">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-925" title="">July 28th, 2009 at 4:21 pm</a> </small>
+
+			<p>Thanks for the link Frans, I’ve just updated this article with it, very useful.</p>
+<p>Looks like you are making great progress, I noticed from the logic 
+traces that you are not using interrupt driven Tx? I guess with FPGA you
+ could run the Tx in parallel to what you are doing, so no need to 
+generate an interrupt.</p>
+<p>I will be interested to see how you go with distance at the maximum bit rate.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-926">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-926" title="">July 28th, 2009 at 4:22 pm</a> </small>
+
+			<p>Updated:<br>
+added tables for Bitrate, Bandwidth and modulation</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-927">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-927" title="">July 28th, 2009 at 4:59 pm</a> </small>
+
+			<p>Yes Stephen, I just polling the statusbit. Hardware always works 
+parallel and fast. The SPI speed is less important, you have always to 
+wait to send the next cmd or data. But the baudrate is of course 
+extremely decisive.</p>
+<p>To reach optimal speed for the fire command I preset the 
+communication into a preamble sync mode. I know beforehand the periode 
+when a trigger will follow ( camera is set to record with the second 
+shutter closed and wait for trigger via the laser detection of the 
+flying insect) During this waiting periode I send continue the preamble 
+B8AAh command, so the receiver have good sync and wait only for the 
+16bit synccode and next execution command. As soon as I have a 
+triggercommand from the laser system I send the fire command, B82Dh, 
+B8D4h,B843h,B847h and after this a few preamble codes but this have no 
+more influence on the fire command speed. By this way I save minimum 2 
+preamble codes and for high baudrates the receiver is long before good 
+in sync.</p>
+<p>But there is more. Because remote wireless have a minimum delay ( in 
+my case near 430 usec) I have to adjust this delay with the non remote 
+flashes on the unit. Also the remote flashes need mostly higher power 
+and this higher power give longer flashtimes. For very high speed like 
+this flying insects you need to adjust all this timings so that they are
+ equal divide. This optimal central timing position can be calculated 
+from all the powers of the used flashes because the central unit know 
+all this information. On this way you avoid that the fix flashes fire 
+long before the background flashes fires. For normal non highspeed work 
+this is not so critical, as long as your flashes falls into the camera 
+window ( let say 1/250 or 4 msec) But for very high speed even a few 100
+ usec are important otherwise you have some blur into the fast moving 
+parts.</p>
+<p>I will give into the next days more details on my Flickr site of all this timings and results. Also distance tests will be done.</p>
+<p>Frans(fotoopa).</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-928">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-928" title="">July 29th, 2009 at 12:32 am</a> </small>
+
+			<p>This afternoon I have updated the hardware sequencer for best 
+results. The shortest delay with a command of 8 bits after the synccode 
+show a delay of 288 usec at 115 Kbaud. This is really very short. The 
+receiver code is now moved to a second harware CPLD unit.  At short 
+distance this setup is 100% reliable. I hope to test this next Thursday 
+at longer distance. ( Have first to cycle 70 km with my wife tomorrow, 
+but this is very good to dream of all the hardware routines during this 
+trip).</p>
+<p>Frans. (fotoopa)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-929">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-929" title="">July 29th, 2009 at 12:45 am</a> </small>
+
+			<p>Update:</p>
+<p>Sorry but the shortest delay is 361 usec, not 288! (cursor A was not set at the right position)<br>
+Frans.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-932">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-932" title="">July 30th, 2009 at 12:14 pm</a> </small>
+
+			<p>@fotoopa</p>
+<p>I like your idea of continually sending pre-amble packets until you 
+trigger then sending sync and trigger octets, that would save overheads 
+of a the preamble and FSK alignment when timing is tight.  </p>
+<p>As for timing I agree that high speed is possible over the air and was looking at doing something similar for my canon camera. </p>
+<p>If I know the time of flight etc then we could pre-empt the flash 
+trigger and time it so the shutter and flashes fire at correct time. </p>
+<p>However for an on camera trigger only (luckily you have the benefit 
+of laser so you can time/pre-empt things), I think I need to access 
+canons ettl protocol via the other hot shoe contacts which will give me 
+this information (based on Bill Grundmans work of the ettl protocol 
+reverse engineering) as syncing with the hot shoe trigger signal will be
+ too late.  </p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-938">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-938" title="">July 31st, 2009 at 1:50 am</a> </small>
+
+			<p>Hi Stephen,</p>
+<p>For on camera trigger I will take the startsignal from the X-sync 
+connector. With the tests now, we know that the minimum delay is 360 
+usec. Tests on the Nikon flashes show an extra delay of 30 usec between 
+fire and really flashlight on the photo detector. Let say the total 
+minimum delay come near 400 usec. If you use front curtain sync mode the
+ remote flashes can start after this 400 us delay. This is without any 
+trouble for the normal speeds like 1/250 on most cameras. This must 
+works for Canon camera’s as well.<br>
+For rear-curtain sync, there may be a timings problem if the used 
+flashpower is high. But this is the case for all rear-curtain sync modes
+ and max camera speed on X-sync mode. So the better methode could be to 
+set the camera in front-curtain sync and add a delay (func) from the 
+used power and  the desired rear-curtain result.</p>
+<p>For my system with the second shutter, the settings are similar. Only
+ a longer delay is need and I must provide a safely delay so that I 
+always flash with second shutter full open. This shutter have also a non
+ stable zone. This zone depends also from temperature. If it’s warm the 
+minimum delay is near 5.5ms but in the night at lower temperature this 
+delay is near 6.5ms.</p>
+<p>Today I have tested 2 RFM12B units at 10m and 2 walls at 115 kbaud on
+ 868 Mhz and everything works like a train. 100% reliable, every push 
+give a flash on the remote unit. As you can see, the hardware solutions 
+works very quickly. I have put the RFM12B modules on 2 separate 
+breadbords and 2 FPGA DE1 Terasic boards for this tests.</p>
+<p>I have place an order for 3 SC-27 Nikon flash cables for TTL flash 
+drive. Divide each cable in 2 pieces I have 6 connection Nikon cables. 
+The other side of the cable can be replaced with a lowcost connector to 
+my modules.</p>
+<p>Now I will calculate all the timings for optimal symetric flash 
+timings in function of all the used powers. More power need to shift to 
+the right into the camera flash window opening. This is only need for 
+highspeed photography. Timings are calcultated into the central remote 
+controller.</p>
+<p>This give my the necessity to send extra parameters to each flash. 
+This parameter is a offset delay that the flash have to add when he 
+receive the fire signal. This is needed because the fire signal go the 
+same time to all the flashes online. Into the next days/weeks I will set
+ all this parameters and drawings on my Flickr site. Also I will measure
+ some timings from the X-sync of the camera and the relation with all 
+this timings for remote control.</p>
+<p>Your last info about the newer RFM controllers is very nice. A big 
+positieve point is the higher sensivity of the receiver and higher power
+ of the transmitter resulting into a reliabe communication. But I have 
+now 10 RFM12B modules instock. I will use them first.</p>
+<p>Frans.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-940">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://www.flickr.com/photos/fotoopa_hs/" rel="external nofollow" class="url">fotoopa</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-940" title="">August 1st, 2009 at 11:34 pm</a> </small>
+
+			<p>Update new timings for highspeed flash wireless system.<br>
+See: <a href="http://www.flickr.com/photos/fotoopa_hs/3778250766/" rel="nofollow">http://www.flickr.com/photos/fotoopa_hs/3778250766/</a></p>
+<p>This give an overview how I see some delays and offsets for an 
+optimal system even if only driven by the camera. Tested on the Nikon 
+D300 camera.</p>
+<p>Frans.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-942">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>aamirsherkhan</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-942" title="">August 21st, 2009 at 3:25 pm</a> </small>
+
+			<p>Hi stefan<br>
+i m using RFM12B for a project in 433MHz band.I am having a problem in 
+it.I  use one module in receiver mode using internal FIFO and wait for 
+nIRQ to go low so that i read a byte from the FIFO.The FIFO overflow is 
+set to 8 bits.Another module is transmitting data with some delay of one
+ sec between two consecutive bytes.The problem is than with in this 
+delay the controller reads 0×00 from the FIFO and nIRQ also goes 
+low.This happen after the sync word detection.If i transmit 0×31 and 
+0×32 with one sec delay the receiver gets 0×31 0×00 0×00 0×00 0×00 0×32 
+so within this time gap the nIRQ continuously goes low showin that it 
+has recieved a valid byte.Can u tell me why this happens and how to fix 
+this.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-943">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-943" title="">August 25th, 2009 at 12:03 pm</a> </small>
+
+			<p>@aamirsherkhan</p>
+<p>It sounds as though your Rx is loosing lock due to the delay between bytes being transmitted.</p>
+<p>You should be aiming to send a continuous stream of data bytes once 
+you turn your TX on have sent the pre-amble and sync bytes. i.e. no 
+interruptions between 1st and last data bytes being sent.</p>
+<p>What I suggest due to the delay between the bytes is to send each byte of data within a packet.  i.e.
+</p><pre> </pre>
+<pre> <sync> </sync><sync><data> <crc> <pre> (7 bytes)
+turn your Tx on before you send and then off once sent.  
+
+Stephen...</pre>
+<p></p>
+
+		</crc></data></sync></pre></li>
+
+	
+	
+		<li class="" id="comment-944">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-944" title="">August 25th, 2009 at 12:05 pm</a> </small>
+
+			<p>@aamirsherkhan</p>
+<p>sorry the packet information didn’t show up.</p>
+<p>pre pre sync sync data crc pre (total of 7 bytes)</p>
+<p>stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-945">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>nithin.tp</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-945" title="">August 25th, 2009 at 6:30 pm</a> </small>
+
+			<p>Hello Stephan</p>
+<p>When RFM12B is tested continuously for a few hours i.e. data 
+reception and transmission for every second. The RFM12B module does not 
+respond to RF data receive after a few hours.In DCLK and NIRQ lines, the
+ frequency is incorrect. Can anybody help as to why this is happening?. 
+Also if Turn OFF and turn on the module it works fine again. </p>
+<p>Thank you in Advance</p>
+<p>Nithin Prakash</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-962">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>willem</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-962" title="">November 12th, 2009 at 7:24 am</a> </small>
+
+			<p>Hi Stephen,</p>
+<p>I´v read your blogs with interest. I too have been struggling with 
+these. As a matter of fact with their little brother and sister: RFM01 
+and RTX02 I believe they are called. The chips are actually made (or 
+sold) by Silicon Labs and they do have a lot of extra information on 
+them. Including an application that lets you define all your parameters 
+and it will then create a header file for you to use.<br>
+However, I am puzzled by a few things. They claim to have a proper SPI 
+interface but I don’t think they do. For one their data send protocol 
+doesn’t match which is something they even mention in their datasheets.<br>
+But what I do not understand is how the SCK pin works. As far as I can 
+see they do need a clock from the master. If the master is your MCU then
+ I don’t know how you could do that without actually using your MCU’s 
+SCK port?! Well, you could actually generate the clock yourself by using
+ a timer. However in all the sample code I have seen floating around 
+including yours, the SCK is just an outport pin that is pulled low and 
+released again. Am I wrong in this?</p>
+<p>Thanks<br>
+Willem</p>
+<p>P.S. Sorry for bumping this thread…</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-974">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-974" title="">November 26th, 2009 at 11:35 am</a> </small>
+
+			<p>@willem  apologies for the late response (I had missed it earlier)</p>
+<p>you are correct the SCK is provided by the MCU, bu tyou don’t have to
+ use the MCU SCK port, the SCK is used to clock in (and out) the bits 
+that make up the command being sent to the RFMxx.  you can bit bang the 
+spi quite easily, I initially did this on the PICs as I couldn’t get the
+ onboard SPI working,  AVR the onboard SPI works a treat.  below is what
+ I did to bitbang the SPI<br>
+<code>/*</code></p><code>
+<p>  Write a Command to the RFM Module using SPI</p>
+<p>  Requires: 16bit valid command<br>
+  Returns:  16bit result from transaction</p>
+<p>  This is a bi-directional transfer.<br>
+  A command is clocked out to the RFM a bit at a time.<br>
+  At the same time a result is clocked back in a bit at a time.</p>
+<p>*/<br>
+uint WriteCMD(uint CMD)<br>
+{</p>
+<p>	uint RESULT = 0;							// Holds the received SDI<br>
+	uchar n=16;									// number of bits in SPI Command we need to send<br>
+	SCK=0;										// SCK LOW<br>
+	rfm12_cs = 0;								// CS LOW<br>
+	while(n--)									// Send All 16 Bits MSB First<br>
+	{<br>
+		if (CMD&amp;0x8000)<br>
+			Write1();							// Write 1 via SDI<br>
+		else<br>
+			Write0();							// Write 0 via SPI</p>
+</code><p><code>		CMD&lt;&lt;=1;								// Shift left for next bit to send<br>
+		RESULT&lt;&lt;=1;								// Shift left for next bit to receive<br>
+		if(SDI)									// Check if we received a high on SDI<br>
+			RESULT |= 0x0001;					// RESULT LSB = 1<br>
+	}<br>
+	SCK=0;										// SCK LOW<br>
+	rfm12_cs = 1;								// CS HIGH - Finished Sending Command<br>
+}<br>
+</code></p>
+<p>the bit banging is done in these</p>
+<p><code><br>
+// Bitbang binary 1 via SPI<br>
+void Write1(void)<br>
+{<br>
+	SDO=1;<br>
+	SCK=0;<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();</code></p><code>
+<p>	SCK=1;</p>
+<p>	nop();<br>
+}</p>
+<p>// bitbang binary 0 via SPI<br>
+void Write0(void)<br>
+{<br>
+	SDO=0;<br>
+	SCK=0;<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();<br>
+	nop();</p>
+<p>	SCK=1;</p>
+</code><p><code>	nop();<br>
+}<br>
+</code></p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-988">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Jake</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-988" title="">December 23rd, 2009 at 8:36 am</a> </small>
+
+			<p>Hi Stephen</p>
+<p>I am trying to get the RFM12 to work with the PIC16F877A, but I am 
+totally lost about how to get the rf module configured. I got my two pic
+ devices working fine in SPI, wired up. But when I try to integrate the 
+rf module, it doesn’t seem to work at all. I’ve got a couple of 
+questions baffling me, hope you can answer them for me.<br>
+1. How should the rfm12 module be connected to the pic? according to the
+ rf12 programming guide example 2, it used RB7 – 4, but the SPI 
+interface uses RC5 – 3.<br>
+2. How are the rf module parameters configured? I understand the 
+configuration commands are given in the programming guide, but I don’t 
+know how they are sent to the rf module, but using the code in the 
+programming guide?<br>
+3. If I get the rf module setup, how do I send data out, do I write to SSPBUF or do I have to use some other function?</p>
+<p>Thanks in advance</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-989">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>willem</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-989" title="">December 31st, 2009 at 9:51 pm</a> </small>
+
+			<p>@stephen: LOL. I did check very regularly for a response from you 
+but then gave up, thinking you had moved on to bigger and better things.
+ And now, 31st dec., I happened to stumble back here and found out you 
+answered more than a month ago. So sorry, but thanks a lot!</p>
+<p>In the meantime, I did manage to get it working though. Both RFM01 
+and RFM02 and RFM12B. In 868 and 433 frequencies and mixing them as 
+well. Once you get the hang of it they are great and seem to be pretty 
+robust as well.</p>
+<p>I received a lot of support from Hope (and some help). But using a 
+logic analyzer is the thing that really helped me progress this.</p>
+<p>Thanks and all the best for the new year!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-990">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>willem</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-990" title="">December 31st, 2009 at 9:57 pm</a> </small>
+
+			<p>Ah, one more thing, for everyone who ends up here looking for help on these modules. Do go here <a href="https://www.silabs.com/support/pages/support.aspx?ProductFamily=EZRadio" rel="nofollow">https://www.silabs.com/support/pages/support.aspx?ProductFamily=EZRadio</a>
+ as this is the place to find the proper documentation for the chips 
+used (si4420.pdf = RFM12B). Check out the WDS3-Setup.zip for getting the
+ proper config commands and definitely check out the battery life 
+calculator. All great tools.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-991">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>willem</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-991" title="">January 2nd, 2010 at 12:20 am</a> </small>
+
+			<p>Happy New Year everyone!</p>
+<p>I am sorry, I just couldn’t let go. Still working on RFM12B 
+communication and I found out that in my case I get better results 
+transmitting using a slightly different method then I have seen in Hope 
+and other code. For writing the data I use:<br>
+<code>void rf_write_data( BYTE data )<br>
+{<br>
+	WORD status;</code></p><code>
+<p>	WAIT6u;						// just make sure our clock pulse is longer than freq./4</p>
+<p>	while( nIRQ );</p>
+</code><p><code>	status = rf_write_cmd( 0x0000 );<br>
+	if( (status&amp;0x8000) == 0x8000  )<br>
+		rf_write_cmd( 0xB800 + data );<br>
+}<br>
+</code><br>
+This is, as you can see, very similar to the way I receive data:<br>
+<code>BYTE rf_read_data( void )<br>
+{<br>
+	WORD status;<br>
+	WORD data;</code></p><code>
+<p>	WAIT6u;						// just make sure our clock pulse is longer than freq./4</p>
+<p>	while( nIRQ );</p>
+<p>	status = rf_write_cmd( 0x0000 );<br>
+	if( (status&amp;0x8000) == 0x8000  )<br>
+		data = rf_write_cmd( 0xB000 );</p>
+</code><p><code>	return (data&amp;0x00FF);<br>
+}<br>
+</code></p>
+<p>Willem</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-994">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>colinh</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-994" title="">January 21st, 2010 at 8:59 am</a> </small>
+
+			<p>Hi Stephen</p>
+<p>I was looking at the RFM12.H header file you have created and found a
+ mysterious RFM12_PLL_LPX in the PLL setting command definitions.  In 
+the latest data sheet this location is a fixed 1.  Is this a throwback 
+to an old version of silicon?</p>
+<p>Colin</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-995">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-995" title="">January 21st, 2010 at 9:51 am</a> </small>
+
+			<p>@Colin</p>
+<p>Yes more than likely, that header file was written a few years a go 
+and Hope have released some revisions to the original document I was 
+then working from.</p>
+<p>Stephen…</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1014">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1014" title="">March 1st, 2010 at 11:03 am</a> </small>
+
+			<p>hi stephen,<br>
+the RFM12B has its own 10Mhz crystal so why there’s a pin SCK – clock input from MCU?<br>
+ tommy</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1015">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1015" title="">March 9th, 2010 at 11:57 am</a> </small>
+
+			<p>@realheaven</p>
+<p>The SCK is used in the SPI communications and is part of the SPI standard.  The SCK is provided by the MCU, not the RFM12.</p>
+<p>The on-board Crystal can provide a CLK output to drive a MCU or 
+anything else that requires an oscillator and can be controlled up to 
+10MHZ.  I use this to test my SPI communications between the MCU and the
+ RFM12.  i.e. I put a frequency counter or oscilloscope onto the CLK pin
+ of the RFM12 and then send through a command to the to change the 
+frequency.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1076">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Nart_schinakow</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1076" title="">August 15th, 2010 at 11:04 pm</a> </small>
+
+			<p>Hey Stephen, </p>
+<p>Thanks For that nice article, everything is working just fine !!!</p>
+<p>i am using two pic mcu and two rf12 433MHZ and i used the hope rf bit banging code and its working just fine.</p>
+<p>my question is when i send the preamble and the sync why i dont see 
+them in the receiver buffer of the pic receiver i only see the Data 
+bytes sent ?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1082">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>realheaven</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1082" title="">October 5th, 2010 at 12:22 am</a> </small>
+
+			<p>sync bytes are the bytes to sync between TX and RX and not counted
+ in your RX data. they would be automatically abolished when processing.
+ if you wanna know exactly that process just contact Hoperf for more 
+information!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1148">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Sophi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1148" title="">February 22nd, 2011 at 12:34 am</a> </small>
+
+			<p>Hello-<br>
+The part that I am really confused about is the RF communications.<br>
+I have configured the RFM chips through the SPI on my PICF18452, and thanks to these awesome tutorials, it went pretty well. </p>
+<p>I need help understanding how to send and receive data through the 
+FSK. I can see on the few coding examples that they first turn on TX, 
+send a Preamble bit, then some synch.<br>
+But how would I have known this without the examples? And, the examples don’t exactly match each other.<br>
+Some pseudo code would be really helpful.<br>
+Thanks!</p>
+<p>            WriteCMD(0×8238);      // Turn on Transmitter<br>
+            delay_ms(1);         // turn on delay</p>
+<p>            rf_SendByte(0xAA);      // PreAmble</p>
+<p>            rf_SendByte(0x2D);      // Sync<br>
+            rf_SendByte(0xD4);</p>
+<p>// then how do you send data?<br>
+// and how do you receive it?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1149">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1149" title="">February 22nd, 2011 at 8:06 am</a> </small>
+
+			<p>Hi sophi,</p>
+<p>This is what I had the most dramas with when I first started, what is
+ working?  Is it transmittng?  Is it receiving?  and of course the 
+hoperf examples are hard to follow and just didnt work for me, so can be
+ very frustrating.</p>
+<p>I would suggest you look at RFM12 library at <a href="http://jeelabs.net/projects/cafe/wiki/RF12" rel="nofollow">http://jeelabs.net/projects/cafe/wiki/RF12</a>
+  These work reliably and is what I have used in my past projects.  
+Although they are AVR they are good to see how things are done.</p>
+<p>First Steps, make sure that the SPI is working on both ends, write a 
+test sequence to change the clock output frquency and make sure this is 
+working, if it’s not then nothing will work.</p>
+<p>When transmitting it is very important to:<br>
+1) Write the first two bytes to the RFM12 before turning the transmitter on.  These will usually be Pre-amble<br>
+2) have no interruption in the Tx Sequence, i.e. no pauses or delays.<br>
+3) no debug code in the Tx routines.</p>
+<p>If there is a pause in the Tx sequence then the Rx will loose sync and you need to restart the preamble/sync sequence.</p>
+<p>End your transmit packet with two preamble bytes before turning off the Tx.  This will make sure the that all packets are sent.</p>
+<p>So to send data:</p>
+<p>write preable x2<br>
+Turn on Tx<br>
+Send out each byte in the packet you want to transmit.  e.g. rf_SendByte(first_octect); ….. rf_SendByte(last_octect);<br>
+Send out x2 preamble, e.g. rf_SendByte(0xAA); rf_SendByte(0xAA);<br>
+turn off Tx</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1150">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Sophi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1150" title="">March 6th, 2011 at 7:40 am</a> </small>
+
+			<p>Hi Stephen,<br>
+Thanks for your reply- the pseudo code is helpful.<br>
+My SPI communications is working…I can see the SPI  CLK signal on scope and also I turn off the crystal output on the RFM12B.</p>
+<p>I’m using a PIC.<br>
+I do not think I am successfully transmitting.<br>
+I do not know how to tell if I am transmitting. I don’t have an RS232 
+output set up on my board or a spectrum analyzer. I have an oscilloscope
+ which can see a 9600 baud rate CLK signal and SPI data. I also have an 
+LED attached.</p>
+<p>1. Besides the FIFO, how else could you be TXing and RXing data? I 
+have tied the FSK/DATA/nFFS pin high based on part 2 of these tutorials.
+ One of the data sheets says it should be tied low for FIFO, but it is 
+not definitive. Hope RF has a schematic showing FSK tied high, but who 
+knows if they are using the FIFO.</p>
+<p>2. After the configuration routine, do I need to chip select before 
+and after each byte of data (actual transmit data) that gets sent?</p>
+<p>3. My problem is now the NIRQ pin. At first it was low all the time, 
+but now I start my configuration code sending 0×0000. Now it is high all
+ the time and I don’t see it go low ever. I have a 4.7k pullup on the 
+NIRQ to 3.3V.</p>
+<p>What pin can I look on to see if anything gets transmitted? I think 
+nothing is transmitting since the NIRQ never goes low. Or does the NIRQ 
+move too fast for my oscilloscope (60MHz, but I’m not sure what that 
+really means since I can’t even see my MCU crystal, 20MHz signal on it)<br>
+Thank you so much for your help!!<br>
+Sophi<br>
+Here’s the code (after the config)<br>
+output_low(PIN_C0);    // chip select<br>
+for (i=0;i&lt;5;i++)<br>
+{<br>
+while(input(PIN_C1))    // NIRQ is high<br>
+{<br>
+spi_write(0xAA);        // preamble<br>
+spi_write(0xAA);        // preamble<br>
+spi_write(0x2D);        // Synchron pattern from power on reset FIFO and Reset Mode command<br>
+spi_write(0xD4);        // Synchron pattern from power on reset FIFO and Reset Mode command<br>
+spi_write(0×82);        // turn on TX from Power Management register, first byte<br>
+spi_write(0×38);        // turn on TX from Power Management register, second byte<br>
+// 13. Transmitter Register Write Command POR B8AA, so need to start every transmission with 0XB8<br>
+spi_write(0xB8);        // this command byte is used to write a data byte to the RF12<br>
+spi_write(0xF0);        // this information should get transmitted with the previous byte<br>
+spi_write(0xAA);        // preamble, clear buffer<br>
+spi_write(0xAA);        // preamble, , clear buffer<br>
+spi_write(0×82);        // turn off TX from Power Management register, first byte<br>
+spi_write(0×11);        // turn off TX from Power Management register, second byte<br>
+}<br>
+}</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1151">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Sophi</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1151" title="">March 6th, 2011 at 8:35 am</a> </small>
+
+			<p>I just added an LED on/off at the end of the loop. I can see that 
+the data is clocking on the RFM-SDI and I can see the SPI clock too.<br>
+So I’m sure that data is going from PIC to RFM.<br>
+So my question is still, how do I know the data is then leaving the RFM12B module?<br>
+Is there an RFM pin I should look at ?(I’ve looked at them all and don’t know what to see)<br>
+I disconnected the FSK pullup for now since I’m not sure if it should be tied high or low or if it matters.</p>
+<p>What dramas! LOL!<br>
+Sophi</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1152">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>jtz@jtzeng.com</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1152" title="">May 19th, 2011 at 5:46 am</a> </small>
+
+			<p>This project has helped a lot.<br>
+Hope there is still help you there.<br>
+I have my transmitter working, but I can’t get nIRQ to go high so I can use interrupts.</p>
+<p>Which settings affect the nIRQ in TX mode.<br>
+John Z.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1153">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1153" title="">May 19th, 2011 at 2:53 pm</a> </small>
+
+			<p>@John Z</p>
+<p>first read the status register and see if there are any interrupts 
+pending, any of the followin will cause the nIRQ to be pulled low  </p>
+<p>The TX register is ready to receive the next byte (RGIT)<br>
+ The FIFO has received the pre-programmed amount of bits (FFIT)<br>
+ Power-on reset (POR)<br>
+ FIFO overflow (FFOV) / TX register under run (RGUR)<br>
+ Wake-up timer timeout (WKUP)<br>
+ Negative pulse on the interrupt input pin nINT (EXT)<br>
+ Supply voltage below the pre-0programmed value is detected (LBD)</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1156">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Alexander</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1156" title="">July 13th, 2011 at 9:30 am</a> </small>
+
+			<p>Hi,</p>
+<p>Have the other parts in this tutorial been uploaded? I am unable to find them (parts 3b and onwards).</p>
+<p>J. Alexander</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1157">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Dirk</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1157" title="">August 10th, 2011 at 8:03 pm</a> </small>
+
+			<p>Hi Stephen,</p>
+<p>This is really a great tutorial page, thank you for your post.<br>
+At the moment I am trying to get a set of RFM12B (433MHz) up and 
+running. However they do not seem to work as I expect them to work.<br>
+In my search I encountered some weird behavior, perhaps you have an explanation for the observed behavior.</p>
+<p>My approach so far:<br>
+1) make sure SPI is properly working, which it does.<br>
+   – sending a status read command results nicely in a POR bit high and rest low<br>
+2) change the CLK frequency and monitor the result on a scope<br>
+  – it works perfectly, so I am confident that both spi work and that I 
+am able to send commands, and the RFM modules are receiving them and are
+ working.<br>
+3) without sending any configuration commands when turning on the chips,
+ steps 1 and 2 work. However, as soon as I send the first configuration 
+command (0×8208, which should be the same as the configuration at 
+startup) nothing changes, but after a status read command (0×0000) the  
+clock output is disabled (CLK is 0).<br>
+Obviously I also tried to send a (0×8209) with identical result, 
+moreover, sending (0×8209) does not even shutdown the CLK by itself.</p>
+<p>Directly after turning the module on, I was able to turn on/off the 
+CLK pin by sending 0×8201 (turn off) and 0×8200 (turn on).  As soon as I
+ send one status read command (0×0000), CLK is dead all the time….</p>
+<p>I getting rather desperate now, so any suggestions would be very much appreciated. </p>
+<p>Thanks!<br>
+Dirk</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1158">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1158" title="">August 10th, 2011 at 8:19 pm</a> </small>
+
+			<p>G’day Dirk,</p>
+<p>What are your voltage supplies like, reset all tied high?  it’s been a
+ while since I’ve played with these, but something does not sound right.
+  what is the IRQ status during this?  can you read the status after 
+sending the problem command?</p>
+<p>Stephen..</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1159">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>Dirk</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1159" title="">August 10th, 2011 at 11:28 pm</a> </small>
+
+			<p>Hello Stephen,</p>
+<p>Thanks for your quick reply!<br>
+It looks as if I have found the problem for the problem described above.
+ I do not have a module working (i.e. sending and receiving data), but I
+ am now able to get the response I expect when sending the commands 
+controlling the CLK output pin. </p>
+<p>I found a small bug in the  SPI routine: I read the output pin after 
+pulling the clock pin high, reading it before seems to solve the 
+problem. The weird thing is that even with the routine that included the
+ bug it seems was sometimes possible to have communication with the 
+module.</p>
+<p>To reply to your questions:<br>
+&gt; I think the voltage supply is decent enough: the module does not reset.<br>
+&gt; IRQ pin is low before first status read, high afterwards<br>
+&gt; Status register only has a high POR bit at first read, in subsequent reads status register is equal to 0.<br>
+&gt; Even after writing the problem commands I was able to read the status register…</p>
+<p>My next try is to send a bunch of configuration commands and see if I
+ can get some communication between two modules going. Do you have any 
+suggestions for intermediate tests to do, in order to make sure that the
+ modules are configured correctly?</p>
+<p>Thanks again for your great tutorial! It has been the most valuable 
+source of information for me in getting this far with the RFM modules!</p>
+<p>Cheers,<br>
+Dirk</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-1164">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite>gnrcampos</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1164" title="">September 18th, 2011 at 11:50 am</a> </small>
+
+			<p>Hello Stephen,</p>
+<p>I’ve been trying to use the code you made available and been going 
+through some trouble. I’m using PIC18F4550 and RFM12B on both sides of 
+the (not yet) communication. I’m also using the MPLAB IDE, so I had to 
+make some changes to your code and this may be the reason why it is not 
+working.</p>
+<p>I think the first problem to be solved is in the tx side, since the 
+LED is supposed to blink after the transmittion and it is not doing so.</p>
+<p>I commented this part of your code in both sides becouse I simply did not know what was it about, can you make it clear for me?</p>
+<p>	osccon = 0×70;				// 8Mhz internal OSC<br>
+	ansel = 0;					// all is digital i/o on PortA<br>
+	option_reg.NOT_RBPU = 0;	// enable pullup resistors on PB<br>
+	option_reg.INTEDG = 0;		// falling edge interrupt</p>
+<p>I suppose the second line is just to deal with the disable of the analogic functions, but the other ones I don’t have a clue!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1165">
+		<div class="photo"><img alt="" src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/4998748ebc15dc9431606eab51f8d0c4.gif" class="avatar avatar-32 photo" height="32" width="32"></div>
+			<cite><a href="http://blog.strobotics.com.au/" rel="external nofollow" class="url">Stephen Eaton</a></cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-1165" title="">September 19th, 2011 at 9:28 am</a> </small>
+
+			<p>@gnrcampos</p>
+<p>The code is commented, and pretty self explantry, as the interrupt of
+ the RFM12B it is a low enable so enabling pullups so no spurios 
+interrupts occur last line is setting up the interrupt edge</p>
+
+		</li>
+
+	
+	
+	</ol>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+<p>You must be <a href="http://blog.strobotics.com.au/wp-login.php?redirect_to=http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/">logged in</a> to post a comment.</p>
+
+			</div>
+					<p align="center"></p>		
+	</div>
+	<div id="sidebar">
+		<h2>Archived Entry</h2>
+	<ul>
+	<li><strong>Post Date:</strong></li>
+	<li>Monday, Jul 27th, 2009 at 11:06 pm</li>
+	<li><strong>Category:</strong></li>
+	<li><a href="http://blog.strobotics.com.au/topics/embedded/rfm12b/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> and <a href="http://blog.strobotics.com.au/topics/tutorials/rfm12b-tutorials/" title="View all posts in RFM12B" rel="category tag">RFM12B</a> and <a href="http://blog.strobotics.com.au/topics/tutorials/" title="View all posts in Tutorials" rel="category tag">Tutorials</a></li>
+	<li><strong>Do More:</strong></li>
+	<li>							You can <a href="#respond">leave a response</a>, or <a href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/trackback/">trackback</a> from your own site.
+						
+						</li>
+	</ul>
+
+		
+<h2>Elsewhere</h2>
+<ul>
+
+	<li><strong>Latest</strong></li>
+		
+		
+				<li><a href="http://blog.strobotics.com.au/2012/08/17/im-back/" title="I’m Back !!!!">I’m Back !!!!</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/11/05/putting-the-project-into-an-enclosurepart-2-machining-the-case/" title="Putting the Project into an Enclosure–Part 2 Machining the Case">Putting the Project into an Enclosure–Part 2 Machining the Case</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/11/05/putting-the-project-into-an-enclosure-part-1/" title="Putting the Project into an Enclosure – Part 1">Putting the Project into an Enclosure – Part 1</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/08/04/rallylog-fusebits/" title="#Rallylog Fusebits">#Rallylog Fusebits</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/23/site-housekeeping/" title="Site Housekeeping">Site Housekeeping</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/21/rallylog-testing-progress/" title="RallyLog Testing Progress">RallyLog Testing Progress</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/21/rallylog-assembly-progress/" title="Rallylog Assembly Progress">Rallylog Assembly Progress</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/16/new-toy-for-pcb-inspections/" title="New Tool for PCB inspections">New Tool for PCB inspections</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/07/13/rallylog-pcb-boards-reva/" title="Rallylog PCB Boards REVA">Rallylog PCB Boards REVA</a></li>
+	<li><a href="http://blog.strobotics.com.au/2010/06/25/my-move-to-kicad/" title="My Move to Kicad">My Move to Kicad</a></li>
+	
+</ul>
+	</div>
+<p id="footer"><small>Powered by <a href="http://www.wordpress.org/" title="Wordpress is a state-of-the-art semantic personal publishing platform">WordPress 3.4.1</a>.   using the <a href="http://disconnected.sf.net/" title="Disconnected Theme">Disconnected</a> theme by <a href="http://archgfx.net/" title="theme designer">Adam Freetly</a>.<br> 
+
+	
+<!-- 23 queries. 0.942 seconds. -->
+</small></p>
+
+
+
+
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="RFM12%20Tutorial%20%E2%80%93%20Part%203a_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-2409861-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<p><a onclick='document.cookie="wpmp_switcher=mobile;path=/;expires=Tue, 01-01-2030 00:00:00 GMT";' href="http://blog.strobotics.com.au/2009/07/27/rfm12-tutorial-part-3a/?wpmp_switcher=mobile">Switch to our mobile site</a></p><span id="wpmp_analytics"></span><div id="podPress_footer">Podcast powered by <a href="http://wordpress.org/extend/plugins/podpress/" title="podPress, a plugin for podcasting with WordPress">podPress v8.8.10.13</a></div>	<script type="text/javascript">
+		// PrintFriendly
+		var e = document.createElement('script'); e.type="text/javascript"; e.async = true; 
+		e.src = '//cdn.printfriendly.com/printfriendly.js';
+		document.getElementsByTagName('head')[0].appendChild(e);
+	</script>
+				</div>
+</div>
+
+
+
+</body></html>
+<!-- Dynamic Page Served (once) in 0.943 seconds -->
