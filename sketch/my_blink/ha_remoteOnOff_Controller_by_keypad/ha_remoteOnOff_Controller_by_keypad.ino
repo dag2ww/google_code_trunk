@@ -150,12 +150,9 @@ void setup() {
   //WDTCSR = 0;
 
   ledsMode = LEDS_MODE_TXRX;
-  pinMode(TEMPERATURE_PIN, INPUT);
   pinMode(LED1_PIN, OUTPUT);
   pinMode(LED2_PIN, OUTPUT);
   pinMode(TONE_PIN, OUTPUT);
-  pinMode(MAINS_CIRCUIT_1_CTRL_PIN, OUTPUT);
-  pinMode(MAINS_CIRCUIT_2_CTRL_PIN, OUTPUT);
   pinMode(LED_MODE_BUTTON_PIN, INPUT);
 
   //
@@ -205,11 +202,11 @@ void powerOnCircuitLoop() {
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillisCircuit_1 > intervalCircuit_1) {
     //HIGH state disables the realy on Electrodragon module
-    digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, HIGH);
+    //digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, HIGH);
     circuitsState = circuitsState & (~1);
   }
   if (currentMillis - previousMillisCircuit_2 > intervalCircuit_2) {
-    digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, HIGH);
+    //digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, HIGH);
     circuitsState = circuitsState & (~2);
   }
 }
@@ -218,13 +215,13 @@ void powerOnCircuit_1(int duration) {
   intervalCircuit_1 = duration;
   previousMillisCircuit_1 = millis();
   //LOW state enables the electrodragon relay module
-  digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, LOW);
+  //digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, LOW);
 }
 
 void powerOnCircuit_2(int duration) {
   intervalCircuit_2 = duration;
   previousMillisCircuit_2 = millis();
-  digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, LOW);
+  //digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, LOW);
 }
 
 
@@ -363,6 +360,7 @@ boolean checkFinger() {
   while (key != '#') {
     key = customKeypad.getKey();
     if (key != lastKey) {
+      Serial.println(key);
       if (key == '*') {
         verification = "";
       } else {
@@ -373,7 +371,8 @@ boolean checkFinger() {
     lastKey = key;
   }
 
-  identificationResult = (verification.equals("1234"));
+  Serial.println("Checking verification: "+verification);
+  identificationResult = (verification.equals("1234#"));
   if (identificationResult == false) {
     digitalWrite(LED1_PIN, HIGH);
     delay(300);
