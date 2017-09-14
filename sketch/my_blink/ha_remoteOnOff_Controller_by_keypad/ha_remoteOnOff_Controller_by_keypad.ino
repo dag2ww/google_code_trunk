@@ -21,7 +21,7 @@
 // 2. Identify failure - red, bright - fast double blink (+ sound signal optionally)
 // 3. Scanning - built in blue scannning led
 // 4. Identify succeeded - green, bright - fast double blink and then gate open
-
+#include <EEPROM.h>
 #include <avr/wdt.h>
 #include "Keypad.h"
 // include the library code:
@@ -41,10 +41,10 @@
 // SCK: pin 13
 
 
-#define LED1_PIN A0
-#define LED2_PIN 8
-#define TONE_PIN 7
-#define LED_MODE_BUTTON_PIN 6
+#define LED1_PIN A1
+#define LED2_PIN A2
+#define TONE_PIN A3
+#define LED_MODE_BUTTON_PIN A0
 
 #define MAINS_SENSOR_READ_DELAY 1000
 
@@ -115,13 +115,13 @@ const byte ROWS = 4; //four rows
 const byte COLS = 3; //four columns
 //define the cymbols on the buttons of the keypads
 char hexaKeys[ROWS][COLS] = {
-  {'1', '2', '3'},
-  {'4', '5', '6'},
-  {'7', '8', '9'},
-  {'*', '0', '#'}
+  {'*', '0', '#'},
+  {'8', '7', '9'},
+  {'5', '4', '6'},
+  {'2', '1', '3'}
 };
-byte rowPins[ROWS] = {3, 2, 1, 0}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {10, 5, 4}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {8, 7, 6}; //connect to the column pinouts of the keypad
 
 //initialize an instance of class NewKeypad
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
@@ -141,7 +141,17 @@ const uint64_t SensorToInfoStationPipes[3] = { 0xF0F0F0F0D6LL, 0xF0F0F0F0E5LL};
 const uint64_t InfoToPowerStationPipes[2] = { 0xF0F0F0F0C7LL, 0xF0F0F0F0B8LL};
 const uint64_t PowerToInfoStationPipes[3] = { 0xF0F0F0F0B8LL, 0xF0F0F0F0C7LL};
 
+char secret[6]; 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Started ...");
+  for(int i = 0; i < 6; i++){
+    char value = EEPROM.read(i);
+    secret[i] = value;  
+  }
+  Serial.print("retrieved secret:");
+  Serial.print(secret);
+  
   //not needed with optiboot which handles this correctly
   // Clear the reset bit
   //MCUSR &= ~_BV(WDRF);
@@ -153,7 +163,7 @@ void setup() {
   pinMode(LED1_PIN, OUTPUT);
   pinMode(LED2_PIN, OUTPUT);
   pinMode(TONE_PIN, OUTPUT);
-  pinMode(LED_MODE_BUTTON_PIN, INPUT);
+  pinMode(LED_MODE_BUTTON_PIN, INPUT_PULLUP);
 
   //
   // Setup and configure rf radio
@@ -348,7 +358,6 @@ void handleUserButton() {
 boolean checkFinger() {
   boolean identificationResult = false;
   int retries = 0;
-  Serial.begin(9600);
   digitalWrite(LED1_PIN, HIGH);
   digitalWrite(LED2_PIN, HIGH);
   delay(250);
@@ -359,7 +368,36 @@ boolean checkFinger() {
 
   while (key != '#') {
     key = customKeypad.getKey();
-    if (key != lastKey) {
+    if(key){
+      digitalWrite(TONE_PIN, HIGH);
+      Serial.println(key);
+        //add to verification
+        verification = verification+key;
+      
+      delay(30);
+      digitalWrite(TONE_PIN, LOW);
+    }
+    lastKey = key;
+  }
+
+  if(verification.equals("**7*#")){
+    digitalWrite(TONE_PIN, HIGH);
+    delay(100);
+    digitalWrite(TONE_PIN, LOW);
+    delay(100);
+    digitalWrite(TONE_PIN, HIGH);
+    delay(100);
+    digitalWrite(TONE_PIN, LOW);
+    delay(100);
+    digitalWrite(TONE_PIN, HIGH);
+    delay(100);
+    digitalWrite(TONE_PIN, LOW);
+verification = "";
+key = 0;
+ while (key != '#' && verification.length() < 5) {
+    key = customKeypad.getKey();
+    if(key){
+      digitalWrite(TONE_PIN, HIGH);
       Serial.println(key);
       if (key == '*') {
         verification = "";
@@ -367,12 +405,32 @@ boolean checkFinger() {
         //add to verification
         verification = verification+key;
       }
+      delay(30);
+      digitalWrite(TONE_PIN, LOW);
     }
-    lastKey = key;
+   
   }
+    digitalWrite(TONE_PIN, HIGH);
+    delay(100);
+    digitalWrite(TONE_PIN, LOW);
+    delay(100);
+    digitalWrite(TONE_PIN, HIGH);
+    delay(100);
+    digitalWrite(TONE_PIN, LOW);
+    delay(100);
 
+verification.toCharArray(secret, 6);
+for(int i = 0; i < 6; i++){
+    EEPROM.write(i, secret[i]);
+}
+Serial.print("new secret:");
+  Serial.print(secret);
+
+
+    
+  }
   Serial.println("Checking verification: "+verification);
-  identificationResult = (verification.equals("1234#"));
+  identificationResult = (verification.equals("7570#"));
   if (identificationResult == false) {
     digitalWrite(LED1_PIN, HIGH);
     delay(300);
@@ -385,7 +443,8 @@ boolean checkFinger() {
     delay(100);
   }
 
-
+Serial.print("Verification result: ");
+Serial.print(identificationResult);
 return identificationResult;
 }
 
