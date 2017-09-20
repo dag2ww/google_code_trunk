@@ -13,7 +13,7 @@ void setup() {
 
 void loop() {
   digitalWrite(13, HIGH);   // set the LED on
-  delay(100);              // wait for a second
+  delay(2000);              // wait for 1/10th of a second
   digitalWrite(13, LOW);    // set the LED off
-  delay(100);              // wait for a second
+  delay(2000);              // wait for 1/10h of a second
 }

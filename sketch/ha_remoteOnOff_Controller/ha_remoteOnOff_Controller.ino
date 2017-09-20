@@ -2,18 +2,18 @@
 //The AVR hardware clears the global interrupt flag in SREG before entering an interrupt vector. Thus, normally interrupts will remain disabled inside the handler until the handler exits, where the RETI instruction (that is emitted by the compiler as part of the normal function epilogue for an interrupt handler) will eventually re-enable further interrupts. For that reason, interrupt handlers normally do not nest. For most interrupt handlers, this is the desired behaviour, for some it is even required in order to prevent infinitely recursive interrupts (like UART interrupts, or level-triggered external interrupts). In rare circumstances though it might be desired to re-enable the global interrupt flag as early as possible in the interrupt handler, in order to not defer any other interrupt more than absolutely needed. This could be done using an sei() instruction right at the beginning of the interrupt handler, but this still leaves few instructions inside the compiler-generated function prologue to run with global interrupts disabled.
 
 /**
-
-   Pins:
-   Hardware SPI:
-   MISO -> 12
-   MOSI -> 11
-   SCK -> 13
-
-   Configurable:
-   CE -> 10
-   CSN -> 9
-
-*/
+ *
+ * Pins:
+ * Hardware SPI:
+ * MISO -> 12
+ * MOSI -> 11
+ * SCK -> 13
+ *
+ * Configurable:
+ * CE -> 10
+ * CSN -> 9
+ *
+ */
 
 // Design decisions:
 // Leds:
@@ -21,11 +21,10 @@
 // 2. Identify failure - red, bright - fast double blink (+ sound signal optionally)
 // 3. Scanning - built in blue scannning led
 // 4. Identify succeeded - green, bright - fast double blink and then gate open
-#include <EEPROM.h>
+ 
 #include <avr/wdt.h>
-#include "Keypad.h"
 // include the library code:
-//#include <OneWire.h>
+#include <OneWire.h>
 #include <SPI.h>
 
 #include "RF24.h"
@@ -39,12 +38,15 @@
 // MOSI: pin 11
 // MISO: pin 12
 // SCK: pin 13
-
-
-#define LED1_PIN A1
-#define LED2_PIN A2
-#define TONE_PIN A3
-#define LED_MODE_BUTTON_PIN A0
+#define MAINS_CIRCUIT_1_CTRL_PIN A1
+#define MAINS_CIRCUIT_1_ON_DETECTOR_PIN A2
+#define MAINS_CIRCUIT_2_CTRL_PIN A3
+#define MAINS_CIRCUIT_2_ON_DETECTOR_PIN A4
+#define TEMPERATURE_PIN A5
+#define LED1_PIN A0         
+#define LED2_PIN 8         
+#define TONE_PIN 7
+#define LED_MODE_BUTTON_PIN 6
 
 #define MAINS_SENSOR_READ_DELAY 1000
 
@@ -63,23 +65,22 @@
 #define LEDS_MODE_TXRX 1
 #define LEDS_MODE_POWER_STATUS 2
 
-char lastKey;
 //to test if our receiver is working and getting sth
 unsigned long lastAnyRadioResponse = 0;
 
-unsigned long previousMillisLed1 = 0;
-unsigned long previousMillisLed2 = 0;
-unsigned long previousMillisTemp = 0;
-unsigned long previousMillisTXRX = 0;
-unsigned long lastMainsControllCircuitActiveTime_1 = 0;
-unsigned long lastMainsControllCircuitActiveTime_2 = 0;
+unsigned long previousMillisLed1=0;
+unsigned long previousMillisLed2=0;
+unsigned long previousMillisTemp=0;
+unsigned long previousMillisTXRX=0;
+unsigned long lastMainsControllCircuitActiveTime_1=0;
+unsigned long lastMainsControllCircuitActiveTime_2=0;
 unsigned int ledsMode;
 //bits are 1 in case given circuit is on
 unsigned int circuitsState = 0;
 
 //button handling
 int lastButtonState;
-unsigned long last_send_interval = 0;
+unsigned long last_send_interval=0;
 unsigned long lastButtonDebounceTime;
 int lastButtonStateReading;
 unsigned long requestOnTriggerToken;
@@ -111,27 +112,11 @@ word checksum = 0;
 byte highcheck = 0;
 byte lowcheck = 0;
 
-const byte ROWS = 4; //four rows
-const byte COLS = 3; //four columns
-//define the cymbols on the buttons of the keypads
-char hexaKeys[ROWS][COLS] = {
-  {'*', '0', '#'},
-  {'8', '7', '9'},
-  {'5', '4', '6'},
-  {'2', '1', '3'}
-};
-byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {8, 7, 6}; //connect to the column pinouts of the keypad
-
-//initialize an instance of class NewKeypad
-Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
-
-
 //initialize one wire connection to Dallas temperature sensor
-//OneWire ds(TEMPERATURE_PIN);
+OneWire ds(TEMPERATURE_PIN);
 
 // Set up nRF24L01 radio on SPI bus plus pins ce = 10  & csn = 9
-RF24 radio(10, 9);
+RF24 radio(10,9);
 
 // Radio pipe addresses for the 2 nodes to communicate.
 //Tx,Rx
@@ -141,178 +126,208 @@ const uint64_t SensorToInfoStationPipes[3] = { 0xF0F0F0F0D6LL, 0xF0F0F0F0E5LL};
 const uint64_t InfoToPowerStationPipes[2] = { 0xF0F0F0F0C7LL, 0xF0F0F0F0B8LL};
 const uint64_t PowerToInfoStationPipes[3] = { 0xF0F0F0F0B8LL, 0xF0F0F0F0C7LL};
 
-char secret[11];
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Started ...");
-  for (int i = 0; i < 11; i++) {
-    char value = EEPROM.read(i);
-    secret[i] = value;
-  }
-  Serial.print("retrieved secret:");
-  Serial.print(secret);
-
   //not needed with optiboot which handles this correctly
   // Clear the reset bit
   //MCUSR &= ~_BV(WDRF);
   // Disable the WDT
-  //WDTCSR |= _BV(WDCE) | _BV(WDE);
+  //WDTCSR |= _BV(WDCE) | _BV(WDE); 
   //WDTCSR = 0;
 
   ledsMode = LEDS_MODE_TXRX;
-  pinMode(LED1_PIN, OUTPUT);
-  pinMode(LED2_PIN, OUTPUT);
+  pinMode(TEMPERATURE_PIN, INPUT);
+  pinMode(LED1_PIN, OUTPUT);         
+  pinMode(LED2_PIN, OUTPUT);         
   pinMode(TONE_PIN, OUTPUT);
-  pinMode(LED_MODE_BUTTON_PIN, INPUT_PULLUP);
-
+  pinMode(MAINS_CIRCUIT_1_CTRL_PIN, OUTPUT);
+  pinMode(MAINS_CIRCUIT_2_CTRL_PIN, OUTPUT);
+  pinMode(LED_MODE_BUTTON_PIN, INPUT);
+   
   //
   // Setup and configure rf radio
   //
   radio.begin();
   // optionally, increase the delay between retries & # of retries
-  radio.setRetries(15, 15);
+  radio.setRetries(15,15);
   //setDataRate()  RF24_2MBPS, RF24_250KBPS
   radio.setDataRate(RF24_250KBPS);
   // radio.setPALevel( RF24_PA_MAX );
   // optionally, reduce the payload size.  seems to
   // improve reliability
   radio.setPayloadSize(8);
-  radio.setChannel(85);
-
+  radio.setChannel(85);  
+  
   radio.openWritingPipe(InfoToPowerStationPipes[0]);
-  radio.openReadingPipe(1, InfoToPowerStationPipes[1]);
-
+  radio.openReadingPipe(1,InfoToPowerStationPipes[1]);
+  
   radio.startListening();
   //radio.printDetails();
-
+  
   //Start the watchdog beast to be hungry after 2 sec
-  //wdt_reset();
+  //wdt_reset(); 
   //wdt_enable(WDTO_2S);
-  digitalWrite(LED1_PIN, HIGH);
-  digitalWrite(LED2_PIN, HIGH);
-  delay(250);
-  digitalWrite(LED2_PIN, LOW);
-  digitalWrite(LED1_PIN, LOW);
+   digitalWrite(LED1_PIN, HIGH);
+   digitalWrite(LED2_PIN, HIGH);
+   delay(250);
+   digitalWrite(LED2_PIN, LOW);
+   digitalWrite(LED1_PIN, LOW);
 
 
 }
 
 void loop() {
-  blinkTheLEDLoop();
+  blinkTheLEDLoop(); 
   handleSendReceiveRF24();
   handleUserButton();
   //if no message from radio since 1 minute - allow reset
   //if(millis() - lastAnyRadioResponse < 60000){
   //  wdt_reset();
-  //}
+  //}  
 }
 
 
-void powerOnCircuitLoop() {
+void powerOnCircuitLoop(){
   unsigned long currentMillis = millis();
-  if (currentMillis - previousMillisCircuit_1 > intervalCircuit_1) {
+  if(currentMillis - previousMillisCircuit_1 > intervalCircuit_1) {
     //HIGH state disables the realy on Electrodragon module
-    //digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, HIGH);
+    digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, HIGH);
     circuitsState = circuitsState & (~1);
   }
-  if (currentMillis - previousMillisCircuit_2 > intervalCircuit_2) {
-    //digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, HIGH);
+   if(currentMillis - previousMillisCircuit_2 > intervalCircuit_2) {
+    digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, HIGH);
     circuitsState = circuitsState & (~2);
   }
 }
 
-void powerOnCircuit_1(int duration) {
+void powerOnCircuit_1(int duration){
   intervalCircuit_1 = duration;
-  previousMillisCircuit_1 = millis();
+  previousMillisCircuit_1 = millis(); 
   //LOW state enables the electrodragon relay module
-  //digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, LOW);
+  digitalWrite(MAINS_CIRCUIT_1_CTRL_PIN, LOW);
 }
 
-void powerOnCircuit_2(int duration) {
+void powerOnCircuit_2(int duration){
   intervalCircuit_2 = duration;
-  previousMillisCircuit_2 = millis();
-  //digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, LOW);
+  previousMillisCircuit_2 = millis(); 
+  digitalWrite(MAINS_CIRCUIT_2_CTRL_PIN, LOW);  
 }
 
 
-void blinkTheLEDLoop() {
+void blinkTheLEDLoop(){
   unsigned long currentMillis = millis();
-  if (currentMillis - previousMillisLed1 > intervalLED1) {
+  if(currentMillis - previousMillisLed1 > intervalLED1) {
     digitalWrite(LED1_PIN, LOW);
   }
-  if (currentMillis - previousMillisLed2 > intervalLED2) {
+   if(currentMillis - previousMillisLed2 > intervalLED2) {
     digitalWrite(LED2_PIN, LOW);
   }
 }
 
-void blinkTheLED1(int duration) {
+void blinkTheLED1(int duration){
   intervalLED1 = duration;
-  previousMillisLed1 = millis();
-  digitalWrite(LED1_PIN, HIGH);
+  previousMillisLed1 = millis(); 
+  digitalWrite(LED1_PIN, HIGH);  
 }
 
-void blinkTheLED2(int duration) {
+void blinkTheLED2(int duration){
   intervalLED2 = duration;
-  previousMillisLed2 = millis();
-  digitalWrite(LED2_PIN, HIGH);
+  previousMillisLed2 = millis(); 
+  digitalWrite(LED2_PIN, HIGH);  
 }
 
-//Get temperature from DS18B22
-void getDS18B22Temperature() {
-  return;
-
-}
-
-void handleSendReceiveRF24() {
+ //Get temperature from DS18B22
+void getDS18B22Temperature(){
+  //to be frequenty called, e.g. directly from loop
+ if(!waitForConversion){ 
+   //find a device
+   if (!ds.search(taddr)) {
+     ds.reset_search();
+     return;
+   }
+   if (OneWire::crc8( taddr, 7) != taddr[7]) {
+     return;
+   }
+   if (taddr[0] != DS18S20_ID && taddr[0] != DS18B20_ID) {
+     return;
+   }
+   ds.reset();
+   ds.select(taddr);
+   // Start conversion
+   ds.write(0x44, 1);
+   // Wait some time...
+   waitForConversion = true;
+   previousMillisTemp = millis();
+   } 
+ else {
+   unsigned long currentMillis = millis();
+   //in case of overflow, which will happen every 50 days, just read whaever is there, next read will be correctly waited.
+   if((currentMillis - previousMillisTemp > 850) || (currentMillis - previousMillisTemp < 0)) {
+      waitForConversion = false;   
+      //reset DS sensor
+      ds.reset();
+      ds.select(taddr);
+      // Issue Read scratchpad command
+      ds.write(0xBE);
+      // Receive 9 bytes
+      for ( ti = 0; ti < 9; ti++) {
+        tdata[ti] = ds.read();
+      }
+      // Calculate temperature value
+      temp = ( (tdata[1] << 8) + tdata[0] )*0.0625;
+      }
+   }
+ }
+ 
+ void handleSendReceiveRF24(){
   byte data[radio.getPayloadSize()];
 
-  //RECEIVE
+  //RECEIVE 
   // If a rf package is available - process it
-  if (radio.available()) {
-    if (ledsMode == LEDS_MODE_TXRX) {
-      digitalWrite(LED1_PIN, HIGH);
-    }
-    boolean readingDone = false;
-
-    while (!readingDone) {
-      readingDone = radio.read( &data, radio.getPayloadSize() );
-      msgType = data[0];
-      if ( msgType == REQUEST_ON_TRIGGER_INPUT) {
-        //requestOnTriggerToken = (unsigned long)(data[4] << 24) | (data[3] << 16) | (data[2] << 8) | data[1];
-        requestOnTriggerToken = 0;
-        requestOnTriggerToken = data[4];
-        requestOnTriggerToken = (requestOnTriggerToken << 8) | data[3];
-        requestOnTriggerToken = (requestOnTriggerToken << 8) | data[2];
-        requestOnTriggerToken = (requestOnTriggerToken << 8) | data[1];
-        receivedRequest = true;
-      }
-    }
-    if (ledsMode == LEDS_MODE_TXRX) {
-      digitalWrite(LED1_PIN, LOW);
-    }
-    lastAnyRadioResponse = millis();
-  }
-
+  if(radio.available()){
+     if(ledsMode == LEDS_MODE_TXRX){    
+       digitalWrite(LED1_PIN, HIGH);
+     }
+     boolean readingDone = false;  
+     
+     while(!readingDone){
+       readingDone = radio.read( &data, radio.getPayloadSize() );
+       msgType = data[0];
+       if( msgType == REQUEST_ON_TRIGGER_INPUT) {
+         //requestOnTriggerToken = (unsigned long)(data[4] << 24) | (data[3] << 16) | (data[2] << 8) | data[1];
+         requestOnTriggerToken = 0;
+         requestOnTriggerToken = data[4];
+         requestOnTriggerToken = (requestOnTriggerToken <<8) | data[3];
+         requestOnTriggerToken = (requestOnTriggerToken <<8) | data[2];
+         requestOnTriggerToken = (requestOnTriggerToken <<8) | data[1];
+         receivedRequest = true;  
+     }
+     }
+     if(ledsMode == LEDS_MODE_TXRX){ 
+      digitalWrite(LED1_PIN, LOW); 
+     }
+     lastAnyRadioResponse = millis();
+  } 
+  
   //SEND
-
+  
   if ( receivedRequest ) {
-    if (msgType == REQUEST_ON_TRIGGER_INPUT) {
+    if(msgType == REQUEST_ON_TRIGGER_INPUT){
       msgType = ANSW_NONE;
       data[0] = REQUEST_ON_TRIGGER_FINAL;
       requestOnTriggerToken = (requestOnTriggerToken >> 3) + 15;
-      data[1] = requestOnTriggerToken & 0xFF;
-      data[2] = (requestOnTriggerToken >> 8) & 0xFF;
-      data[3] = (requestOnTriggerToken >> 16) & 0xFF;
-      data[4] = (requestOnTriggerToken >> 24) & 0xFF;
+        data[1] = requestOnTriggerToken & 0xFF;
+                 data[2] = (requestOnTriggerToken >> 8) & 0xFF;
+         data[3] = (requestOnTriggerToken >> 16) & 0xFF;
+         data[4] = (requestOnTriggerToken >> 24) & 0xFF;
     } else {
-      data[0] = REQUEST_ON_TRIGGER;
+    data[0] = REQUEST_ON_TRIGGER;
     }
     receivedRequest = false;
     // Delay just a little bit to let the other unit
     // make the transition to receiver
     delay(40);
-    if (ledsMode == LEDS_MODE_TXRX) {
-      digitalWrite(LED2_PIN, HIGH);
+    if(ledsMode == LEDS_MODE_TXRX){
+      digitalWrite(LED2_PIN, HIGH);     
     }
     //do the transmission
     //printf("Now sending: %d...",data[0]);
@@ -322,155 +337,123 @@ void handleSendReceiveRF24() {
     bool ok = radio.write( data, radio.getPayloadSize() );
     // Now, continue listening
     radio.startListening();
-
+    
     //if (ok)
     //  printf("ACK");
     //else
     //  printf("NO_ACK.\n\r");
     //if(ledsMode == LEDS_MODE_TXRX){
-    //   digitalWrite(LED2_PIN, LOW);
+    //   digitalWrite(LED2_PIN, LOW);     
     // }
     delay(10);
   }
 }
 
-void handleUserButton() {
-  int reading = digitalRead(LED_MODE_BUTTON_PIN);
-  // If the switch changed, due to noise or pressing:
-  if (reading != lastButtonState) {
-    // reset the debouncing timer
-    lastButtonDebounceTime = millis();
-  }
-  if ((millis() - lastButtonDebounceTime) > 50) {
+void handleUserButton(){
+   int reading = digitalRead(LED_MODE_BUTTON_PIN);
+   // If the switch changed, due to noise or pressing:
+   if (reading != lastButtonState) {
+     // reset the debouncing timer
+     lastButtonDebounceTime = millis();
+   }
+   if ((millis() - lastButtonDebounceTime) > 50) {
     // whatever the reading is at, it's been there for longer
     // than the debounce delay, so take it as the actual current state:
-    if (reading == LOW && (reading != lastButtonStateReading)) {
+    if(reading == LOW && (reading != lastButtonStateReading)){
       //if finger verification OK --> request ate to be opened
       receivedRequest = checkFinger();
     }
     lastButtonStateReading = reading;
-  }
-  // save the reading.  Next time through the loop,
-  // it'll be the lastButtonState:
-  lastButtonState = reading;
+   }
+    // save the reading.  Next time through the loop,
+    // it'll be the lastButtonState:
+    lastButtonState = reading;
 }
 
-boolean checkFinger() {
-  boolean identificationResult = false;
-  int retries = 0;
-  digitalWrite(LED1_PIN, HIGH);
-  digitalWrite(LED2_PIN, HIGH);
-  delay(250);
-  digitalWrite(LED2_PIN, LOW);
-  digitalWrite(LED1_PIN, LOW);
-  String verification = "";
-  char key = customKeypad.getKey();
+boolean checkFinger(){
+   boolean identificationResult = false;
+   int retries = 0;   
+   Serial.begin(9600);
+   digitalWrite(LED1_PIN, HIGH);
+   digitalWrite(LED2_PIN, HIGH);
+   delay(250);
+   digitalWrite(LED2_PIN, LOW);
+   digitalWrite(LED1_PIN, LOW);
 
-  while (key != '#') {
-    key = customKeypad.getKey();
-    if (key) {
-      digitalWrite(TONE_PIN, HIGH);
-      Serial.println(key);
-      //add to verification
-      verification = verification + key;
+   flushSerialInput();
 
-      delay(30);
-      digitalWrite(TONE_PIN, LOW);
-    }
-    lastKey = key;
-  }
+   //Open
+   sendCommand(0x01, 0);
+   consumeResponse();
 
-  if (verification.equals("**7*#")) {
-    digitalWrite(TONE_PIN, HIGH);
-    delay(100);
-    digitalWrite(TONE_PIN, LOW);
-    delay(100);
-    digitalWrite(TONE_PIN, HIGH);
-    delay(100);
-    digitalWrite(TONE_PIN, LOW);
-    delay(100);
-    digitalWrite(TONE_PIN, HIGH);
-    delay(100);
-    digitalWrite(TONE_PIN, LOW);
-    verification = "";
-    key = 0;
-    while (key != '#' && verification.length() < 10) {
-      key = customKeypad.getKey();
-      if (key) {
-        digitalWrite(TONE_PIN, HIGH);
-        Serial.println(key);
-        if (key == '*') {
-          verification = "";
-        } else {
-          //add to verification
-          verification = verification + key;
-        }
-        delay(30);
-        digitalWrite(TONE_PIN, LOW);
-      }
-
-    }
-    
-    digitalWrite(TONE_PIN, HIGH);
-    delay(100);
-    digitalWrite(TONE_PIN, LOW);
-    delay(100);
-    digitalWrite(TONE_PIN, HIGH);
-    delay(100);
-    digitalWrite(TONE_PIN, LOW);
-    delay(100);
-
-    verification.toCharArray(secret, 11);
-    for (int i = 0; i < 11; i++) {
-      EEPROM.write(i, secret[i]);
-    }
-    Serial.print("new secret:");
-    Serial.print(secret);
-
-
-
-  }
-  Serial.println("Checking verification: " + verification);
-  identificationResult = (verification.equals(secret));
-  if (identificationResult == false) {
-    digitalWrite(LED1_PIN, HIGH);
-    delay(300);
-    digitalWrite(LED1_PIN, LOW);
-    delay(100);
-  } else {
-    digitalWrite(LED2_PIN, HIGH);
-    delay(300);
-    digitalWrite(LED2_PIN, LOW);
-    delay(100);
-  }
-
-  Serial.print("Verification result: ");
-  Serial.print(identificationResult);
-  return identificationResult;
+   while((retries < 10) && (identificationResult == false)){
+     ++retries;
+     int retries2 = 0;
+     //0x12; //The command goes here. This is the command for the LED - we turn it on for capture.
+     sendCommand(0x12, 1);
+     consumeResponse();
+     
+     while(retries2 < 3){
+       ++retries2;
+       //0x60 - capture finger, param: 0 = non high quality but fast - use for capture for identification or verification
+       sendCommand(0x60, 1);
+       consumeResponse();
+       
+       //0x51 - now identify if we know this guy
+       sendCommand(0x51, 0);   
+       
+       //process response
+       identificationResult = processIdentificationResponse();
+       if(identificationResult == true){
+         break;    
+       }
+     }
+     //turn the led off
+     sendCommand(0x12, 0);
+     consumeResponse();
+     
+     if(identificationResult == false){
+       digitalWrite(LED1_PIN, HIGH);
+       delay(300);
+       digitalWrite(LED1_PIN, LOW);
+       delay(100);
+     } else {
+       digitalWrite(LED2_PIN, HIGH);
+       delay(300);
+       digitalWrite(LED2_PIN, LOW);       
+       delay(100);
+       break;
+     }
+   }
+   //Close
+   sendCommand(0x02, 0);
+   consumeResponse();
+   Serial.end();
+   return identificationResult;
 }
 
-boolean processIdentificationResponse() {
+boolean processIdentificationResponse(){
   boolean result = false;
-  byte inByte = 0;
+  byte inByte=0;
   //wait for response start byte
-  while (waitAndReadSerialByte() != (byte)0x55);
+  while(waitAndReadSerialByte() != (byte)0x55);
   //0xAA
   waitAndReadSerialByte();
   //dev id
   waitAndReadSerialByte();
   waitAndReadSerialByte();
-  // response param
+  // response param 
   waitAndReadSerialByte();
   waitAndReadSerialByte();
   waitAndReadSerialByte();
   waitAndReadSerialByte();
   //response (ACK or NACK)
   inByte = waitAndReadSerialByte();
-  if (inByte == (byte)0x30) {
+  if(inByte == (byte)0x30){
     result = true;
-  }
+  } 
   inByte = waitAndReadSerialByte();
-  if (inByte == (byte)0x30) {
+  if(inByte == (byte)0x30){
     result = true;
   }
   // checksum
@@ -479,7 +462,7 @@ boolean processIdentificationResponse() {
   return result;
 }
 
-void sendCommand(byte command1, byte param1) {
+void sendCommand(byte command1, byte param1){
   valueToWORD(param1); //This value is the parameter being send to the device. 0 will turn the LED off, while 1 will turn it on.
   calcChecksum(command1, highbyte, lowbyte); //This function will calculate the checksum which tells the device that it received all the data
   Serial.write((byte)0x55); //Command start code 1
@@ -496,39 +479,39 @@ void sendCommand(byte command1, byte param1) {
   Serial.write((byte)highcheck); //writes the smallest byte of the checksum
 }
 
-void flushSerialInput() {
-  while (Serial.available() > 0) {
+void flushSerialInput(){
+  while(Serial.available() > 0){
     Serial.read();
   }
 }
 
-void consumeResponse() {
+void consumeResponse(){
   //length of response
   byte i = 12;
   //wait for response
   while (Serial.available() <= 0);
   //read this into dev null
-  while (i > 0) {
+  while (i>0){
     //if there were data read, sdecrement todo counter
-    if (Serial.read() != -1) {
+    if(Serial.read() != -1){
       --i;
     }
   }
 }
 
-byte waitAndReadSerialByte() {
+byte waitAndReadSerialByte(){
   //wait if the data is not there yet
   while (Serial.available() <= 0);
   //now read a byte and return it
   return lowByte(Serial.read());
 }
 
-void valueToWORD(int v) { //turns the word you put into it (the paramter in the code above) to two bytes
+void valueToWORD(int v){ //turns the word you put into it (the paramter in the code above) to two bytes
   highbyte = highByte(v); //the high byte is the first byte in the word
   lowbyte = lowByte(v); //the low byte is the last byte in the word (there are only 2 in a word)
 }
 
-void calcChecksum(byte c, byte h, byte l) {
+void calcChecksum(byte c, byte h, byte l){
   checksum = 256 + c + h + l; //adds up all the bytes sent
   highcheck = highByte(checksum); //then turns this checksum which is a word into 2 bytes
   lowcheck = lowByte(checksum);
