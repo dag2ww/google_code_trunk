@@ -46,7 +46,7 @@ void setup()
   Serial.println(success);
   //use this functions instead of analogWrite on 'initialized' pins
   //apply more less about 20% duty cycle for whole frequencies
-  pwmWrite(PIEZO_PIN, 36);//0...255
+  pwmWrite(PIEZO_PIN, 51);//0...255
 }
 
 void loop()
