@@ -7,7 +7,7 @@
 
 #define ARDUINOJSON_ENABLE_PROGMEM 0
 
-#include "Adafruit_BME280.h" //https://github.com/Takatsuki0204/BME280-I2C-ESP32
+//#include "Adafruit_BME280.h" //https://github.com/Takatsuki0204/BME280-I2C-ESP32
 #include <ArduinoJson.h>    //https://github.com/bblanchon/ArduinoJson
 #include <WiFi.h>
 
@@ -27,7 +27,7 @@ float humidity = 0;
 float pressure = 0;
 int weatherID = 0;
 
-Adafruit_BME280 bme(I2C_SDA, I2C_SCL);
+//Adafruit_BME280 bme(I2C_SDA, I2C_SCL);
 
 WiFiClient client;
 char* servername ="api.openweathermap.org";  // remote server we will connect to
@@ -76,11 +76,11 @@ void loop() {
 
 void connectToWifi()
 {
-  WiFi.enableSTA(true);
+  //WiFi.enableSTA(true);
   
   delay(2000);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin("Elektro", password);
   
   while (WiFi.status() != WL_CONNECTED) {
         delay(500);
@@ -90,11 +90,8 @@ void connectToWifi()
 
 void initSensor()
 {
-  bool status = bme.begin(BME280_ADDRESS);
-  if (!status) {
-    Serial.println("Could not find a valid BME280 sensor, check wiring!");
-    while (1);
-  }
+  bool status = false;//bme.begin(BME280_ADDRESS);
+  
 }
 
 void blinkLED()
@@ -106,19 +103,21 @@ void blinkLED()
 
 float getTemperature()
 {
-  temperature = bme.readTemperature();
+  temperature = 20.0;//bme.readTemperature();
+return temperature;
 }
 
 float getHumidity()
 {
-  humidity = bme.readHumidity();
+  humidity = 80.0;//bme.readHumidity();
+  return humidity;
 }
 
 float getPressure()
 {
-  pressure = bme.readPressure();
-  pressure = bme.seaLevelForAltitude(ALTITUDE,pressure);
-  pressure = pressure/100.0F;
+  //pressure = bme.readPressure();
+  //pressure = bme.seaLevelForAltitude(ALTITUDE,pressure);
+  pressure = 100/100.0F;
 }
 
 void getWeatherData() //client function to send/receive GET request data.
