@@ -1,8 +1,8 @@
 #include <FS.h>                   //this needs to be first, or it all crashes and burns...
-//#include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
+#include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
 //needed for library
 #include <DNSServer.h>
-//#include <ESP8266WebServer.h>
+#include <ESP8266WebServer.h>
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
 //for LED status
 #include <Ticker.h>
@@ -16,7 +16,7 @@
 
 #define ARDUINOJSON_ENABLE_PROGMEM 0
 #define BLYNK_DEBUG           // Comment this out to disable debug and save space
-#define BLYNK_PRINT Serial1    // Comment this out to disable prints and save space
+#define BLYNK_PRINT Serial    // Comment this out to disable prints and save space
 #define DHTPIN D3
 // Uncomment whatever type you're using!
 //#define DHTTYPE DHT11   // DHT 11 
@@ -31,11 +31,10 @@ float temperature = 0;
 float humidity = 0;
 float pressure = 0;
 int weatherID = 0;
-unsigned long iterations = 0;
+unsigned long iterations = 2000;
 char* weatherUrl ="api.openweathermap.org";
 String weatherDescription ="";
 String weatherLocation = "";
-float Temperature;
 boolean bmpPresent = false;
 int dhtReadErrorCount = 0;
 char blynk_token[34] = "22c39700a6ef43ab9abd0a1eabfa50xx";
@@ -71,9 +70,9 @@ BlynkTimer blynkTimer; // Create a Timer object called "timer"!
 void setup() {
   delay(3000);
   // put your setup code here, to run once:
-  Serial1.begin(9600);
-  Serial1.println();
-  Serial1.println("Starting...");    //read configuration from FS json
+  Serial.begin(9600);
+  Serial.println();
+  Serial.println("Starting...");    //read configuration from FS json
 
   //set led pin as output
   pinMode(BUILTIN_LED, OUTPUT);
@@ -85,16 +84,16 @@ void setup() {
   //SPIFFS.format();
 
   //read configuration from FS json
-  Serial1.println("mounting FS...");
+  Serial.println("mounting FS...");
 
   if (SPIFFS.begin()) {
-    Serial1.println("mounted file system");
+    Serial.println("mounted file system");
     if (SPIFFS.exists("/config.json")) {
       //file exists, reading and loading
-      Serial1.println("reading config file");
+      Serial.println("reading config file");
       File configFile = SPIFFS.open("/config.json", "r");
       if (configFile) {
-        Serial1.println("opened config file");
+        Serial.println("opened config file");
         size_t size = configFile.size();
         // Allocate a buffer to store contents of the file.
         std::unique_ptr<char[]> buf(new char[size]);
@@ -102,19 +101,19 @@ void setup() {
         configFile.readBytes(buf.get(), size);
         DynamicJsonBuffer jsonBuffer;
         JsonObject& json = jsonBuffer.parseObject(buf.get());
-        json.printTo(Serial1);
+        json.printTo(Serial);
         if (json.success()) {
-          Serial1.println("\nparsed json");
+          Serial.println("\nparsed json");
 
           strcpy(blynk_token, json["blynk_token"]);
 
         } else {
-          Serial1.println("failed to load json config");
+          Serial.println("failed to load json config");
         }
       }
     }
   } else {
-    Serial1.println("failed to mount FS");
+    Serial.println("failed to mount FS");
   }
   //end read
 
@@ -156,7 +155,7 @@ void setup() {
   //here  "AutoConnectAP"
   //and goes into a blocking loop awaiting configuration
   if (!wifiManager.autoConnect("ESPAutoConfig", "edavinci")) {
-    Serial1.println("failed to connect and hit timeout");
+    Serial.println("failed to connect and hit timeout");
     delay(3000);
     //reset and try again, or maybe put it to deep sleep
     ESP.reset();
@@ -164,7 +163,7 @@ void setup() {
   }
 
   //if you get here you have connected to the WiFi
-  Serial1.println("connected...yeey :)");
+  Serial.println("connected...yeey :)");
   
   ticker.detach();
   //turn LED off
@@ -175,7 +174,7 @@ void setup() {
 
   //save the custom parameters to FS
   if (shouldSaveConfig) {
-    Serial1.println("saving config");
+    Serial.println("saving config");
     DynamicJsonBuffer jsonBuffer;
     JsonObject& json = jsonBuffer.createObject();
 
@@ -183,17 +182,17 @@ void setup() {
 
     File configFile = SPIFFS.open("/config.json", "w");
     if (!configFile) {
-      Serial1.println("failed to open config file for writing");
+      Serial.println("failed to open config file for writing");
     }
 
-    json.printTo(Serial1);
+    json.printTo(Serial);
     json.printTo(configFile);
     configFile.close();
     //end save
   }
 
-  Serial1.println("local ip");
-  Serial1.println(WiFi.localIP());
+  Serial.println("local ip");
+  Serial.println(WiFi.localIP());
 
   dht.begin();
 
@@ -202,7 +201,7 @@ void setup() {
   Wire.begin(D1, D2);
   Wire.setClock(400000);
   if (!bmp.begin()) {
-    Serial1.println("No BMP180 / BMP085 found");
+    Serial.println("No BMP180 / BMP085 found");
   } else {
     bmpPresent = true;
   }
@@ -216,7 +215,7 @@ void setup() {
 
 //callback notifying us of the need to save config
 void saveConfigCallback () {
-  Serial1.println("Should save config");
+  Serial.println("Should save config");
   shouldSaveConfig = true;
 }
 
@@ -229,7 +228,7 @@ void tickLed()
 
 void handleWeatherdisplay()
 {
- if(iterations == 1800)//We check for updated weather forecast once every hour
+ if(iterations >= 30)//We check for updated weather forecast once every hour
  {
    getWeatherData();
    printWeatherIcon(weatherID);
@@ -263,13 +262,15 @@ void blynkPush()
   }
   
   float h = dht.readHumidity();
+  humidity = h;
   // Read temperature as Celsius
   float t = dht.readTemperature();
+  temperature = t;
 
   //t = ((int) (t * 10) / 10.0);
   //h = ((int) (h * 10) / 10.0);
   if (isnan(h) || isnan(t)) {
-    Serial1.println("Failed to read from DHT sensor!");
+    Serial.println("Failed to read from DHT sensor!");
     dhtReadErrorCount += 1;
     if(dhtReadErrorCount >= 10) {
       Blynk.virtualWrite(V1, -127);
@@ -282,13 +283,13 @@ void blynkPush()
     double dp = dewPoint(t,h);
     Blynk.virtualWrite(V4, dp); 
     dhtReadErrorCount = 0;  
-    Serial1.println("Temp: "+String(t)+" Humidity: "+String(h)+".");
+    Serial.println("Temp: "+String(t)+" Humidity: "+String(h)+".");
   }
   
   Wire.setClock(400000);
   Wire.begin(D1, D2);
   if (!bmp.begin()) {
-    Serial1.println("No BMP180 / BMP085 found");
+    Serial.println("No BMP180 / BMP085 found");
   } else {
     bmpPresent = true;
   }
@@ -298,6 +299,7 @@ void blynkPush()
   } 
     
   tickLed();
+  handleWeatherdisplay();
 }
 
 void readPressure(){
@@ -311,12 +313,12 @@ void readPressure(){
   // you will need to know the altitude at which your measurements are taken.
   // We're using a constant called ALTITUDE in this sketch:
   
-  Serial1.println();
-  Serial1.print("provided altitude: ");
-  Serial1.print(BRZEG_ALTITUDE,0);
-  Serial1.print(" meters, ");
-  Serial1.print(BRZEG_ALTITUDE*3.28084,0);
-  Serial1.println(" feet");
+  Serial.println();
+  Serial.print("provided altitude: ");
+  Serial.print(BRZEG_ALTITUDE,0);
+  Serial.print(" meters, ");
+  Serial.print(BRZEG_ALTITUDE*3.28084,0);
+  Serial.println(" feet");
   
   // If you want to measure altitude, and not pressure, you will instead need
   // to provide a known baseline pressure. This is shown at the end of the sketch.
@@ -342,11 +344,11 @@ void readPressure(){
     if (status != 0)
     {
       // Print out the measurement:
-      Serial1.print("temperature: ");
-      Serial1.print(T,2);
-      Serial1.print(" deg C, ");
-      Serial1.print((9.0/5.0)*T+32.0,2);
-      Serial1.println(" deg F");
+      Serial.print("temperature: ");
+      Serial.print(T,2);
+      Serial.print(" deg C, ");
+      Serial.print((9.0/5.0)*T+32.0,2);
+      Serial.println(" deg F");
       
       // Start a pressure measurement:
       // The parameter is the oversampling setting, from 0 to 3 (highest res, longest wait).
@@ -369,11 +371,11 @@ void readPressure(){
         if (status != 0)
         {
           // Print out the measurement:
-          Serial1.print("absolute pressure: ");
-          Serial1.print(P,2);
-          Serial1.print(" mb, ");
-          Serial1.print(P*0.0295333727,2);
-          Serial1.println(" inHg");
+          Serial.print("absolute pressure: ");
+          Serial.print(P,2);
+          Serial.print(" mb, ");
+          Serial.print(P*0.0295333727,2);
+          Serial.println(" inHg");
 
           // The pressure sensor returns abolute pressure, which varies with altitude.
           // To remove the effects of altitude, use the sealevel function and your current altitude.
@@ -383,11 +385,12 @@ void readPressure(){
 
           p0 = bmp.sealevel(P,BRZEG_ALTITUDE); // we're at 1655 meters (Boulder, CO)
           Blynk.virtualWrite(V3, p0);
-          Serial1.print("relative (sea-level) pressure: ");
-          Serial1.print(p0,2);
-          Serial1.print(" mb, ");
-          Serial1.print(p0*0.0295333727,2);
-          Serial1.println(" inHg");
+          pressure = p0;
+          Serial.print("relative (sea-level) pressure: ");
+          Serial.print(p0,2);
+          Serial.print(" mb, ");
+          Serial.print(p0*0.0295333727,2);
+          Serial.println(" inHg");
 
           // On the other hand, if you want to determine your altitude from the pressure reading,
           // use the altitude function along with a baseline pressure (sea-level or other).
@@ -395,19 +398,19 @@ void readPressure(){
           // Result: a = altitude in m.
 
           a = bmp.altitude(P,p0);
-          Serial1.print("computed altitude: ");
-          Serial1.print(a,0);
-          Serial1.print(" meters, ");
-          Serial1.print(a*3.28084,0);
-          Serial1.println(" feet");
+          Serial.print("computed altitude: ");
+          Serial.print(a,0);
+          Serial.print(" meters, ");
+          Serial.print(a*3.28084,0);
+          Serial.println(" feet");
         }
-        else Serial1.println("error retrieving pressure measurement\n");
+        else Serial.println("error retrieving pressure measurement\n");
       }
-      else Serial1.println("error starting pressure measurement\n");
+      else Serial.println("error starting pressure measurement\n");
     }
-    else Serial1.println("error retrieving temperature measurement\n");
+    else Serial.println("error retrieving temperature measurement\n");
   }
-  else Serial1.println("error starting temperature measurement\n");
+  else Serial.println("error starting temperature measurement\n");
 
 }
 
@@ -436,6 +439,7 @@ void getWeatherData() //client function to send/receive GET request data.
   WiFiClient client;
   const int httpPort = 80;
   if (!client.connect(weatherUrl, httpPort)) {
+    Serial.println("Failed to connect to weather server");
         return;
     }
       // We now create a URI for the request
@@ -469,7 +473,7 @@ StaticJsonBuffer<1024> json_buf;
 JsonObject &root = json_buf.parseObject(jsonArray);
 if (!root.success())
 {
-  Serial1.println("parseObject() failed");
+  Serial.println("parseObject() failed");
 }
 
 String location = root["city"]["name"];
@@ -496,6 +500,7 @@ void showConnectingIcon()
 
 void sendHumidityToNextion()
 {
+  endNextionCommand();
   String command = "humidity.txt=\""+String(humidity,1)+"\"";
   Serial.print(command);
   endNextionCommand();
@@ -503,6 +508,7 @@ void sendHumidityToNextion()
 
 void sendTemperatureToNextion()
 {
+  endNextionCommand();
   String command = "temperature.txt=\""+String(temperature,1)+"\"";
   Serial.print(command);
   endNextionCommand();
@@ -510,6 +516,7 @@ void sendTemperatureToNextion()
 
 void sendPressureToNextion()
 {
+  endNextionCommand();
   String command = "pressure.txt=\""+String(pressure,1)+"\"";
   Serial.print(command);
   endNextionCommand();
