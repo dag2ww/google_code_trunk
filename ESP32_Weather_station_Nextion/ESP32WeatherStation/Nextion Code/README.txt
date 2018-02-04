@@ -1,0 +1,1 @@
+plik *.tft trzeba wyszukaæ na dysku C:

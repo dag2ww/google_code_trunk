@@ -1,0 +1,48 @@
+ACE converter source build notes for v3.20:
+=================================
+
+Using Borland C++ v5.02:
+
+======================
+
+Note the directory containing all the source files (..\SRC)
+
+Start BC++5.02
+
+Project-->Open Project-->pick \..\SRC\ACE.ide
+
+Options-->Project-->Directories and pick the include dirs for Borland (C:\BC5\INCLUDE\ for example)
+
+View-->Project
+
+In Project Window -> right click and pick "Build node" on ACE.EXE.
+
+This should get you a fresh ace.exe in the source directory.
+
+======================
+
+
+Using Borland C++ v5.5 (free command line compiler tool - download it from borland.com)
+
+======================
+
+Install the compiler to any convenient directory
+
+Copy bcc32.exe, brc32.exe and ilink32.exe from the BCC55\BIN directory to the ..\ACE\SRC directory
+
+Edit make.bat and change the xxxxxxx to the directories for includes (usually BCC55\INCLUDE)
+
+Edit make.bat and change the yyyyyyy to the directories for librarires (usually BCC55\LIB)
+
+Run make.bat from the command line.
+
+This should get you a fresh ace.exe in the source directory.
+
+MAKE.BAT contents:
+
+bcc32 -c -tWM -tW -Ixxxxxxx -Lyyyyyyy ace.c converter.c
+brc32 ace.rc
+ilink32 /aa /Tpe /Gn /t /M c0w32 ace.obj converter.obj, ace.exe,,import32 cw32mt,,ace.res
+
+
+======================

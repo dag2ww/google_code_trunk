@@ -30,6 +30,8 @@ String APIKEY = "6a44311c1d307ba90a4a30fac1abce64";
 float temperature = 0;
 float humidity = 0;
 float pressure = 0;
+float windKmPerHour = 0;
+float cloudyPercent = 0; 
 int weatherID = 0;
 unsigned long iterations = 2000;
 char* weatherUrl ="api.openweathermap.org";
@@ -241,6 +243,10 @@ void handleWeatherdisplay()
  
  sendPressureToNextion();
 
+ sendCloudsToNextion();
+
+ sendWindToNextion();
+
  iterations++;
 }
 
@@ -262,10 +268,10 @@ void blynkPush()
   }
   
   float h = dht.readHumidity();
-  humidity = h;
+  //humidity = h;
   // Read temperature as Celsius
   float t = dht.readTemperature();
-  temperature = t;
+  //temperature = t;
 
   //t = ((int) (t * 10) / 10.0);
   //h = ((int) (h * 10) / 10.0);
@@ -385,7 +391,7 @@ void readPressure(){
 
           p0 = bmp.sealevel(P,BRZEG_ALTITUDE); // we're at 1655 meters (Boulder, CO)
           Blynk.virtualWrite(V3, p0);
-          pressure = p0;
+          //pressure = p0;
           Serial.print("relative (sea-level) pressure: ");
           Serial.print(p0,2);
           Serial.print(" mb, ");
@@ -477,15 +483,22 @@ if (!root.success())
 }
 
 String location = root["city"]["name"];
-String temperature = root["list"]["main"]["temp"];
+String temp = root["list"]["main"]["temp"];
 String weather = root["list"]["weather"]["main"];
 String description = root["list"]["weather"]["description"];
 String idString = root["list"]["weather"]["id"];
 String timeS = root["list"]["dt_txt"];
+String pressuree = root["list"]["main"]["pressure"];
+String humid = root["list"]["main"]["humidity"];
+String windMeterPerSec = root["list"]["wind"]["speed"];
+String cloudsPercent = root["list"]["clouds"]["all"];
 
 weatherID = idString.toInt();
-Serial.print("\nWeatherID: ");
-Serial.print(weatherID);
+temperature = temp.toFloat();
+humidity = humid.toInt();
+pressure = pressuree.toFloat();
+windKmPerHour = (windMeterPerSec.toFloat() / 1000.0) * 60.0 * 60.0;
+cloudyPercent = cloudsPercent.toFloat();
 endNextionCommand(); //We need that in order the nextion to recognise the first command after the serial print
 
 }
@@ -501,7 +514,7 @@ void showConnectingIcon()
 void sendHumidityToNextion()
 {
   endNextionCommand();
-  String command = "humidity.txt=\""+String(humidity,1)+"\"";
+  String command = "humidity.txt=\""+String(humidity,1)+" %\"";
   Serial.print(command);
   endNextionCommand();
 }
@@ -509,7 +522,7 @@ void sendHumidityToNextion()
 void sendTemperatureToNextion()
 {
   endNextionCommand();
-  String command = "temperature.txt=\""+String(temperature,1)+"\"";
+  String command = "temperature.txt=\""+String(temperature,1)+" st.C\"";
   Serial.print(command);
   endNextionCommand();
 }
@@ -517,7 +530,21 @@ void sendTemperatureToNextion()
 void sendPressureToNextion()
 {
   endNextionCommand();
-  String command = "pressure.txt=\""+String(pressure,1)+"\"";
+  String command = "pressure.txt=\""+String(pressure,1)+" hPa\"";
+  Serial.print(command);
+  endNextionCommand();
+}
+
+void sendCloudsToNextion()
+{
+  String command = "clouds.txt=\""+String(cloudyPercent,1)+" %\"";
+  Serial.print(command);
+  endNextionCommand();
+}
+
+void sendWindToNextion()
+{
+  String command = "wind.txt=\""+String(windKmPerHour,1)+" Km/h\"";
   Serial.print(command);
   endNextionCommand();
 }
