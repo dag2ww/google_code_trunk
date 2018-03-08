@@ -1,20 +1,18 @@
 #include <FS.h>                   //this needs to be first, or it all crashes and burns...
-
 #include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
-
 //needed for library
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
-
 //for LED status
 #include <Ticker.h>
-Ticker ticker;
-
 #include <ArduinoJson.h>          //https://github.com/bblanchon/ArduinoJson
-
 #include <DHT.h>
-#include <Adafruit_Sensor.h>
+#include <Wire.h>
+//#include <Adafruit_BMP085.h>      //http://www.instructables.com/id/Adding-the-BMP180-to-the-ESP8266/
+#include <SFE_BMP180.h>
+#include <BlynkSimpleEsp8266.h>
+#include <SimpleTimer.h>
 
 #define BLYNK_DEBUG           // Comment this out to disable debug and save space
 #define BLYNK_PRINT Serial    // Comment this out to disable prints and save space
@@ -44,6 +42,7 @@ Ticker ticker;
 // Arduino Due that runs at 84mhz a value of 30 works.
 // Example to initialize DHT sensor for Arduino Due:
 DHT dht(DHTPIN, DHTTYPE);
+Ticker ticker;
 
 int dhtReadErrorCount = 0;
 
