@@ -12,7 +12,7 @@ RTC_DS3231 rtc;
 #include "vfd_35x67.c"   // font 35x67
 #include "vfd_70x134.c"  // font 70px134
 #include "apple_35x41.c" // icon 35px41 
-const uint8_t rtc_sda = 5, rtc_sck = 13;
+const uint8_t rtc_sda = 5, rtc_sck = 2;
 const char *ssid = "Elektro";
 const char *pass = "2020Dancewicz2020";
 uint32_t targetTime = 0; // for next 1 second timeout
@@ -36,27 +36,35 @@ uint8_t md = 2; // mode 1(yyyy_mmdd_hhmmss),2(mmdd_hh_mmss),3(mmdd_ss_hhmm)
   
 void setup() { 
   M5.begin();
+  Serial.begin(115200);
   Wire.begin(rtc_sda,rtc_sck);delay(10); //GLOVE A : SDA,SCL
   if(digitalRead(39)==0){updateFromFS(SD);ESP.restart();}
   rtc.begin(); 
   M5.Lcd.setBrightness(255);
   M5.Lcd.setRotation(1);
-  M5.Lcd.fillRect(0, 0, 319, 239, ORANGE);
+  M5.Lcd.fillRect(0, 0, 319, 239, BLACK);
   M5.Lcd.fillRect(1, 1, 317, 236, BLACK);
   M5.Lcd.setTextSize(2);
   esp_timer_init();
   wifi_setup(); // wifi conection, NTP read, Save NTP to RTC
-  rtc_setup();  // Read the value of RTC
 }
  
 void loop() {
   M5.update();
   if (targetTime < esp_timer_get_time()/1000 ){
     targetTime = esp_timer_get_time()/1000 + 1000;
-    ss++; if (ss == 60) { ss = 0; mm++;
+    DateTime now = rtc.now(); // time geting from RTC
+    if (now.year() == 2165){  // rtc check
+      ss++; if (ss == 60) { ss = 0; mm++;
            if (mm == 60) { mm = 0; hh++;
             if (hh == 24) { hh = 0; dd++; //
-   }}}}
+      }}}
+    }else{
+    yy = now.year(); mn = now.month(); dd = now.day();
+    hh = now.hour(); mm = now.minute(); ss = now.second();
+    Serial.printf("From RTC: %d %d %d %d %d %d\n",yy,mn,dd,hh,mm,ss);
+    }
+  }
   if(M5.BtnC.wasPressed()){            // mode change
    if (md == 3){md = 1;M5.Lcd.fillRect(1,1,317,236,BLACK);return;}
    if (md == 2){md = 3;M5.Lcd.fillRect(1,1,317,236,BLACK);return;}
@@ -66,7 +74,7 @@ void loop() {
   if ( md == 2 ){ yyyy_mmdd_hhmmss();} // yyyy,mm,dd,hh,mm,ss
   if ( md == 1 ){ mmss();}             // mm,ss
   periodic_ntp();                      // Set the time by periodic NTP
-  delay(500);
+  delay(80);
 }
  
 void wifi_setup(){
@@ -83,37 +91,32 @@ void wifi_setup(){
   }
   if (wifi_check > 0){  // when there is wifi
     M5.Lcd.setCursor(20,120);M5.Lcd.setTextColor(GREEN);
-    M5.Lcd.print("wifi connection complete");delay(2000);
+    M5.Lcd.print("wifi connection complete");delay(1000);
     struct tm t;
     configTime(2*3600L,0,"ntp.nict.jp",
       "time.google.com","ntp.jst.mfeed.ad.jp");
     getLocalTime(&t);
     yy = t.tm_year + 1900; mn = t.tm_mon + 1; dd = t.tm_mday;
     hh = t.tm_hour; mm = t.tm_min; ss = t.tm_sec;
-    //Serial.printf("%d %d %d %d %d %d\n",yy,mn,dd,hh,mm,ss);
-    rtc.adjust(DateTime(yy,mn,dd,hh,mm,ss));//save ntp to rtc
     M5.Lcd.setCursor(20,160);M5.Lcd.setTextColor(GREEN);
-    M5.Lcd.print("SET UP NTP");delay(2000); 
-  }
-  if (wifi_check < 0){   // When there is no wifi
-    M5.Lcd.setCursor(20,120);M5.Lcd.setTextColor(ORANGE);
-    M5.Lcd.print("without wifi connection");delay(2000);
-  }
-}
- 
-void rtc_setup(){
-  DateTime now = rtc.now(); // time geting from RTC
-  if (now.year() == 2165){  // rtc check
-    M5.Lcd.setCursor(20,200);M5.Lcd.setTextColor(RED);
-    M5.Lcd.print("RTC FAIL");delay(2000);
-    M5.Lcd.fillRect(1, 1, 317, 236, BLACK);
-    }else{
-    yy = now.year(); mn = now.month(); dd = now.day();
-    hh = now.hour(); mm = now.minute(); ss = now.second();
+    M5.Lcd.print("SET UP NTP");delay(1000); 
+
+    rtc.adjust(DateTime(yy,mn,dd,hh,mm,ss));
+    DateTime now = rtc.now(); // time geting from RTC
+    if (now.year() == 2165){  //
+        M5.Lcd.setCursor(20,200);M5.Lcd.setTextColor(RED);
+        M5.Lcd.print("RTC FAIL");delay(1000);
+        M5.Lcd.fillRect(1, 1, 317, 236, BLACK);
+    } else {
     //Serial.printf("%d %d %d %d %d %d\n",yy,mn,dd,hh,mm,ss);
     M5.Lcd.setCursor(20,200);M5.Lcd.setTextColor(BLUE);
     M5.Lcd.print("SET UP RTC");delay(2000);
     M5.Lcd.fillRect(1, 1, 317, 236, BLACK);
+    }
+  }
+  if (wifi_check < 0){   // When there is no wifi
+    M5.Lcd.setCursor(20,120);M5.Lcd.setTextColor(ORANGE);
+    M5.Lcd.print("without wifi connection");delay(1000);
   }
 }
  
@@ -246,6 +249,5 @@ void fade2(){
 void periodic_ntp(){ // Adjust to ntp at hh mm ss
   if ( (hh == 1) & (mm == 0) & (ss == 0)){ // AM 1:00:00
     wifi_setup();
-    rtc_setup();
   }
 }
