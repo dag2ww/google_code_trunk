@@ -12,7 +12,7 @@ RTC_DS3231 rtc;
 #include "vfd_35x67.c"   // font 35x67
 #include "vfd_70x134.c"  // font 70px134
 #include "apple_35x41.c" // icon 35px41 
-const uint8_t rtc_sda = 5, rtc_sck = 2;
+const uint8_t rtc_sda = 5, rtc_sck = 13;
 const char *ssid = "Elektro";
 const char *pass = "2020Dancewicz2020";
 uint32_t targetTime = 0; // for next 1 second timeout
