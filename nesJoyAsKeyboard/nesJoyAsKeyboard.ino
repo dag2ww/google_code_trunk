@@ -51,11 +51,31 @@ void loop() {
   if(output == 223) {
     Keyboard.write(KEY_DOWN_ARROW);
   }
-  if(output == 254) {
-    Keyboard.write(KEY_RETURN);
+  if(output == 111) { //up+right
+    Keyboard.write('r');
+  }
+  if(output == 175) { //up+left
+    Keyboard.write('w');
+  }
+  if(output == 159) { //down+left
+    Keyboard.write('z');
+  }
+  if(output == 95) { //down+right
+    Keyboard.write('c');
+  }
+  if(output == 254) { //fire 1
+    Keyboard.write('x');
+  }
+  if(output == 253) { //fire 2
+    Keyboard.write('y');
+  }
+  if(output == 251) { //select
+    Keyboard.write('a');
+  }
+  if(output == 247) { //start
+    Keyboard.write('b');
   }
 }
-
 
 void ReadNESjoy() {
   latchlow;
