@@ -1,0 +1,10 @@
+00:12:32 **** Incremental Build of configuration Debug for project SzymonPlayer ****
+make -j7 all 
+arm-none-eabi-size   SzymonPlayer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   9296	     20	   1668	  10984	   2ae8	SzymonPlayer.elf
+Finished building: default.size.stdout
+ 
+
+00:12:32 Build Finished. 0 errors, 0 warnings. (took 86ms)
+
