@@ -83,16 +83,7 @@ int main(void)
         buf[1] = 0x06; //T002.mp3
         ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
       }
-      if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10)){
-          buf[0] = 0x01; //play track
-          buf[1] = 0x05; //T003.mp3
-          ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
-        }
-      if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11)){
-          buf[0] = 0x01; //play track
-          buf[1] = 0x04; //T003.mp3
-          ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
-        }
+
       if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_0)){
         buf[0] = 0x01; //play track
         buf[1] = 0x10; //T002.mp3
@@ -113,6 +104,26 @@ int main(void)
         buf[1] = 0x07; //T002.mp3
         ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
       }
+      if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_8)){
+        buf[0] = 0x01; //play track
+        buf[1] = 0x01; //T003.mp3
+        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
+      }
+      if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9)){
+        buf[0] = 0x01; //play track
+        buf[1] = 0x07; //T003.mp3
+        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
+      }
+      if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10)){
+        buf[0] = 0x01; //play track
+        buf[1] = 0x05; //T003.mp3
+        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
+      }
+      if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11)){
+        buf[0] = 0x01; //play track
+        buf[1] = 0x04; //T003.mp3
+        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
+      }
       if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6)){
         buf[0] = 0x01; //play track
         buf[1] = 0x03; //T003.mp3
@@ -123,18 +134,6 @@ int main(void)
         buf[1] = 0x02; //T003.mp3
         ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
       }
-      if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_8)){
-        buf[0] = 0x01; //play track
-        buf[1] = 0x01; //T003.mp3
-        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
-        int a = 1;
-      }
-      if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9)){
-        buf[0] = 0x01; //play track
-        buf[1] = 0x11; //T003.mp3
-        ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
-      }
-
 
    }
     /* USER CODE END WHILE */

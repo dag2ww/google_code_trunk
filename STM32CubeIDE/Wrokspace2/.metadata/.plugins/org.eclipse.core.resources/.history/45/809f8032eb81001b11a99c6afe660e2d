@@ -82,6 +82,7 @@ int main(void)
         buf[0] = 0x01; //play track
         buf[1] = 0x06; //T002.mp3
         ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
+        int a = 1;
       }
       if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10)){
           buf[0] = 0x01; //play track
@@ -127,7 +128,6 @@ int main(void)
         buf[0] = 0x01; //play track
         buf[1] = 0x01; //T003.mp3
         ret = HAL_I2C_Master_Transmit(&hi2c1, TRIGGER_ADDR, buf, 2, 5000);
-        int a = 1;
       }
       if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9)){
         buf[0] = 0x01; //play track
